@@ -6,14 +6,19 @@
 
 package historialPrestamos;
 
+import com.qt.datapicker.DatePicker;
 import java.awt.Color;
 import java.text.ParseException;
+import java.util.Locale;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 /**
  *
@@ -107,10 +112,17 @@ public class interfazHistorial extends JFrame {
         grupoRbTipoHist.add(rbHistLibros);
         
         rbHistMatVis = new JRadioButton("Materiales Visuales");
-        rbHistMatVis.setBounds(700, 20, 140, 30);
+        rbHistMatVis.setBounds(700, 20, 140, 30);        
         rbHistMatVis.setVisible(true);   
         jpPrincHist.add(rbHistMatVis);
         grupoRbTipoHist.add(rbHistMatVis);
+        
+        UtilDateModel model = new UtilDateModel();
+        JDatePanelImpl datePanel = new JDatePanelImpl(model);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+
+        jpPrincHist.add(datePicker);
+        
         
         rbHistGeneral.addActionListener(ch);
         rbHistLibros.addActionListener(ch);
