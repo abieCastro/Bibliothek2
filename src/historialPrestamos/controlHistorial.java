@@ -6,7 +6,6 @@
 
 package historialPrestamos;
 
-import principal.conexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -14,10 +13,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import org.freixas.jcalendar.JCalendarCombo;
+import principal.conexion;
 import sun.util.calendar.LocalGregorianCalendar;
 
 /**
@@ -33,7 +35,7 @@ public class controlHistorial implements ActionListener{
         this.vistaHist = vistaHist;
     }
     
-    public void buscarHistGral () {        
+    public void buscarHistGral (String fechaDesde) {        
         historial hist;
         listaHistorial = new ArrayList<historial>();             
         Date fecha = new Date();
@@ -86,7 +88,7 @@ public class controlHistorial implements ActionListener{
             "	left join bibliothek.devolucion as de on h.devolucion_claveDevolucion = de.claveDevolucion\n" +
             "\n" +
             "	where		\n" +
-            "		STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') >= STR_TO_DATE('01/05/2016', '%d/%m/%Y')\n" +
+            "		STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') >= STR_TO_DATE('"+fechaDesde+"', '%d/%m/%Y')\n" +
             "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') <= STR_TO_DATE('"+fechaAc+"', '%d/%m/%Y')\n" +
             ";");
             ResultSet rs = ps.executeQuery();
@@ -133,7 +135,7 @@ public class controlHistorial implements ActionListener{
         }
     }    
     
-    public void buscarHistLib() {        
+    public void buscarHistLib(String fechaDesde) {        
         historial hist;
         listaHistorial = new ArrayList<historial>();             
         Date fecha = new Date();
@@ -175,7 +177,7 @@ public class controlHistorial implements ActionListener{
             "\n" +
             "	where		\n" +
             "		h.ejemplarlibro_idEjemplarL is not null\n" +
-            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') >= STR_TO_DATE('01/05/2016', '%d/%m/%Y')\n" +
+            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') >= STR_TO_DATE('"+fechaDesde+"', '%d/%m/%Y')\n" +
             "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') <= STR_TO_DATE('"+fechaAc+"', '%d/%m/%Y')\n" +
             ";");
             ResultSet rs = ps.executeQuery();
@@ -222,7 +224,7 @@ public class controlHistorial implements ActionListener{
         }
     }    
     
-    public void buscarHistMatVis() {        
+    public void buscarHistMatVis(String fechaDesde) {        
         historial hist;
         listaHistorial = new ArrayList<historial>();             
         Date fecha = new Date();
@@ -264,7 +266,7 @@ public class controlHistorial implements ActionListener{
             "\n" +
             "	where		\n" +
             "		h.ejempmatvisual_idEjemplarM is not null\n" +
-            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') >= STR_TO_DATE('01/05/2016', '%d/%m/%Y')\n" +
+            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') >= STR_TO_DATE('"+fechaDesde+"', '%d/%m/%Y')\n" +
             "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') <= STR_TO_DATE('"+fechaAc+"', '%d/%m/%Y')\n" +
             ";");
             ResultSet rs = ps.executeQuery();
@@ -415,7 +417,13 @@ public class controlHistorial implements ActionListener{
                 vistaHist.spHistLibros.setVisible(false);
                 vistaHist.jpTablaHistMatVis.setVisible(false);
                 vistaHist.spHistMatVis.setVisible(false);
-                buscarHistGral ();
+                
+                int año = vistaHist.selecFechaDesde.getCalendar().get(Calendar.YEAR);
+                int mes = vistaHist.selecFechaDesde.getCalendar().get(Calendar.MONTH) + 1;
+                int dia = vistaHist.selecFechaDesde.getCalendar().get(Calendar.DAY_OF_MONTH);          
+                String fechaDesde= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año);  
+                
+                buscarHistGral (fechaDesde);
                 mostrarHistGral(vistaHist.tbHistGeneral);                
             }
         }
@@ -428,7 +436,13 @@ public class controlHistorial implements ActionListener{
                 vistaHist.spHistLibros.setVisible(true);
                 vistaHist.jpTablaHistMatVis.setVisible(false);
                 vistaHist.spHistMatVis.setVisible(false);
-                buscarHistLib();
+                
+                int año = vistaHist.selecFechaDesde.getCalendar().get(Calendar.YEAR);
+                int mes = vistaHist.selecFechaDesde.getCalendar().get(Calendar.MONTH) + 1;
+                int dia = vistaHist.selecFechaDesde.getCalendar().get(Calendar.DAY_OF_MONTH);          
+                String fechaDesde= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año);  
+                
+                buscarHistLib(fechaDesde);
                 mostrarHistLib(vistaHist.tbHistLibros);
             }
         }
@@ -441,7 +455,13 @@ public class controlHistorial implements ActionListener{
                 vistaHist.spHistLibros.setVisible(false);
                 vistaHist.jpTablaHistMatVis.setVisible(true);
                 vistaHist.spHistMatVis.setVisible(true);
-                buscarHistMatVis();
+                
+                int año = vistaHist.selecFechaDesde.getCalendar().get(Calendar.YEAR);
+                int mes = vistaHist.selecFechaDesde.getCalendar().get(Calendar.MONTH) + 1;
+                int dia = vistaHist.selecFechaDesde.getCalendar().get(Calendar.DAY_OF_MONTH);          
+                String fechaDesde= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año);  
+                
+                buscarHistMatVis(fechaDesde);
                 mostrarHistMatVis(vistaHist.tbHistMatVis);
             }
         }
