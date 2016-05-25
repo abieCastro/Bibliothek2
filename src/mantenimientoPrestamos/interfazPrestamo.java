@@ -420,6 +420,12 @@ public class interfazPrestamo extends JFrame {
             }
         });
         
+        btPrestQuitar.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                cp.quitarDetPres();
+            }
+        });
+        
         return jpPrincPrest;
     }    
     

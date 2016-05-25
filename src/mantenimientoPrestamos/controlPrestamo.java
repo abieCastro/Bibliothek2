@@ -620,8 +620,7 @@ public class controlPrestamo {
         vistaPres.jpTablaPresMaVi.setVisible(false);
     }
  
-    public void validarDetPres() throws ParseException {
-        
+    public void validarDetPres() throws ParseException {        
             fechaPrestamo();
             vistaPres.jpDetallePrest.setVisible(true);
             vistaPres.jpTablaPresDet.setVisible(true);
@@ -630,16 +629,39 @@ public class controlPrestamo {
             
             validarFechaLim();
             vistaPres.jpPrestamo.setVisible(true);                        
-            vistaPres.btRegPrestamo.setVisible(true);
-        
+            vistaPres.btRegPrestamo.setVisible(true);        
+    }
+    
+    public void quitarDetPres(){            
+        DefaultTableModel dtm = (DefaultTableModel) vistaPres.tbPresDetalle.getModel();
+        if(vistaPres.tbPresDetalle.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(null, "No ha seleccionado un ejemplar", "ERROR", JOptionPane.ERROR_MESSAGE);                                    
+        } else {
+            String dato=String.valueOf(dtm.getValueAt(vistaPres.tbPresDetalle.getSelectedRow(),1));
+            if(dato.startsWith("LIB")) {
+                contPresLib = contPresLib -1;
+                actLimLibro=Integer.parseInt(vistaPres.labResLimLibro.getText())+1;                
+                vistaPres.labResLimLibro.setText(String.valueOf(actLimLibro));                
+            } else {
+                contPresMatVis = contPresMatVis -1;
+                actLimMatVis=Integer.parseInt(vistaPres.labResLimMatVis.getText())+1;
+                vistaPres.labResLimMatVis.setText(String.valueOf(actLimMatVis));                
+            }         
+            dtm.removeRow(vistaPres.tbPresDetalle.getSelectedRow());    
+            String valores = recorrerDetPres();
+            
+            if(valores=="") {
+                vistaPres.jpDetallePrest.setVisible(false);
+                vistaPres.jpPrestamo.setVisible(false);
+                vistaPres.btRegPrestamo.setVisible(false);
+            }
+        }
     }
     
     public void fechaPrestamo() {
-        System.out.println("entre al metodo");
         Date fecha = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        vistaPres.labFechaSist.setText(sdf.format(fecha));        
-        System.out.println("fecha del "+sdf.format(fecha));
+        vistaPres.labFechaSist.setText(sdf.format(fecha));    
     }
     
     public void validarFechaLim() throws ParseException {
