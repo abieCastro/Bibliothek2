@@ -40,21 +40,25 @@ import mantenimientoSolicitantes.*;
 public class controlPrestamo {
     conexion con = new conexion();
     interfazPrestamo vistaPres;
-    int contPresLib=0;
-    int contPresMatVis=0;
-    int actLimLibro;
-    int actLimMatVis;
+    
     int selectAlumno = -1;
     int selectDocente = -1;
     int selectLibro = -1;
     int selectMatVis = -1;    
-    String valoresDetPres="";
+       
     ArrayList<alumno> listaAlumno;
     ArrayList<docente> listaDocente;
     ArrayList<libro> listaLibro;
     ArrayList<ejemplarLibro> listaEjempLibro;
     ArrayList<materialVisual> listaMatVis;
     ArrayList<ejempMatVisual> listaEjempMatVis;
+    
+    int contPresLib=0;
+    int contPresMatVis=0;
+    int actLimLibro;
+    int actLimMatVis; 
+    
+    String valoresDetPres="";    
         
     public controlPrestamo (interfazPrestamo vistaPres) {     
         this.vistaPres=vistaPres;
@@ -471,7 +475,7 @@ public class controlPrestamo {
                 }
                 modeloLibro.addRow(columna);
             }
-            //ejempPres = vistaPres.txtEjempBus.getText();
+            
             vistaPres.jpTablaPresLib.setVisible(true);                         
             vistaPres.jpTablaPresMaVi.setVisible(false);          
         }
@@ -503,7 +507,7 @@ public class controlPrestamo {
                 }
                 modeloMatVis.addRow(columna);
             }
-            //ejempPres = vistaPres.txtEjempBus.getText();
+            
             vistaPres.jpTablaPresLib.setVisible(false);                         
             vistaPres.jpTablaPresMaVi.setVisible(true);                     
         }
@@ -592,67 +596,6 @@ public class controlPrestamo {
         }        
         return validar;
     }
-//    public boolean validarLimPres(JTable tbDetalle) throws ParseException {  
-//        boolean validar=false;
-//        String valores=calcularRegPres();
-//        String agregar="";
-//        
-//        if (selectLibro == 1) {      
-//            String[] prestamos=valores.split("--");
-//            for(int x=0; x<prestamos.length; x++) {
-//                if(prestamos[x].startsWith("LI")){
-//                    contPresLib=contPresLib+1;                    
-//                }                        
-//            }     
-//          
-//            
-//            if(Integer.parseInt(vistaPres.labResLimLibro.getText())<=contPresLib) {
-//                JOptionPane.showMessageDialog(null, "Ya cumple con el límite de préstamos de libros");                 
-//            } else {                
-//                if(valores!="") {
-//                    String todoL=listaLibro.get(0).getClaveLibro()+"/"+listaEjempLibro.get(0).getIdEjemplarL()+"/"+listaLibro.get(0).getTituloL();
-//                    agregar=valores+todoL;
-//                    llenarDetallePres(agregar, tbDetalle); 
-//                    contPresLib=contPresLib+1;
-//                } else {    
-//                    
-//                    agregar=listaLibro.get(0).getClaveLibro()+"/"+listaEjempLibro.get(0).getIdEjemplarL()+"/"+listaLibro.get(0).getTituloL();                    
-//                    llenarDetallePres(agregar,tbDetalle);
-//                    contPresLib=contPresLib+1;            
-//                }
-//                                  
-//            }
-//        }
-//        
-//        if (selectMatVis == 1) {      
-//            String[] prestamos=valores.split("--");
-//            for(int x=0; x<prestamos.length; x++) {
-//                if(prestamos[x].startsWith("MV")){                    
-//                    contPresMatVis=contPresLib+1;                    
-//                }                        
-//            }     
-//          
-//            
-//            if(Integer.parseInt(vistaPres.labResLimMatVis.getText())<=contPresMatVis) {
-//                JOptionPane.showMessageDialog(null, "Ya cumple con el límite de préstamos de material visual"); 
-//            } else {                
-//                if(valores!="") {
-//                    String todoM=listaMatVis.get(0).getClaveMatVis()+"/"+listaEjempMatVis.get(0).getIdEjemplarM()+"/"+listaMatVis.get(0).getTituloM();
-//                    agregar=valores+todoM;
-//                    llenarDetallePres(agregar, tbDetalle); 
-//                    contPresMatVis=contPresMatVis+1;
-//                } else {    
-//                    
-//                    agregar=listaMatVis.get(0).getClaveMatVis()+"/"+listaEjempMatVis.get(0).getIdEjemplarM()+"/"+listaMatVis.get(0).getTituloM();                    
-//                    llenarDetallePres(agregar,tbDetalle);
-//                    contPresMatVis=contPresMatVis+1;            
-//                }
-//                                  
-//            }
-//        }
-//        
-//        return validar;
-//    }
     
     public void llenarDetallePres(String valores, JTable tbDetalle) throws ParseException {    
         DefaultTableModel modeloDetalle = new DefaultTableModel();
@@ -692,9 +635,11 @@ public class controlPrestamo {
     }
     
     public void fechaPrestamo() {
+        System.out.println("entre al metodo");
         Date fecha = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         vistaPres.labFechaSist.setText(sdf.format(fecha));        
+        System.out.println("fecha del "+sdf.format(fecha));
     }
     
     public void validarFechaLim() throws ParseException {
@@ -848,7 +793,13 @@ public class controlPrestamo {
                 try{ 
                     Connection acceDB = con.getConexion();
                     PreparedStatement ps = acceDB.prepareStatement("UPDATE materialvisual SET disponibilidadM=disponibilidadM-1 WHERE claveMatVis=(select ejempmatvisual.materialvisual_claveMatVis from ejempmatvisual where ejempmatvisual.idEjemplarM='"+prestamos[x]+"');");                
-                    ps.executeUpdate();                
+                    int validar=ps.executeUpdate();                
+                    if(validar>0){
+                        registro=true;
+                    }
+                    else {
+                        registro=false;
+                    }
                 }catch(SQLException e){
                 }   
             }                  
@@ -865,8 +816,7 @@ public class controlPrestamo {
         String[] prestamos=valores.split("/");
         
         for(int x=0; x<prestamos.length; x++) {
-            if(prestamos[x].startsWith("LI") && selectAlumno==1){
-                System.out.println("");
+            if(prestamos[x].startsWith("LI") && selectAlumno==1){                
                 try{ 
                     Connection acceDB = con.getConexion();                    
                     PreparedStatement ps = acceDB.prepareStatement("UPDATE alumno SET limiteLibroA="+noLimiteLibro+" where claveAlumno="+listaAlumno.get(0).getClaveAlumno()+";");                
@@ -1093,15 +1043,132 @@ public class controlPrestamo {
         
         return registro;
     }
+    
+    public DefaultTableModel limpiarTablas(){               
+        DefaultTableModel modelo = null;
+        /*Si el solicitante fue un alumno limpiar su tabla*/
+        if(selectAlumno == 1) {
+            try {
+                modelo=(DefaultTableModel) vistaPres.tbPresAlumno.getModel();
+                int filas=vistaPres.tbPresAlumno.getRowCount();
+                for (int i = 0;filas>i; i++) {
+                    modelo.removeRow(0);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+            }
+        }
+        
+        /*Si el solicitante fue un docente limpiar su tabla*/
+        if(selectDocente == 1) {
+            try {
+                modelo=(DefaultTableModel) vistaPres.tbPresDocente.getModel();
+                int filas=vistaPres.tbPresDocente.getRowCount();
+                for (int i = 0;filas>i; i++) {
+                    modelo.removeRow(0);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+            }
 
+        }
+        
+        /*Si el ejemplar fue un libro limpiar su tabla*/
+        if(selectLibro == 1) {
+            try {
+                modelo=(DefaultTableModel) vistaPres.tbPresLibro.getModel();
+                int filas=vistaPres.tbPresLibro.getRowCount();
+                for (int i = 0;filas>i; i++) {
+                    modelo.removeRow(0);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+            }
+
+        }
+        
+        /*Si el ejemplar fue un material visual limpiar su tabla*/
+        if(selectMatVis == 1) {
+            try {
+                modelo=(DefaultTableModel) vistaPres.tbPresMatVis.getModel();
+                int filas=vistaPres.tbPresMatVis.getRowCount();
+                for (int i = 0;filas>i; i++) {
+                    modelo.removeRow(0);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+            }
+        }
+        
+        /*Limpiar la tabla Detalle*/
+        try {
+                modelo=(DefaultTableModel) vistaPres.tbPresDetalle.getModel();
+                int filas=vistaPres.tbPresDetalle.getRowCount();
+                for (int i = 0;filas>i; i++) {
+                    modelo.removeRow(0);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+            }
+        
+        return modelo;
+    }    
+    
+    public void limpiarDatos() {
+        selectAlumno=-1;
+        selectDocente=-1;
+        selectLibro=-1;
+        selectMatVis=-1;
+        
+        ArrayList<alumno> listaAlumno = null;
+        ArrayList<docente> listaDocente = null;
+        ArrayList<libro> listaLibro = null;
+        ArrayList<ejemplarLibro> listaEjempLibro = null;
+        ArrayList<materialVisual> listaMatVis = null;
+        ArrayList<ejempMatVisual> listaEjempMatVis = null;
+        
+        vistaPres.labResLimLibro.setText("");
+        vistaPres.labResLimMatVis.setText("");
+        vistaPres.labLimiteLibro.setVisible(false);
+        vistaPres.labLimiteMatVis.setVisible(false);
+        
+        contPresLib=0;
+        contPresMatVis=0;
+        
+        actLimLibro=0;
+        actLimMatVis=0;
+    
+        valoresDetPres="";
+                        
+        vistaPres.jpTablaPresAlum.setVisible(false);
+        vistaPres.jpTablaPresDoc.setVisible(false);
+        vistaPres.jpPresElegir.setVisible(false);
+        vistaPres.jpDetallePrest.setVisible(false);  
+        vistaPres.labFechaSist.setText("");                
+        vistaPres.jpPrestamo.setVisible(false);
+        
+        vistaPres.btRegPrestamo.setVisible(false);
+    }    
+    
+    public void mensajeP(int clavePrest, boolean regPres, boolean camEst, boolean dismDisp, boolean dismLim, boolean aumSolic, boolean regHist) {
+        if(clavePrest!=0 && regPres == true && camEst == true && dismDisp == true && dismLim == true && aumSolic == true && regHist == true) {
+            limpiarTablas();
+            limpiarDatos();
+            JOptionPane.showMessageDialog(null, "Préstamo éxitoso", "Mensaje", JOptionPane.INFORMATION_MESSAGE);            
+        } else {
+            JOptionPane.showMessageDialog(null, "Préstamo no éxitoso", "Mensaje", JOptionPane.ERROR_MESSAGE);
+        }
+    }   
+    
     public void regPrestamo (String fechaPrest, String fechaLimite) {
-        int clavePrest = crearClavePres();        
-        boolean b1=registrarPrest(clavePrest, fechaPrest, fechaLimite);
-        boolean b2=cambiarEstadoP(clavePrest);
-        boolean b3=disminuirDispP(clavePrest);
-        boolean b4=disminuirLimiteP();
-        boolean b5=aumentarSolicP(); 
-        boolean b6=regHistorialP(clavePrest, fechaPrest, fechaLimite);
+        int clavePrest = crearClavePres();                
+        boolean regPres=registrarPrest(clavePrest, fechaPrest, fechaLimite);        
+        boolean camEst=cambiarEstadoP(clavePrest);        
+        boolean dismDis=disminuirDispP(clavePrest);        
+        boolean dismLim=disminuirLimiteP();        
+        boolean aumSolic=aumentarSolicP();         
+        boolean regHist=regHistorialP(clavePrest, fechaPrest, fechaLimite);        
+        mensajeP(clavePrest,regPres,camEst,dismDis,dismLim,aumSolic,regHist);
     }
 }
 

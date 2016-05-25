@@ -82,27 +82,27 @@ public class interfazDevolucion extends JFrame{
         labDevEjempBus = new JLabel("Ejemplar: ");
         labDevEjempBus.setVisible(true);
         labDevEjempBus.setFont(new java.awt.Font("Tahoma", Font.BOLD, 16));
-        labDevEjempBus.setBounds(300, 20, 100, 50);
+        labDevEjempBus.setBounds(500, 20, 100, 50);
         jpDevElegir.add(labDevEjempBus);
         
         txtDevEjempBus = new JTextField();    
-        txtDevEjempBus.setBounds(400, 30, 135, 25);
+        txtDevEjempBus.setBounds(600, 30, 135, 25);
         txtDevEjempBus.setVisible(true);
         jpDevElegir.add(txtDevEjempBus);
        
         btDevBuscarEjemp = new JButton("Buscar");
-        btDevBuscarEjemp.setBounds(550, 30, 90, 25);
+        btDevBuscarEjemp.setBounds(750, 30, 90, 25);
         btDevBuscarEjemp.setVisible(true);
         jpDevElegir.add(btDevBuscarEjemp);
         
         jpTablaDevLib = new JPanel();
         jpTablaDevLib.setLayout(null);
-        jpTablaDevLib.setBounds(100, 100, 620, 40);
+        jpTablaDevLib.setBounds(350, 140, 620, 40);
         jpDevElegir.add(jpTablaDevLib);
         jpTablaDevLib.setVisible(false);
                 
         tbDevLibro = new JTable();       
-        tbDevLibro.setBounds(100, 100, 720, 100);
+        tbDevLibro.setBounds(350, 140, 720, 100);
         spDevLibro = new JScrollPane(tbDevLibro);
         spDevLibro.setBounds(0, 0, 620, 100);
         jpTablaDevLib.add(spDevLibro);
@@ -110,19 +110,19 @@ public class interfazDevolucion extends JFrame{
         
         jpTablaDevMaVi = new JPanel();
         jpTablaDevMaVi.setLayout(null);
-        jpTablaDevMaVi.setBounds(10, 100, 620, 40);
+        jpTablaDevMaVi.setBounds(350, 140, 620, 40);
         jpDevElegir.add(jpTablaDevMaVi);
         jpTablaDevMaVi.setVisible(false);
                 
         tbDevMatVis = new JTable();       
-        tbDevMatVis.setBounds(10, 100, 720, 100);
+        tbDevMatVis.setBounds(350, 140, 720, 100);
         spDevMatVis = new JScrollPane(tbDevMatVis);
         spDevMatVis.setBounds(0, 0, 620, 100);
         jpTablaDevMaVi.add(spDevMatVis);
         spDevMatVis.setVisible(true);        
         
         btDevolver = new JButton("Devolver");
-        btDevolver.setBounds(300, 300, 90, 25);
+        btDevolver.setBounds(880, 210, 90, 25);
         btDevolver.setVisible(false);
         jpDevElegir.add(btDevolver);
         

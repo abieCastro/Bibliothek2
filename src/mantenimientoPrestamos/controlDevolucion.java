@@ -477,7 +477,13 @@ public class controlDevolucion {
                 try{ 
                     Connection acceDB = con.getConexion();
                     PreparedStatement ps = acceDB.prepareStatement("UPDATE materialvisual SET disponibilidadM=disponibilidadM+1 WHERE claveMatVis=(select ejempmatvisual.materialvisual_claveMatVis from ejempmatvisual where ejempmatvisual.idEjemplarM='"+listaEjempMatVis.get(0).getIdEjemplarM()+"');");                
-                    ps.executeUpdate();                
+                    int validar=ps.executeUpdate();                
+                    if(validar>0){
+                        registro=true;
+                    }
+                    else {
+                        registro=false;
+                    }
                 }catch(SQLException e){
                 }   
             }
@@ -638,24 +644,70 @@ public class controlDevolucion {
         
         return registro;
     }
+        
+    public DefaultTableModel limpiarTabla(){               
+        DefaultTableModel modelo = null;
+        /*Si el ejemplar a devolver fue un libro limpiar su tabla*/
+        if(selectLibro == 1) {
+            try {
+                modelo=(DefaultTableModel) vistaDev.tbDevLibro.getModel();
+                int filas=vistaDev.tbDevLibro.getRowCount();
+                for (int i = 0;filas>i; i++) {
+                    modelo.removeRow(0);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+            }
+
+        }
+        
+        /*Si el ejemplar a devolver fue un material visual limpiar su tabla*/
+        if(selectMatVis == 1) {
+            try {
+                modelo=(DefaultTableModel) vistaDev.tbDevMatVis.getModel();
+                int filas=vistaDev.tbDevMatVis.getRowCount();
+                for (int i = 0;filas>i; i++) {
+                    modelo.removeRow(0);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+            }
+        }
+        return modelo;
+    }
+        
+    public void mensajeD(int idDev, boolean regDev, boolean camEst, boolean cancPrest, boolean aumDisp, boolean aumLim, boolean dismSolic, boolean regHist) {
+        if(idDev!=0 && regDev == true && camEst == true && cancPrest == true && aumDisp == true && aumLim == true && dismSolic == true && regHist) {
+            limpiarTabla();
+            vistaDev.jpTablaDevLib.setVisible(false);
+            vistaDev.jpTablaDevMaVi.setVisible(false);
+            vistaDev.btDevolver.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Devolución éxitoso", "Mensaje", JOptionPane.INFORMATION_MESSAGE);            
+        } else {
+            JOptionPane.showMessageDialog(null, "Devolución no éxitoso", "Mensaje", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
     public void regDevolucion() {       
         int idDev = crearClaveDev();
+        System.out.println("idDev"+idDev);
         fechaDevolucion();
         saberSolic();
-        boolean b1=registrarDev(idDev);
-        boolean b2=cambiarEstadoD();
-        boolean b3=cancelarPrest();
-        boolean b4=aumentarDispD();
-        boolean b5=aumentarLimiteD();
-        boolean b6=disminuirSolicD(); 
-        boolean b7=regHistorialD(idDev);
-//        
-//        if(idDev>0&&b1==true&&b2==true&&b3==true&&b4==true&&b5==true&&b6==true) {
-//            JOptionPane.showMessageDialog(null, "Devolución Exitosa");
-//        }
-//        else {
-//            JOptionPane.showMessageDialog(null, "Devolución Fallida");
-//        }
+        boolean regDev=registrarDev(idDev);
+        System.out.println("regDev"+regDev);
+        boolean camEst=cambiarEstadoD();
+        System.out.println("camEst"+camEst);
+        boolean cancPrest=cancelarPrest();
+        System.out.println("cancPrest"+cancPrest);
+        boolean aumDisp=aumentarDispD();
+        System.out.println("aumDisp"+aumDisp);
+        boolean aumLim=aumentarLimiteD();
+        System.out.println("aumLim"+aumLim);
+        boolean dismSolic=disminuirSolicD(); 
+        System.out.println("dismSolic"+dismSolic);
+        boolean regHist=regHistorialD(idDev);
+        System.out.println("regHist"+regHist);
+        mensajeD(idDev,regDev,camEst,cancPrest,aumDisp,aumLim,dismSolic,regHist);
     }   
 }
+

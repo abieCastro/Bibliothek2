@@ -415,6 +415,7 @@ public class interfazPrestamo extends JFrame {
         btRegPrestamo.addActionListener(new ActionListener() {            
             public void actionPerformed(ActionEvent evt) {                
                 String fechaLimite=cp.selecFechaLimite();
+                
                 cp.regPrestamo(labFechaSist.getText(),fechaLimite);
             }
         });
