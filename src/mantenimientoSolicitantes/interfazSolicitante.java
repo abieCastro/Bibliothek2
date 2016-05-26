@@ -75,8 +75,8 @@ public class interfazSolicitante {
 
             jpCatalogo = new JPanel();
             jpCatalogo.setLayout(null);
-            jpCatalogo.setBounds(10,80,1255,580);
-            jpCatalogo.setBackground(Color.LIGHT_GRAY);
+            jpCatalogo.setBounds(10,80,1340,580);
+//            jpCatalogo.setBackground(Color.LIGHT_GRAY);
             jpCatalogo.setVisible(true);
 
             bordeCatal = BorderFactory.createTitledBorder("Solicitantes");
@@ -86,7 +86,7 @@ public class interfazSolicitante {
             jpRB = new JPanel();
             jpRB.setLayout(null);
             jpRB.setBounds(10,60,150,500);
-            jpRB.setBackground(Color.LIGHT_GRAY);
+//            jpRB.setBackground(Color.LIGHT_GRAY);
             jpRB.setVisible(true);
             jpCatalogo.add(jpRB);
 
@@ -98,7 +98,7 @@ public class interfazSolicitante {
 
             rbtAlumnos=new JRadioButton("Alumnos"); 
             rbtAlumnos.setBounds(10,20,100,20);
-            rbtAlumnos.setBackground(Color.LIGHT_GRAY);
+//            rbtAlumnos.setBackground(Color.LIGHT_GRAY);
             rbtAlumnos.setVisible(true); 
             jpRB.add(rbtAlumnos);
             groupCatalogo.add(rbtAlumnos);
@@ -112,7 +112,7 @@ public class interfazSolicitante {
 
             rbtDocentes =new JRadioButton("Docentes"); 
             rbtDocentes.setBounds(10,40,120,20);
-            rbtDocentes.setBackground(Color.LIGHT_GRAY);
+//            rbtDocentes.setBackground(Color.LIGHT_GRAY);
             rbtDocentes.setVisible(true); 
             jpRB.add(rbtDocentes);
             groupCatalogo.add(rbtDocentes);
@@ -170,7 +170,7 @@ public class interfazSolicitante {
 
             jpRegA = new JPanel();
             jpRegA.setLayout(null);
-            jpRegA.setBackground(Color.LIGHT_GRAY);
+//            jpRegA.setBackground(Color.LIGHT_GRAY);
             jpRegA.setBounds(200,60,1050,500);
             jpCatalogo.add(jpRegA);
             jpRegA.setVisible(false);
@@ -305,7 +305,7 @@ public class interfazSolicitante {
 
             jpConsultasA = new JPanel();
             jpConsultasA.setLayout(null);
-            jpConsultasA.setBackground(Color.LIGHT_GRAY);
+//            jpConsultasA.setBackground(Color.LIGHT_GRAY);
             jpConsultasA.setBounds(200,60,1050,500);
             jpCatalogo.add(jpConsultasA);
             jpConsultasA.setVisible(false);
@@ -336,7 +336,7 @@ public class interfazSolicitante {
             ALUMNOS*/
             jpBusqA = new JPanel();
             jpBusqA.setLayout(null);
-            jpBusqA.setBackground(Color.LIGHT_GRAY);
+//            jpBusqA.setBackground(Color.LIGHT_GRAY);
             jpBusqA.setBounds(15,50,1020,400);
             jpConsultasA.add(jpBusqA);
             jpBusqA.setVisible(true);
@@ -515,7 +515,7 @@ public class interfazSolicitante {
 
             jpRegD = new JPanel();
             jpRegD.setLayout(null);
-            jpRegD.setBackground(Color.LIGHT_GRAY);
+//            jpRegD.setBackground(Color.LIGHT_GRAY);
             jpRegD.setBounds(200,60,1050,500);
             jpCatalogo.add(jpRegD);
             jpRegD.setVisible(false);
@@ -583,7 +583,7 @@ public class interfazSolicitante {
             
             jpConsultasD = new JPanel();
             jpConsultasD.setLayout(null);
-            jpConsultasD.setBackground(Color.LIGHT_GRAY);
+//            jpConsultasD.setBackground(Color.LIGHT_GRAY);
             jpConsultasD.setBounds(200,60,1050,500);
             jpCatalogo.add(jpConsultasD);
             jpConsultasD.setVisible(false);
@@ -595,7 +595,7 @@ public class interfazSolicitante {
           
             jpBusqD = new JPanel();
             jpBusqD.setLayout(null);
-            jpBusqD.setBackground(Color.LIGHT_GRAY);
+//            jpBusqD.setBackground(Color.LIGHT_GRAY);
             jpBusqD.setBounds(15,50,1020,400);
             jpConsultasD.add(jpBusqD);
             jpBusqD.setVisible(true);
@@ -743,21 +743,23 @@ public class interfazSolicitante {
                    telefono = txtLadaT.getText()+" "+txtTelefono.getText();
                    celular = txtLadaC.getText()+" "+txtCelular.getText();
                    cs.registrarAlumno(txtControl.getText().toUpperCase(), txtNombre.getText().toUpperCase(), txtPaterno.getText().toUpperCase(), txtMaterno.getText().toUpperCase(), grado, grupo, telefono, celular);
+                   txtControl.setText("");
+                    txtNombre.setText("");
+                    txtPaterno.setText("");
+                    txtMaterno.setText("");
+                    txtLadaT.setText("");
+                    txtTelefono.setText("");
+                    txtLadaC.setText("");
+                    txtCelular.setText("");
+                    cbGrado.setSelectedItem("");
+                    cbGrupo.setSelectedItem("");
+               
                }else{
                    
                }
 
            }
-           txtControl.setText("");
-           txtNombre.setText("");
-           txtPaterno.setText("");
-           txtMaterno.setText("");
-           txtLadaT.setText("");
-           txtTelefono.setText("");
-           txtLadaC.setText("");
-           txtCelular.setText("");
-           cbGrado.setSelectedItem("");
-           cbGrupo.setSelectedItem("");
+           
            
            jtAlumno = null;
            jtAlumno = cs.generarTablaAlumnos();
@@ -778,15 +780,16 @@ public class interfazSolicitante {
                if(respuesta==false){
                    
                    cs.registrarDocente(txtControlD.getText().toUpperCase(), txtNombreD.getText().toUpperCase(), txtPaternoD.getText().toUpperCase(), txtMaternoD.getText().toUpperCase());
+                   txtControlD.setText("");
+                    txtNombreD.setText("");
+                    txtPaternoD.setText("");
+                    txtMaternoD.setText("");
                }else{
                    
                }
 
            }
-           txtControlD.setText("");
-           txtNombreD.setText("");
-           txtPaternoD.setText("");
-           txtMaternoD.setText("");
+           
            jtDocente = null;
            jtDocente = cs.generarTablaDocente();
            

@@ -69,7 +69,7 @@ public class interfazMaterialVisual {
           /*MATERIAL VISUAL*/
         jpRegMV = new JPanel();
         jpRegMV.setLayout(null);
-        jpRegMV.setBackground(Color.LIGHT_GRAY);
+//        jpRegMV.setBackground(Color.LIGHT_GRAY);
         jpRegMV.setBounds(200,60,1050,500);
         //interfaz.add(jpRegMV);
         jpRegMV.setVisible(true);
@@ -80,7 +80,7 @@ public class interfazMaterialVisual {
          
         jpNuevMV = new JPanel();
         jpNuevMV.setLayout(null);
-        jpNuevMV.setBackground(Color.LIGHT_GRAY);
+//        jpNuevMV.setBackground(Color.LIGHT_GRAY);
         jpNuevMV.setBounds(15,300,700,180);
         jpRegMV.add(jpNuevMV);
         jpNuevMV.setVisible(true);
@@ -276,7 +276,7 @@ public class interfazMaterialVisual {
         
         jpExisMV = new JPanel();
         jpExisMV.setLayout(null);
-        jpExisMV.setBackground(Color.LIGHT_GRAY);
+//        jpExisMV.setBackground(Color.LIGHT_GRAY);
         jpExisMV.setBounds(15,20,700,220);
         jpRegMV.add(jpExisMV);
         jpExisMV.setVisible(true);
@@ -291,7 +291,7 @@ public class interfazMaterialVisual {
         jpTabRegMV = new JPanel();
         jpTabRegMV.setLayout(null);
         jpTabRegMV.setBounds(5,20,680,150);
-        jpTabRegMV.setBackground(Color.LIGHT_GRAY);
+//        jpTabRegMV.setBackground(Color.LIGHT_GRAY);
         jpTabRegMV.setVisible(true);
         jpExisMV.add(jpTabRegMV);
         
@@ -322,7 +322,7 @@ public class interfazMaterialVisual {
         
         jpClavGMV = new JPanel();
         jpClavGMV.setLayout(null);
-        jpClavGMV.setBackground(Color.LIGHT_GRAY);
+//        jpClavGMV.setBackground(Color.LIGHT_GRAY);
         jpClavGMV.setBounds(740,20,290,460);
         jpRegMV.add(jpClavGMV);
         jpClavGMV.setVisible(true);
@@ -344,7 +344,7 @@ public class interfazMaterialVisual {
         jtx = new JTextArea();
         jtx.setEditable(false);
         jtx.setLineWrap(false);
-        jtx.setBackground(Color.LIGHT_GRAY);
+//        jtx.setBackground(Color.LIGHT_GRAY);
         jtx.setWrapStyleWord(false);
         s = new JScrollPane(jtx);
         s.setBounds(570,250,600,100);
@@ -361,7 +361,7 @@ public class interfazMaterialVisual {
     public JPanel ConsultaMV(){
         JPConsulMV = new JPanel();
         JPConsulMV.setLayout(null);
-        JPConsulMV.setBackground(Color.LIGHT_GRAY);
+//        JPConsulMV.setBackground(Color.LIGHT_GRAY);
         JPConsulMV.setBounds(200,60,1050,500);
         //interfaz.add(JPConsulMV);
         JPConsulMV.setVisible(false);
@@ -399,7 +399,7 @@ public class interfazMaterialVisual {
 
         jpBusqMV = new JPanel();
         jpBusqMV.setLayout(null);
-        jpBusqMV.setBackground(Color.LIGHT_GRAY);
+//        jpBusqMV.setBackground(Color.LIGHT_GRAY);
         jpBusqMV.setBounds(15,50,1020,400);
         JPConsulMV .add(jpBusqMV);
         jpBusqMV.setVisible(true);

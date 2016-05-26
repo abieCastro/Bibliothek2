@@ -163,11 +163,11 @@ public class controlLibro {
         String b="";
         
         if(resultado){
-            ClaveLibro = "DASLIB00000";
+            ClaveLibro = "DASLIB00001";
         }else{     
             try{
                 statement=Conexion.createStatement();    
-                statement.execute("SELECT MAX(ClaveLibro) FROM Libro");
+                statement.execute("SELECT MAX(claveLibro) FROM libro");
                 resultset=statement.getResultSet();
                 while(resultset.next()){
                     ClaveMax=resultset.getString(1);  
@@ -275,7 +275,7 @@ public class controlLibro {
         L.disponibilidadL = cantidad;
         
                           
-        SQL="INSERT INTO Libro(claveLibro,tituloL,autorL,añoL,editorialL,clasificacionL,existenciaL,disponibilidadL)VALUES(?,?,?,?,?,?,?,?)";
+        SQL="INSERT INTO libro(claveLibro,tituloL,autorL,añoL,editorialL,clasificacionL,existenciaL,disponibilidadL)VALUES(?,?,?,?,?,?,?,?)";
 
         
         try {
@@ -303,7 +303,7 @@ public class controlLibro {
         
     }
     
-    public void registrarEjemplar(int cantidad,String ClaveLibro){
+   public void registrarEjemplar(int cantidad,String ClaveLibro){
         System.out.println("--METODO REGISTRAR EJEMPLAR--");
         Conexion = c.getConexion();
         int ejemplar = cantidad;
@@ -337,11 +337,11 @@ public class controlLibro {
         System.out.println("estoy en 1");
 
             if(x<10){
-            ClaveE ="LIB0"+CMNumS+"-0"+x;
+            ClaveE ="LIB"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="LIB0"+CMNumS+"-"+x;
+            ClaveE ="LIB"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
@@ -350,11 +350,11 @@ public class controlLibro {
         System.out.println("estoy en 2");
 
             if(x<10){
-            ClaveE ="LIB0"+CMNumS+"-0"+x;
+            ClaveE ="LIB"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="LIB0"+CMNumS+"-"+x;
+            ClaveE ="LIB"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
@@ -363,11 +363,11 @@ public class controlLibro {
         System.out.println("estoy en 3");
 
             if(x<10){
-            ClaveE ="LIB0"+CMNumS+"-0"+x;
+            ClaveE ="LIB"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="LIB0"+CMNumS+"-"+x;
+            ClaveE ="LIB"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
@@ -375,11 +375,11 @@ public class controlLibro {
         if(CMNCont==4){
             System.out.println("estoy en 4");
             if(x<10){
-            ClaveE ="LIB0"+CMNumS+"-0"+x;
+            ClaveE ="LIB"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="LIB0"+CMNumS+"-"+x;
+            ClaveE ="LIB"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
@@ -388,15 +388,15 @@ public class controlLibro {
         System.out.println("estoy en 5");
 
             if(x<10){
-            ClaveE ="LIB0"+CMNumS+"-0"+x;
+            ClaveE ="LIB"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="LIB0"+CMNumS+"-"+x;
+            ClaveE ="LIB"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
-        
+            System.out.println("CMCortarNum"+CMCortarNum);
 
         Estado="DISPONIBLE";
         
@@ -424,8 +424,6 @@ public class controlLibro {
         
         }
     }
-    
-  
     /*Consulta general de libros*/
     public JTable generarTablaEjemplar(){
          

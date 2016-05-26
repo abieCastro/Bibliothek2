@@ -72,7 +72,7 @@ public class interfazDevolucion extends JFrame{
         
         jpDevElegir = new JPanel();
         jpDevElegir.setLayout(null);
-        jpDevElegir.setBounds(10, 10, 1320, 500);
+        jpDevElegir.setBounds(10, 10, 1320, 600);
         jpDevElegir.setVisible(true);
         jpPrincDev.add(jpDevElegir);
         
@@ -127,7 +127,7 @@ public class interfazDevolucion extends JFrame{
         jpDevElegir.add(btDevolver);
         
         btDevBuscarEjemp.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {  
+            public void mouseClicked(MouseEvent e) {                  
                 boolean validarEjemp = cd.validarTipoEjempD();
                 if(validarEjemp == true) {
                     boolean valBusqEjemp=cd.buscarEjempDev(txtDevEjempBus.getText());                      

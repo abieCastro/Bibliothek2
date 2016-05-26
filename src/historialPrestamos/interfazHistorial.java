@@ -82,8 +82,7 @@ public class interfazHistorial extends JFrame {
         spHistGeneral = new JScrollPane(tbHistGeneral);
         spHistGeneral.setBounds(0, 0, 1300, 450);
         jpTablaHistGral.add(spHistGeneral);
-        spHistGeneral.setVisible(true);
-        ch.listaHistGral(tbHistGeneral);
+        spHistGeneral.setVisible(true);        
         
         //Libros
         jpTablaHistLib = new JPanel();

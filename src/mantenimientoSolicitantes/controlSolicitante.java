@@ -147,9 +147,19 @@ public class controlSolicitante {
     
     public void registrarAlumno(String nControl, String nombre, String paterno, String materno, String grado, String grupo, String telefono, String celular){
         Conexion = c.getConexion();
+        int MaxClaveA =0;
         
+        try{
+                statement=Conexion.createStatement();    
+                statement.execute("SELECT MAX(claveAlumno) FROM alumno");
+                resultset=statement.getResultSet();
+                while(resultset.next()){
+                    MaxClaveA=resultset.getInt(1);  
+                }
+            }catch(SQLException e){
+            }
         
-        
+        a.claveAlumno = MaxClaveA+1;
         a.noControlA = "A-"+nControl;
         a.nombreA = nombre;
         a.apellidoPatA = paterno;
@@ -163,25 +173,27 @@ public class controlSolicitante {
         a.librosSolicA = 0;
         a.matVisSolicA = 0;
         
-        SQL="INSERT INTO Alumno(noControlA,nombreA,apellidoPatA,apellidoMatA,gradoA,grupoA,telefonoA,celularA,limiteLibroA,limiteMatVisA,librosSolicA,matVisSolicA)VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-
+        
+        SQL="INSERT INTO alumno(claveAlumno,noControlA,nombreA,apellidoPatA,apellidoMatA,gradoA,grupoA,telefonoA,celularA,limiteLibroA,limiteMatVisA,librosSolicA,matVisSolicA)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        System.out.println("SQL"+SQL);
         try {
             
             Pstatement = Conexion.prepareStatement(SQL);
            
-            Pstatement.setString(1, a.noControlA);
-            Pstatement.setString(2, a.nombreA);
-            Pstatement.setString(3, a.apellidoPatA);
-            Pstatement.setString(4, a.apellidoMatA);
-            Pstatement.setString(5, a.gradoA);
-            Pstatement.setString(6, a.grupoA);
+            Pstatement.setInt(1,a.claveAlumno);
+            Pstatement.setString(2, a.noControlA);
+            Pstatement.setString(3, a.nombreA);
+            Pstatement.setString(4, a.apellidoPatA);
+            Pstatement.setString(5, a.apellidoMatA);
+            Pstatement.setString(6, a.gradoA);
+            Pstatement.setString(7, a.grupoA);
             
-            Pstatement.setString(7, a.telefonoA);
-            Pstatement.setString(8, a.celularA);
-            Pstatement.setInt(9, a.limiteLibroA);
-            Pstatement.setInt(10, a.limiteMatVisA);
-            Pstatement.setInt(11, a.librosSolicA);
-            Pstatement.setInt(12, a.matVisSolicA);
+            Pstatement.setString(8, a.telefonoA);
+            Pstatement.setString(9, a.celularA);
+            Pstatement.setInt(10, a.limiteLibroA);
+            Pstatement.setInt(11, a.limiteMatVisA);
+            Pstatement.setInt(12, a.librosSolicA);
+            Pstatement.setInt(13, a.matVisSolicA);
             
             
             int validar = Pstatement.executeUpdate();
@@ -200,8 +212,19 @@ public class controlSolicitante {
     public void registrarDocente(String nControl, String nombre, String paterno, String materno){
         Conexion = c.getConexion();
         
+        int MaxClaveD =0;
         
-        
+        try{
+                statement=Conexion.createStatement();    
+                statement.execute("SELECT MAX(claveDocente) FROM docente");
+                resultset=statement.getResultSet();
+                while(resultset.next()){
+                    MaxClaveD=resultset.getInt(1);  
+                }
+            }catch(SQLException e){
+            }
+        System.out.println("maxia"+MaxClaveD);
+        d.claveDocente = MaxClaveD+1;
         d.noControlD = "D-"+nControl;
         d.nombreD = nombre;
         d.apellidoPatD = paterno;
@@ -212,21 +235,22 @@ public class controlSolicitante {
         d.librosSolicD = 0;
         d.matVisSolicD = 0;
         
-        SQL="INSERT INTO docente(noControlD,nombreD,apellidoPatD,apellidoMatD,limiteLibroD,limiteMatVisD,librosSolicD,matVisSolicD)VALUES(?,?,?,?,?,?,?,?)";
+        SQL="INSERT INTO docente(claveDocente,noControlD,nombreD,apellidoPatD,apellidoMatD,limiteLibroD,limiteMatVisD,librosSolicD,matVisSolicD)VALUES(?,?,?,?,?,?,?,?,?)";
 
         try {
             
             Pstatement = Conexion.prepareStatement(SQL);
            
-            Pstatement.setString(1, d.noControlD);
-            Pstatement.setString(2, d.nombreD);
-            Pstatement.setString(3, d.apellidoPatD);
-            Pstatement.setString(4, d.apellidoMatD);
+            Pstatement.setInt(1,d.claveDocente);
+            Pstatement.setString(2, d.noControlD);
+            Pstatement.setString(3, d.nombreD);
+            Pstatement.setString(4, d.apellidoPatD);
+            Pstatement.setString(5, d.apellidoMatD);
 
-            Pstatement.setInt(5, d.limiteLibroD);
-            Pstatement.setInt(6, d.limiteMatVisD);
-            Pstatement.setInt(7, d.librosSolicD);
-            Pstatement.setInt(8, d.matVisSolicD);
+            Pstatement.setInt(6, d.limiteLibroD);
+            Pstatement.setInt(7, d.limiteMatVisD);
+            Pstatement.setInt(8, d.librosSolicD);
+            Pstatement.setInt(9, d.matVisSolicD);
             
             
             int validar = Pstatement.executeUpdate();
@@ -559,8 +583,8 @@ public class controlSolicitante {
         ima.txtApeMaterA.setText(TbConsultaAlumno.getValueAt(fila, 3).toString());
         ima.cbGrado.setSelectedItem(TbConsultaAlumno.getValueAt(fila, 4));
         ima.cbGrupo.setSelectedItem(TbConsultaAlumno.getValueAt(fila, 5));
-        ima.txtCelular.setText(TbConsultaAlumno.getValueAt(fila, 6).toString());
-        ima.txtTelefono.setText(TbConsultaAlumno.getValueAt(fila, 7).toString());
+        ima.txtCelular.setText(TbConsultaAlumno.getValueAt(fila, 7).toString());
+        ima.txtTelefono.setText(TbConsultaAlumno.getValueAt(fila, 6).toString());
         ima.txtLLibros.setText(TbConsultaAlumno.getValueAt(fila,8).toString());
         ima.txtLMV.setText(TbConsultaAlumno.getValueAt(fila,9).toString());
         ima.txtLLibroAntes.setText(TbConsultaAlumno.getValueAt(fila,8).toString());

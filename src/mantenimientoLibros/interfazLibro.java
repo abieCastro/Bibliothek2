@@ -84,8 +84,8 @@ public class interfazLibro {
         /* Componentes de Catalogos.*/
         jpCatalogo = new JPanel();
         jpCatalogo.setLayout(null);
-        jpCatalogo.setBounds(10,80,1255,580);
-        jpCatalogo.setBackground(Color.LIGHT_GRAY);
+        jpCatalogo.setBounds(10,80,1340,580);
+//        jpCatalogo.setBackground(Color.LIGHT_GRAY);
         //add(jpCatalogo);
         jpCatalogo.setVisible(true);
         
@@ -110,7 +110,7 @@ public class interfazLibro {
         jpRB = new JPanel();
         jpRB.setLayout(null);
         jpRB.setBounds(10,60,150,500);
-        jpRB.setBackground(Color.LIGHT_GRAY);
+//        jpRB.setBackground(Color.LIGHT_GRAY);
         jpRB.setVisible(true);
         jpCatalogo.add(jpRB);
         
@@ -120,7 +120,7 @@ public class interfazLibro {
         /*Libros*/
         rbtLibros=new JRadioButton("Libros"); 
         rbtLibros.setBounds(10,20,100,20);
-        rbtLibros.setBackground(Color.LIGHT_GRAY);
+//        rbtLibros.setBackground(Color.LIGHT_GRAY);
         rbtLibros.setVisible(true); 
         jpRB.add(rbtLibros);
         groupCatalogos.add(rbtLibros);
@@ -134,7 +134,7 @@ public class interfazLibro {
         /*Material_Visual*/
         rbtMaterial_Visual =new JRadioButton("Material Visual"); 
         rbtMaterial_Visual.setBounds(10,40,120,20);
-        rbtMaterial_Visual.setBackground(Color.LIGHT_GRAY);
+//        rbtMaterial_Visual.setBackground(Color.LIGHT_GRAY);
         rbtMaterial_Visual.setVisible(true); 
         jpRB.add(rbtMaterial_Visual);
         groupCatalogos.add(rbtMaterial_Visual);
@@ -175,7 +175,7 @@ public class interfazLibro {
         /*Componenetes de Nuevo - Libros y Material Visual*/
         jpRegL = new JPanel();
         jpRegL.setLayout(null);
-        jpRegL.setBackground(Color.LIGHT_GRAY);
+        //jpRegL.setBackground(Color.LIGHT_GRAY);
         jpRegL.setBounds(200,60,1050,500);
         jpCatalogo.add(jpRegL);
         jpRegL.setVisible(false);
@@ -186,7 +186,7 @@ public class interfazLibro {
         
         jpExisL = new JPanel();
         jpExisL.setLayout(null);
-        jpExisL.setBackground(Color.LIGHT_GRAY);
+//        jpExisL.setBackground(Color.LIGHT_GRAY);
         jpExisL.setBounds(15,20,700,220);
         jpRegL.add(jpExisL);
         jpExisL.setVisible(true);
@@ -197,7 +197,7 @@ public class interfazLibro {
         
         jpNuevL = new JPanel();
         jpNuevL.setLayout(null);
-        jpNuevL.setBackground(Color.LIGHT_GRAY);
+//        jpNuevL.setBackground(Color.LIGHT_GRAY);
         jpNuevL.setBounds(15,300,700,180);
         jpRegL.add(jpNuevL);
         jpNuevL.setVisible(true);
@@ -429,7 +429,7 @@ public class interfazLibro {
         
         JPConsulEjem = new JPanel();
         JPConsulEjem.setLayout(null);
-        JPConsulEjem.setBackground(Color.LIGHT_GRAY);
+//        JPConsulEjem.setBackground(Color.LIGHT_GRAY);
         JPConsulEjem.setBounds(200,60,1050,500);
         jpCatalogo.add(JPConsulEjem);
         JPConsulEjem.setVisible(false);
@@ -465,7 +465,7 @@ public class interfazLibro {
         /*FILTROS DE INFORMACION*/
         jpBusqL = new JPanel();
         jpBusqL.setLayout(null);
-        jpBusqL.setBackground(Color.LIGHT_GRAY);
+//        jpBusqL.setBackground(Color.LIGHT_GRAY);
         jpBusqL.setBounds(15,50,1020,400);
         JPConsulEjem .add(jpBusqL);
         jpBusqL.setVisible(true);
@@ -720,7 +720,7 @@ public class interfazLibro {
         jpTabRegLib = new JPanel();
         jpTabRegLib.setLayout(null);
         jpTabRegLib.setBounds(5,20,680,150);
-        jpTabRegLib.setBackground(Color.LIGHT_GRAY);
+//        jpTabRegLib.setBackground(Color.LIGHT_GRAY);
         jpTabRegLib.setVisible(true);
         jpExisL.add(jpTabRegLib);
         
@@ -736,7 +736,7 @@ public class interfazLibro {
         
         jpClavGL = new JPanel();
         jpClavGL.setLayout(null);
-        jpClavGL.setBackground(Color.LIGHT_GRAY);
+//        jpClavGL.setBackground(Color.LIGHT_GRAY);
         jpClavGL.setBounds(740,20,290,460);
         jpRegL.add(jpClavGL);
         jpClavGL.setVisible(true);
@@ -757,7 +757,7 @@ public class interfazLibro {
         jtxClaveGM = new JTextArea("");
         jtxClaveGM.setEditable(false);
         jtxClaveGM.setLineWrap(false);
-        jtxClaveGM.setBackground(Color.LIGHT_GRAY);
+//        jtxClaveGM.setBackground(Color.LIGHT_GRAY);
         jtxClaveGM.setWrapStyleWord(false);
         scrolClaveGM = new JScrollPane(jtxClaveGM);
         scrolClaveGM.setBounds(570,250,600,100);

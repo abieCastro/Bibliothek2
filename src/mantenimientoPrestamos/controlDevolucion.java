@@ -690,23 +690,15 @@ public class controlDevolucion {
     
     public void regDevolucion() {       
         int idDev = crearClaveDev();
-        System.out.println("idDev"+idDev);
         fechaDevolucion();
         saberSolic();
         boolean regDev=registrarDev(idDev);
-        System.out.println("regDev"+regDev);
         boolean camEst=cambiarEstadoD();
-        System.out.println("camEst"+camEst);
         boolean cancPrest=cancelarPrest();
-        System.out.println("cancPrest"+cancPrest);
         boolean aumDisp=aumentarDispD();
-        System.out.println("aumDisp"+aumDisp);
         boolean aumLim=aumentarLimiteD();
-        System.out.println("aumLim"+aumLim);
         boolean dismSolic=disminuirSolicD(); 
-        System.out.println("dismSolic"+dismSolic);
         boolean regHist=regHistorialD(idDev);
-        System.out.println("regHist"+regHist);
         mensajeD(idDev,regDev,camEst,cancPrest,aumDisp,aumLim,dismSolic,regHist);
     }   
 }

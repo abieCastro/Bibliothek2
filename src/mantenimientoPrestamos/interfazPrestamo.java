@@ -148,7 +148,7 @@ public class interfazPrestamo extends JFrame {
         jpDetallePrest = new JPanel();
         jpDetallePrest.setLayout(null);
         jpDetallePrest.setBounds(680, 10, 650, 210);     
-        jpDetallePrest.setVisible(false);
+        jpDetallePrest.setVisible(false); 
         jpPrincPrest.add(jpDetallePrest);
         
         borderPresDetalle = BorderFactory.createTitledBorder("Detalle Préstamo");
@@ -327,30 +327,56 @@ public class interfazPrestamo extends JFrame {
         
         btPresBuscarSolic.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                //primero tengo que buscar que tipo de solicitante es: acuerdate que agregaremos al noControl una A O D al gafete y yo nomas recorto
-                boolean validarSolic = cp.validarTipoSolicP();
-                if(validarSolic == true) {
-                    boolean validarBusq=cp.buscarPresSolic(txtPresNoContBus.getText());
-                    if(validarBusq == false) {
-                        JOptionPane.showMessageDialog(null, "noControl inexistente", "ERROR", JOptionPane.ERROR_MESSAGE);                        
-                        txtPresNoContBus.setText("");
-                    } else {
-                        cp.mostrarPresSolic(tbPresAlumno,tbPresDocente);                        
-                        txtPresNoContBus.setText("");   
+                
+                String valoresDetPres=cp.recorrerDetPres();
+                if(valoresDetPres!="") {
+                    
+                    int resp=JOptionPane.showConfirmDialog(null, "Tiene un préstamo pendiente, desea cancelarlo?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                    //int resp=JOptionPane.showConfirmDialog(null,"Tiene un préstamo pendiente, desea cancelarlo?");
+                    if (JOptionPane.OK_OPTION == resp){
+                        cp.limpiarTablas();
+                        cp.limpiarDatos();
                         
-                        cp.validarTipoPres();                 
-                    }
-                        
+                        boolean validarSolic = cp.validarTipoSolicP();
+                        if(validarSolic == true) {
+                            boolean validarBusq=cp.buscarPresSolic(txtPresNoContBus.getText());
+                            if(validarBusq == false) {
+                                JOptionPane.showMessageDialog(null, "noControl inexistente", "ERROR", JOptionPane.ERROR_MESSAGE);                        
+                                txtPresNoContBus.setText("");
+                            } else {
+                                cp.mostrarPresSolic(tbPresAlumno,tbPresDocente);                        
+                                txtPresNoContBus.setText("");   
+                                cp.validarTipoPres();                 
+                            }       
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Ingresa una clave del noControl valido", "INGRESA", JOptionPane.ERROR_MESSAGE);
+                            txtPresEjempBus.setText("");
+                        }
+                    } 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ingresa una clave del noControl valido", "INGRESA", JOptionPane.ERROR_MESSAGE);
-                    txtPresEjempBus.setText("");
+                    boolean validarSolic = cp.validarTipoSolicP();
+                    if(validarSolic == true) {
+                        boolean validarBusq=cp.buscarPresSolic(txtPresNoContBus.getText());
+                        if(validarBusq == false) {
+                            JOptionPane.showMessageDialog(null, "noControl inexistente", "ERROR", JOptionPane.ERROR_MESSAGE);                        
+                            txtPresNoContBus.setText("");
+                        } else {
+                            cp.mostrarPresSolic(tbPresAlumno,tbPresDocente);                        
+                            txtPresNoContBus.setText("");   
+
+                            cp.validarTipoPres();                 
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ingresa una clave del noControl valido", "INGRESA", JOptionPane.ERROR_MESSAGE);
+                        txtPresEjempBus.setText("");
+                    }
                 }
             }
         });  
         
         btPresBuscarEjemp.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                
                 boolean validarEjemp = cp.validarTipoEjempP();
                 if(validarEjemp == true) {
                     boolean validarAceptPres = cp.validarAceptPres();                    
@@ -391,7 +417,7 @@ public class interfazPrestamo extends JFrame {
                     jpTablaPresLib.setVisible(false);
                     jpTablaPresMaVi.setVisible(false);
                     
-                }                            
+                }                
             }
         }); 
         
@@ -413,9 +439,9 @@ public class interfazPrestamo extends JFrame {
         });        
         
         btRegPrestamo.addActionListener(new ActionListener() {            
-            public void actionPerformed(ActionEvent evt) {                
-                String fechaLimite=cp.selecFechaLimite();
+            public void actionPerformed(ActionEvent evt) { 
                 
+                String fechaLimite=cp.selecFechaLimite();                
                 cp.regPrestamo(labFechaSist.getText(),fechaLimite);
             }
         });

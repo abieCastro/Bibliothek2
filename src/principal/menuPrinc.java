@@ -72,7 +72,7 @@ public class menuPrinc extends JFrame{
                 btMenuCatalogosActionPerformed(evt);
             }
         });
-//        
+        
         btMenuSolic = new JButton("Solicitantes");
         btMenuSolic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

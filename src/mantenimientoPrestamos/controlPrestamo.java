@@ -642,10 +642,12 @@ public class controlPrestamo {
                 contPresLib = contPresLib -1;
                 actLimLibro=Integer.parseInt(vistaPres.labResLimLibro.getText())+1;                
                 vistaPres.labResLimLibro.setText(String.valueOf(actLimLibro));                
+                vistaPres.jpPresElegir.setVisible(true);
             } else {
                 contPresMatVis = contPresMatVis -1;
                 actLimMatVis=Integer.parseInt(vistaPres.labResLimMatVis.getText())+1;
                 vistaPres.labResLimMatVis.setText(String.valueOf(actLimMatVis));                
+                vistaPres.jpPresElegir.setVisible(true);
             }         
             dtm.removeRow(vistaPres.tbPresDetalle.getSelectedRow());    
             String valores = recorrerDetPres();
@@ -653,7 +655,7 @@ public class controlPrestamo {
             if(valores=="") {
                 vistaPres.jpDetallePrest.setVisible(false);
                 vistaPres.jpPrestamo.setVisible(false);
-                vistaPres.btRegPrestamo.setVisible(false);
+                vistaPres.btRegPrestamo.setVisible(false);                
             }
         }
     }

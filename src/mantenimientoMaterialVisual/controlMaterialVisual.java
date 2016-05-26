@@ -149,7 +149,7 @@ public class controlMaterialVisual {
         String b="";
         
         if(resultado){
-            ClaveMV = "DASMV00000";
+            ClaveMV = "DASMV00001";
         }else{     
             try{
                 statement=Conexion.createStatement();    
@@ -278,11 +278,11 @@ public class controlMaterialVisual {
         System.out.println("estoy en 1");
 
             if(x<10){
-            ClaveE ="MV0"+CMNumS+"-0"+x;
+            ClaveE ="MV"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="MV0"+CMNumS+"-"+x;
+            ClaveE ="MV"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
@@ -291,11 +291,11 @@ public class controlMaterialVisual {
         System.out.println("estoy en 2");
 
             if(x<10){
-            ClaveE ="MV0"+CMNumS+"-0"+x;
+            ClaveE ="MV"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="MV0"+CMNumS+"-"+x;
+            ClaveE ="MV"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
@@ -304,11 +304,11 @@ public class controlMaterialVisual {
         System.out.println("estoy en 3");
 
             if(x<10){
-            ClaveE ="MV0"+CMNumS+"-0"+x;
+            ClaveE ="MV"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="MV0"+CMNumS+"-"+x;
+            ClaveE ="MV"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
@@ -316,11 +316,11 @@ public class controlMaterialVisual {
         if(CMNCont==4){
             System.out.println("estoy en 4");
             if(x<10){
-            ClaveE ="MV0"+CMNumS+"-0"+x;
+            ClaveE ="MV"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="MV0"+CMNumS+"-"+x;
+            ClaveE ="MV"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
@@ -329,11 +329,11 @@ public class controlMaterialVisual {
         System.out.println("estoy en 5");
 
             if(x<10){
-            ClaveE ="MV0"+CMNumS+"-0"+x;
+            ClaveE ="MV"+CMCortarNum+"-0"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
             if(x>=10){
-            ClaveE ="MV0"+CMNumS+"-"+x;
+            ClaveE ="MV"+CMCortarNum+"-"+x;
             System.out.println("ClaveEjem:"+ClaveE);
             }
         }
