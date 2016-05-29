@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,6 +32,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import principal.menuPrinc;
 
 /**
  *
@@ -38,6 +40,8 @@ import javax.swing.border.Border;
  */
 public class interfazPrestamo extends JFrame {       
     controlPrestamo cp = new controlPrestamo(this);
+    menuPrinc menu=null;
+    
     
     JPanel jpPrincPrest;
     
@@ -48,7 +52,7 @@ public class interfazPrestamo extends JFrame {
     JPanel jpDetallePrest;    
     
     /*Solicitante a realizar prestamo*/   
-    Border borderSolic;
+    static Border borderSolic;
         
     JLabel labPresNoContBus;
     JTextField txtPresNoContBus;
@@ -108,6 +112,8 @@ public class interfazPrestamo extends JFrame {
     
     JCalendar calendar;
     
+    JButton btPresLimpReg;
+    JButton btCancelarPrest;
     JButton btRegPrestamo;
     
     
@@ -320,22 +326,34 @@ public class interfazPrestamo extends JFrame {
         calendar.setBounds(250, 50, 200, 150);        
         jpPrestamo.add(calendar);
         
+        btPresLimpReg = new JButton("Limpiar");        
+        btPresLimpReg.setBounds(350, 30, 80, 25);
+        btPresLimpReg.setVisible(true);
+        jpPresSolic.add(btPresLimpReg);
+        
         btRegPrestamo = new JButton("Registrar Préstamo");
         btRegPrestamo.setBounds(680, 570, 150, 30);
         btRegPrestamo.setVisible(false);
         jpPrincPrest.add(btRegPrestamo);
         
+        btCancelarPrest = new JButton("Cancelar");
+        btCancelarPrest.setBounds(900, 570, 150, 30);
+        btCancelarPrest.setVisible(false);
+        jpPrincPrest.add(btCancelarPrest);
+        
         btPresBuscarSolic.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {       
+                
+               
                 
                 String valoresDetPres=cp.recorrerDetPres();
                 if(valoresDetPres!="") {
                     
-                    int resp=JOptionPane.showConfirmDialog(null, "Tiene un préstamo pendiente, desea cancelarlo?", "Alerta!", JOptionPane.YES_NO_OPTION);
-                    //int resp=JOptionPane.showConfirmDialog(null,"Tiene un préstamo pendiente, desea cancelarlo?");
-                    if (JOptionPane.OK_OPTION == resp){
-                        cp.limpiarTablas();
+                    int resp=JOptionPane.showConfirmDialog(null, "Tiene un préstamo pendiente, desea cancelarlo?", "Alerta!", JOptionPane.YES_NO_OPTION);                    
+                    if (JOptionPane.OK_OPTION == resp){                       
+                        cp.limpiarTablas();                       
                         cp.limpiarDatos();
+                        
                         
                         boolean validarSolic = cp.validarTipoSolicP();
                         if(validarSolic == true) {
@@ -361,6 +379,9 @@ public class interfazPrestamo extends JFrame {
                             JOptionPane.showMessageDialog(null, "noControl inexistente", "ERROR", JOptionPane.ERROR_MESSAGE);                        
                             txtPresNoContBus.setText("");
                         } else {
+                            jpTablaPresLib.setVisible(false);
+                            jpTablaPresMaVi.setVisible(false);
+                            btAgregar.setVisible(false);
                             cp.mostrarPresSolic(tbPresAlumno,tbPresDocente);                        
                             txtPresNoContBus.setText("");   
 
@@ -452,7 +473,22 @@ public class interfazPrestamo extends JFrame {
             }
         });
         
+        btCancelarPrest.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                cp.limpiarTablas();
+                cp.limpiarDatos();
+            }
+        });
+        
+        btPresLimpReg.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {                
+                    cp.limpiarTablas();
+                    cp.limpiarDatos();              
+            }
+        });        
+        
+        
         return jpPrincPrest;
-    }    
+    }
     
 }

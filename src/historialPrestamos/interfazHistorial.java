@@ -54,6 +54,8 @@ public class interfazHistorial extends JFrame {
     JTable tbHistMatVis;
     JScrollPane spHistMatVis;
     
+    
+    
     public JPanel jpPrincHist() {  
         jpPrincHist = new JPanel();
         jpPrincHist.setLayout(null);

@@ -9,9 +9,9 @@ package mantenimientoPrestamos;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.MinMaxDateEvaluator;
-import principal.conexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,6 +33,7 @@ import mantenimientoLibros.*;
 import mantenimientoMaterialVisual.ejempMatVisual;
 import mantenimientoMaterialVisual.materialVisual;
 import mantenimientoSolicitantes.*;
+import principal.conexion;
 /**
  *
  * @author Mac
@@ -66,25 +67,25 @@ public class controlPrestamo {
         
     //PRÉSTAMOS   
     
-    public boolean validarTipoSolicP () {
+    public boolean validarTipoSolicP () {        
         boolean validar = false;
         
-        if(vistaPres.txtPresNoContBus.getText().toUpperCase().startsWith("A-")) {
-            validar=true;
-            selectAlumno=1;
-            selectDocente=-1;
-        } else {
-            if(vistaPres.txtPresNoContBus.getText().toUpperCase().startsWith("D-")) {     
-               validar=true;
-               selectAlumno=-1;
-               selectDocente=1;
-            }
-            else {
-                validar=false;
-                selectAlumno=-1;
+            if(vistaPres.txtPresNoContBus.getText().toUpperCase().startsWith("A-")) {
+                validar=true;
+                selectAlumno=1;
                 selectDocente=-1;
-            }
-        }        
+            } else {
+                if(vistaPres.txtPresNoContBus.getText().toUpperCase().startsWith("D-")) {
+                    validar=true;
+                    selectAlumno=-1;
+                    selectDocente=1;
+                }
+                else {
+                    validar=false;
+                    selectAlumno=-1;
+                    selectDocente=-1;
+                }
+            }        
         return validar;
     }    
     
@@ -120,7 +121,7 @@ public class controlPrestamo {
                 
             } catch (SQLException ex) {
                 Logger.getLogger(controlPrestamo.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            }
         }
         
         if(selectDocente == 1 ) {   
@@ -299,7 +300,8 @@ public class controlPrestamo {
                 vistaPres.labResLimMatVis.setText(listaDocente.get(0).getLimiteMatVisD()+"");
                 vistaPres.jpPresElegir.setVisible(true);
             }
-        }
+        }        
+        
     }
     
     public boolean validarTipoEjempP () {
@@ -630,6 +632,7 @@ public class controlPrestamo {
             validarFechaLim();
             vistaPres.jpPrestamo.setVisible(true);                        
             vistaPres.btRegPrestamo.setVisible(true);        
+            vistaPres.btCancelarPrest.setVisible(true);        
     }
     
     public void quitarDetPres(){            
@@ -656,6 +659,7 @@ public class controlPrestamo {
                 vistaPres.jpDetallePrest.setVisible(false);
                 vistaPres.jpPrestamo.setVisible(false);
                 vistaPres.btRegPrestamo.setVisible(false);                
+                vistaPres.btCancelarPrest.setVisible(false);                
             }
         }
     }
@@ -1172,6 +1176,7 @@ public class controlPrestamo {
         vistaPres.jpPrestamo.setVisible(false);
         
         vistaPres.btRegPrestamo.setVisible(false);
+        vistaPres.btCancelarPrest.setVisible(false);
     }    
     
     public void mensajeP(int clavePrest, boolean regPres, boolean camEst, boolean dismDisp, boolean dismLim, boolean aumSolic, boolean regHist) {

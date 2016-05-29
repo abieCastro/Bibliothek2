@@ -10,7 +10,11 @@ import historialPrestamos.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,7 +33,7 @@ public class menuPrinc extends JFrame{
     interfazSolicitante menuSolic = new interfazSolicitante();
     interfazLibro menuLib = new interfazLibro();
     interfazMaterialVisual menuMatVis = new interfazMaterialVisual();
-    interfazPrestamo menuPres = new interfazPrestamo();
+    interfazPrestamo menuPres = new interfazPrestamo();    
     interfazDevolucion menuDev = new interfazDevolucion();
     interfazHistorial menuHist = new interfazHistorial();
    
@@ -50,12 +54,10 @@ public class menuPrinc extends JFrame{
     JPanel jpMenuSolic;
     JPanel jpMenuPres;  
     JPanel jpMenuDev;
-    JPanel jpMenuHistorial;
+    JPanel jpMenuHistorial;   
     
-    
-    
-    
-    public menuPrinc () throws ParseException{
+        
+    public menuPrinc () throws ParseException{        
         this.setLayout(null);
         this.setTitle("Bibliothek");
         this.setBounds(0, 0, 1400, 700);
@@ -66,10 +68,12 @@ public class menuPrinc extends JFrame{
     
     public void inicializar() throws ParseException{
         tbarMenuPrinc = new JToolBar();
-        btMenuCatalogos = new JButton("Catálogos");
+        btMenuCatalogos = new JButton("Catálogos");        
         btMenuCatalogos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btMenuCatalogosActionPerformed(evt);
+            public void actionPerformed(java.awt.event.ActionEvent evt) {           
+                btMenuCatalogosActionPerformed(evt);                               
+                      
+              
             }
         });
         
@@ -77,6 +81,8 @@ public class menuPrinc extends JFrame{
         btMenuSolic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btMenuSolicActionPerformed(evt);
+                            
+                
             }
         });
         
@@ -154,18 +160,26 @@ public class menuPrinc extends JFrame{
        this.add(labImgPrinc); 
     }
     
+    public void mouseClicked(MouseEvent evento) {
+        if (evento.getSource() == btMenuCatalogos){
+             System.out.println("presiono catalagos");
+  }
+  
+ }
+    
     /*Evento Catalogos*/
     public void btMenuCatalogosActionPerformed(ActionEvent evt){       
         labSubTitulo.setVisible(false);
         labTitulo.setVisible(false);
-        jpMenuCatalogos.setVisible(true);
-    
-//        jpSolicitantes.setVisible(false);
+        jpMenuCatalogos.setVisible(true);    
+
         jpMenuPres.setVisible(false);
         jpMenuDev.setVisible(false);
         jpMenuHistorial.setVisible(false);
         
         jpMenuSolic.setVisible(false);
+        
+        
     }
     
     /*Evento Solicitantes*/
@@ -217,7 +231,8 @@ public class menuPrinc extends JFrame{
         jpMenuHistorial.setVisible(true);
         
         jpMenuCatalogos.setVisible(false);
-        jpMenuSolic.setVisible(false);
+        jpMenuSolic.setVisible(false);        
+        
     }   
         
 }

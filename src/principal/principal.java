@@ -9,14 +9,15 @@ package principal;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
+import mantenimientoPrestamos.interfazPrestamo;
 
 /**
  *
  * @author Mac
  */
 public class principal {
-    public static void main(String [] args) throws SQLException, ParseException{
-        menuPrinc  i  = new menuPrinc();
+    public static void main(String [] args) throws SQLException, ParseException{       
+        menuPrinc  i  = new menuPrinc();        
         i.setVisible(true);
     }    
 }
