@@ -175,7 +175,7 @@ public class controlSolicitante {
         
         
         SQL="INSERT INTO alumno(claveAlumno,noControlA,nombreA,apellidoPatA,apellidoMatA,gradoA,grupoA,telefonoA,celularA,limiteLibroA,limiteMatVisA,librosSolicA,matVisSolicA)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        System.out.println("SQL"+SQL);
+        
         try {
             
             Pstatement = Conexion.prepareStatement(SQL);

@@ -843,6 +843,7 @@ public class controlLibro {
             }
             DTMLib.setRowCount(0);
              SQL = "SELECT claveLibro,idEjemplarL,tituloL,autorL,clasificacionL,editorialL,añoL,estadoL FROM libro INNER JOIN ejemplarlibro ON claveLibro=libro_claveLibro"+bu;
+             System.out.println(SQL);
              
              resultset = statement.executeQuery(SQL);
              
