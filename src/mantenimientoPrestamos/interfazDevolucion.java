@@ -63,6 +63,8 @@ public class interfazDevolucion extends JFrame{
     JTable tbDevMatVis;
     JScrollPane spDevMatVis;
     
+    JButton btCancelarDev;
+    
     
     public JPanel jpPrincDev() {  
         jpPrincDev = new JPanel();
@@ -122,9 +124,14 @@ public class interfazDevolucion extends JFrame{
         spDevMatVis.setVisible(true);        
         
         btDevolver = new JButton("Devolver");
-        btDevolver.setBounds(880, 210, 90, 25);
+        btDevolver.setBounds(750, 210, 90, 25);
         btDevolver.setVisible(false);
         jpDevElegir.add(btDevolver);
+        
+        btCancelarDev = new JButton("Cancelar");
+        btCancelarDev.setBounds(880, 210, 90, 25);        
+        btCancelarDev.setVisible(false);
+        jpDevElegir.add(btCancelarDev);
         
         btDevBuscarEjemp.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {                  
@@ -142,6 +149,7 @@ public class interfazDevolucion extends JFrame{
                         } else {                            
                             cd.mostrarEjempD(tbDevLibro, tbDevMatVis);                           
                             btDevolver.setVisible(true);
+                            btCancelarDev.setVisible(true);
                         }
                     }                    
                 } else {
@@ -154,6 +162,12 @@ public class interfazDevolucion extends JFrame{
             public void mouseClicked(MouseEvent e) {  
                 cd.regDevolucion();                 
             }});  
+        
+        btCancelarDev.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                cd.limpiarTabla();                
+            }
+        });
 
                 
         return jpPrincDev;

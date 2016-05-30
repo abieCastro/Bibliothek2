@@ -37,6 +37,7 @@ public class menuPrinc extends JFrame{
     interfazDevolucion menuDev = new interfazDevolucion();
     interfazHistorial menuHist = new interfazHistorial();
    
+    controlPrestamo cp = new controlPrestamo();
     
     //Opciones Generales    
     JToolBar tbarMenuPrinc;
@@ -71,9 +72,8 @@ public class menuPrinc extends JFrame{
         btMenuCatalogos = new JButton("Catálogos");        
         btMenuCatalogos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {           
-                btMenuCatalogosActionPerformed(evt);                               
-                      
-              
+                btMenuCatalogosActionPerformed(evt);                    
+                              
             }
         });
         
@@ -129,7 +129,7 @@ public class menuPrinc extends JFrame{
        
        jpMenuPres = new JPanel();       
        jpMenuPres = menuPres.jpPrincPrest();
-       add(jpMenuPres);
+       add(jpMenuPres);       
        jpMenuPres.setVisible(false);       
        
        jpMenuDev = new JPanel();
@@ -160,24 +160,27 @@ public class menuPrinc extends JFrame{
        this.add(labImgPrinc); 
     }
     
-    public void mouseClicked(MouseEvent evento) {
-        if (evento.getSource() == btMenuCatalogos){
-             System.out.println("presiono catalagos");
-  }
-  
- }
-    
     /*Evento Catalogos*/
     public void btMenuCatalogosActionPerformed(ActionEvent evt){       
+          if(menuPres.getDetallePres().isVisible() == true) { 
+              jpMenuPres.removeAll();
+              jpMenuPres = new JPanel();   
+              jpMenuPres = menuPres.jpPrincPrest();
+              add(jpMenuPres);                          
+              jpMenuPres.repaint();
+          } else {
+              System.out.println("noo");
+          }
         labSubTitulo.setVisible(false);
         labTitulo.setVisible(false);
         jpMenuCatalogos.setVisible(true);    
 
         jpMenuPres.setVisible(false);
+        jpMenuPres.repaint();
         jpMenuDev.setVisible(false);
         jpMenuHistorial.setVisible(false);
         
-        jpMenuSolic.setVisible(false);
+        jpMenuSolic.setVisible(false);      
         
         
     }
@@ -201,6 +204,7 @@ public class menuPrinc extends JFrame{
         labTitulo.setVisible(false); 
         
         jpMenuPres.setVisible(true);
+        jpMenuPres.repaint();
         jpMenuDev.setVisible(false);
         jpMenuHistorial.setVisible(false);
         
@@ -208,6 +212,8 @@ public class menuPrinc extends JFrame{
         jpMenuSolic.setVisible(false);
         //btMenuPres.setBackground(Color.BLUE);
         //btMenuPres.setForeground(Color.red);
+        
+        
     }
     
     /*Evento Devoluciones*/
@@ -231,7 +237,9 @@ public class menuPrinc extends JFrame{
         jpMenuHistorial.setVisible(true);
         
         jpMenuCatalogos.setVisible(false);
-        jpMenuSolic.setVisible(false);        
+        jpMenuSolic.setVisible(false);  
+        
+        
         
     }   
         

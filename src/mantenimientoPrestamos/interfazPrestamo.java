@@ -40,8 +40,7 @@ import principal.menuPrinc;
  */
 public class interfazPrestamo extends JFrame {       
     controlPrestamo cp = new controlPrestamo(this);
-    menuPrinc menu=null;
-    
+    menuPrinc menu=null;    
     
     JPanel jpPrincPrest;
     
@@ -52,7 +51,7 @@ public class interfazPrestamo extends JFrame {
     JPanel jpDetallePrest;    
     
     /*Solicitante a realizar prestamo*/   
-    static Border borderSolic;
+    Border borderSolic;
         
     JLabel labPresNoContBus;
     JTextField txtPresNoContBus;
@@ -97,7 +96,7 @@ public class interfazPrestamo extends JFrame {
     Border borderPresDetalle;    
     
     //Tabla detalle
-    JPanel jpTablaPresDet;
+    public JPanel jpTablaPresDet;
     JTable tbPresDetalle;
     JScrollPane spPresDetalle;
     
@@ -116,6 +115,8 @@ public class interfazPrestamo extends JFrame {
     JButton btCancelarPrest;
     JButton btRegPrestamo;
     
+    public interfazPrestamo() {
+    }
     
     public JPanel jpPrincPrest() {  
         /*PRÉSTAMOS*/        
@@ -491,4 +492,7 @@ public class interfazPrestamo extends JFrame {
         return jpPrincPrest;
     }
     
+    public JPanel getDetallePres() {
+        return jpDetallePrest;        
+    }
 }

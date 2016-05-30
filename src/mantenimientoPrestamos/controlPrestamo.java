@@ -60,6 +60,9 @@ public class controlPrestamo {
     int actLimMatVis; 
     
     String valoresDetPres="";    
+    
+    public controlPrestamo () {
+    }
         
     public controlPrestamo (interfazPrestamo vistaPres) {     
         this.vistaPres=vistaPres;

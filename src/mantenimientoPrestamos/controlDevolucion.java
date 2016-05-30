@@ -673,6 +673,10 @@ public class controlDevolucion {
                 JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
             }
         }
+        vistaDev.jpTablaDevLib.setVisible(false);
+        vistaDev.jpTablaDevMaVi.setVisible(false);  
+        vistaDev.btDevolver.setVisible(false);
+        vistaDev.btCancelarDev.setVisible(false);
         return modelo;
     }
         
