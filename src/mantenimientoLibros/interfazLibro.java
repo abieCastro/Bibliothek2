@@ -803,6 +803,14 @@ public class interfazLibro {
             
         return  jpCatalogo;
     }
+
+    public JPanel getJpRegL() {
+        return jpRegL;
+    }
+
+    public JPanel getJpRegMV() {
+        return jpRegMV;
+    }
     
     public void btLimRegLActionPerformed(ActionEvent evt){
             txtTitulo.setText("");
@@ -980,11 +988,6 @@ public class interfazLibro {
             jtTablaRegLib = null;
             jtTablaRegLib = CL.generarTablaLibro();
             
-            jpCatalogo.remove(jpRegMV);
-            jpCatalogo.add(jpRegMV);
-            
-            jpCatalogo.remove(jpConsMV);
-            jpCatalogo.add(jpConsMV);
             
             jpRegMV.setVisible(false);
             jpConsMV.setVisible(false);

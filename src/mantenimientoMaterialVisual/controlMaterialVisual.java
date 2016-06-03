@@ -664,6 +664,7 @@ public class controlMaterialVisual {
            
             
             MV.claveMatVis = clav;
+            MV.tituloM = titu;
             MV.volumenM = volumen;
             MV.clasificacionM = clasi;
             MV.añoM = ano;

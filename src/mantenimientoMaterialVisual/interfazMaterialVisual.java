@@ -61,6 +61,7 @@ public class interfazMaterialVisual {
     JButton btImprimirMV,btLimTxtClavMV;
     
     boolean respuesta;
+  
     
     public JPanel RegistrarMV(){
         //interfaz = new JPanel();
@@ -356,8 +357,7 @@ public class interfazMaterialVisual {
         
         return jpRegMV;
     }
-    
-    
+
     public JPanel ConsultaMV(){
         JPConsulMV = new JPanel();
         JPConsulMV.setLayout(null);
@@ -623,6 +623,8 @@ public class interfazMaterialVisual {
         return JPConsulMV;
     }
     
+ 
+    
     /*boton limpiar registros*/
     public void btLimRegMV(ActionEvent evt){
         txtTituloMV.setText("");
@@ -821,4 +823,31 @@ public class interfazMaterialVisual {
                 
     }
 
+    /*Limpiar*/
+      
+    public void limpiarInterfazMV(){
+        System.out.println("entreeeee");
+
+        jtTablaMV=null;
+        jtTablaMV=CMV.generarTablaEjemplarMV();
+
+        jtTablaRegMV=null;
+        jtTablaRegMV=CMV.generarTablaMV();
+        
+        txtTituloMV.setText("");
+        txtVolumen.setText("");
+        txtAnoMV.setText("");
+        txtCantidadMV.setText("");
+        cbClasificacionMV.setSelectedItem("");
+        jtxClaveGMV.setText(" ");
+        jtx.setText(" ");
+        
+        txtFilVolumen.setText(" ");
+        txtFilClaTiMV.setText(" ");
+        txtFilClaEjMV.setText(" ");
+        txtFilClasiMV.setText(" ");
+        txtFilestMV.setText(" ");
+        txtFilANoMV.setText(" ");
+    }
+    
 }

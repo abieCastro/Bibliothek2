@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package principal;
 
 import historialPrestamos.*;
@@ -26,88 +25,88 @@ import mantenimientoLibros.*;
 import mantenimientoMaterialVisual.*;
 import mantenimientoPrestamos.*;
 import mantenimientoSolicitantes.*;
+
 /**
  *
  * @author Mac
  */
-public class menuPrinc extends JFrame{
+public class menuPrinc extends JFrame {
+
     interfazSolicitante menuSolic = new interfazSolicitante();
     interfazLibro menuLib = new interfazLibro();
     interfazMaterialVisual menuMatVis = new interfazMaterialVisual();
-    interfazPrestamo menuPres = new interfazPrestamo();    
+    interfazPrestamo menuPres = new interfazPrestamo();
     interfazDevolucion menuDev = new interfazDevolucion();
     interfazHistorial menuHist = new interfazHistorial();
-   
+
     controlPrestamo cp = new controlPrestamo();
-    
+
     //Opciones Generales    
     JToolBar tbarMenuPrinc;
     JButton btMenuCatalogos;
     JButton btMenuSolic;
     JButton btMenuPres;
     JButton btMenuDev;
-    JButton btMenuHistorial;    
-    
+    JButton btMenuHistorial;
+
     JLabel labTitulo;
     JLabel labSubTitulo;
     JLabel labImgPrinc;
-    
+
     JPanel jpMenuCatalogos;
     JPanel jpMenuSolic;
-    JPanel jpMenuPres;  
+    JPanel jpMenuPres;
     JPanel jpMenuDev;
-    JPanel jpMenuHistorial;   
-    
-        
-    public menuPrinc () throws ParseException{        
+    JPanel jpMenuHistorial;
+
+    public menuPrinc() throws ParseException {
         this.setLayout(null);
         this.setTitle("Bibliothek");
         this.setBounds(0, 0, 1400, 700);
         this.setDefaultCloseOperation(3);
         inicializar();
-    
+
     }
-    
-    public void inicializar() throws ParseException{
+
+    public void inicializar() throws ParseException {
         tbarMenuPrinc = new JToolBar();
-        btMenuCatalogos = new JButton("Catálogos");        
+        btMenuCatalogos = new JButton("Catálogos");
         btMenuCatalogos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {           
-                btMenuCatalogosActionPerformed(evt);                    
-                              
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMenuCatalogosActionPerformed(evt);
+
             }
         });
-        
+
         btMenuSolic = new JButton("Solicitantes");
         btMenuSolic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btMenuSolicActionPerformed(evt);
-                            
-                
+
             }
         });
-        
-        btMenuPres = new JButton("Préstamos");           
+
+        btMenuPres = new JButton("Préstamos");
         btMenuPres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPrestamosActionPerformed(evt);
             }
         });
-        
+
         btMenuDev = new JButton("Devoluciones");
         btMenuDev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btDevolucionesActionPerformed(evt);
             }
         });
-        
+
         btMenuHistorial = new JButton("Historial");
         btMenuHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btHistorialActionPerformed(evt);
             }
         });
-        
+
         tbarMenuPrinc.add(btMenuCatalogos);
         tbarMenuPrinc.add(btMenuSolic);
         tbarMenuPrinc.add(btMenuPres);
@@ -117,102 +116,146 @@ public class menuPrinc extends JFrame{
         tbarMenuPrinc.setFloatable(false);
         this.getContentPane().add(tbarMenuPrinc);
         this.setResizable(false);
-               
-   
-        jpMenuCatalogos=menuLib.InterfazLibro();
+
+        jpMenuCatalogos = menuLib.InterfazLibro();
         add(jpMenuCatalogos);
         jpMenuCatalogos.setVisible(false);
 
-       jpMenuSolic = new JPanel();
-       jpMenuSolic=menuSolic.Solicitantes();
-       add(jpMenuSolic);
-       jpMenuSolic.setVisible(false);
-       
-       jpMenuPres = new JPanel();       
-       jpMenuPres = menuPres.jpPrincPrest();
-       add(jpMenuPres);       
-       jpMenuPres.setVisible(false);       
-       
-       jpMenuDev = new JPanel();
-       jpMenuDev = menuDev.jpPrincDev();
-       add(jpMenuDev);
-       jpMenuDev.setVisible(false);
-       
-       jpMenuHistorial = new JPanel();
-       jpMenuHistorial = menuHist.jpPrincHist();
-       add(jpMenuHistorial);
-       jpMenuHistorial.setVisible(false);
-       
-       labTitulo = new JLabel("David Alfaro Siquieros Gral. No.3");
-       labTitulo.setVisible(true);
-       labTitulo.setFont(new java.awt.Font("Tahoma", Font.BOLD, 30));
-       labTitulo.setBounds(400, 50, 500, 40);
-       this.add(labTitulo);
+        jpMenuSolic = new JPanel();
+        jpMenuSolic = menuSolic.Solicitantes();
+        add(jpMenuSolic);
+        jpMenuSolic.setVisible(false);
 
-       labSubTitulo = new JLabel("Clave: 02DES0009F");
-       labSubTitulo.setVisible(true);
-       labSubTitulo.setFont(new java.awt.Font("Tahoma", Font.BOLD, 20));
-       labSubTitulo.setBounds(550, 70, 300, 60);
-       this.add(labSubTitulo);
-       
-       labImgPrinc = new JLabel(); 
-       labImgPrinc.setIcon(new ImageIcon("C:\\Users\\Mac\\Documents\\NetBeansProjects\\Bibliothek5.1\\build\\classes\\imagenes\\biblioteca.png"));
-       labImgPrinc.setBounds(250,200,791,509);
-       this.add(labImgPrinc); 
+        jpMenuPres = new JPanel();
+        jpMenuPres = menuPres.jpPrincPrest();
+        add(jpMenuPres);
+        jpMenuPres.setVisible(false);
+
+        jpMenuDev = new JPanel();
+        jpMenuDev = menuDev.jpPrincDev();
+        add(jpMenuDev);
+        jpMenuDev.setVisible(false);
+
+        jpMenuHistorial = new JPanel();
+        jpMenuHistorial = menuHist.jpPrincHist();
+        add(jpMenuHistorial);
+        jpMenuHistorial.setVisible(false);
+
+        labTitulo = new JLabel("David Alfaro Siquieros Gral. No.3");
+        labTitulo.setVisible(true);
+        labTitulo.setFont(new java.awt.Font("Tahoma", Font.BOLD, 30));
+        labTitulo.setBounds(400, 50, 500, 40);
+        this.add(labTitulo);
+
+        labSubTitulo = new JLabel("Clave: 02DES0009F");
+        labSubTitulo.setVisible(true);
+        labSubTitulo.setFont(new java.awt.Font("Tahoma", Font.BOLD, 20));
+        labSubTitulo.setBounds(550, 70, 300, 60);
+        this.add(labSubTitulo);
+
+        labImgPrinc = new JLabel();
+        labImgPrinc.setIcon(new ImageIcon("C:\\Users\\Mac\\Documents\\NetBeansProjects\\Bibliothek5.1\\build\\classes\\imagenes\\biblioteca.png"));
+        labImgPrinc.setBounds(250, 200, 791, 509);
+        this.add(labImgPrinc);
     }
-    
+
     /*Evento Catalogos*/
-    public void btMenuCatalogosActionPerformed(ActionEvent evt){       
-        
-        if(menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
+    public void btMenuCatalogosActionPerformed(ActionEvent evt) {
+
+        if (menuSolic.getJpRegD().isVisible() == false && menuSolic.getJpRegA().isVisible() == false && menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
             menuPres.limpiarMenuPres();
-            menuDev.limpiarMenuDev();            
+            menuDev.limpiarMenuDev();
             labSubTitulo.setVisible(false);
             labTitulo.setVisible(false);
-            jpMenuCatalogos.setVisible(true);    
-            
-            jpMenuPres.setVisible(false);            
+            jpMenuCatalogos.setVisible(true);
+
+            jpMenuPres.setVisible(false);
             jpMenuDev.setVisible(false);
             jpMenuHistorial.setVisible(false);
-            jpMenuSolic.setVisible(false);                     
+            jpMenuSolic.setVisible(false);
         } else {
             /*Verificar si ya se realizó alguna transacción en Préstamos*/
-            if(menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
-                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
-                if (JOptionPane.OK_OPTION == resp){                            
+            if (menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
+                int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                if (JOptionPane.OK_OPTION == resp) {
                     menuPres.limpiarMenuPres();
                     labSubTitulo.setVisible(false);
                     labTitulo.setVisible(false);
-                    jpMenuCatalogos.setVisible(true);    
-                    jpMenuPres.setVisible(false);                
+                    jpMenuCatalogos.setVisible(true);
+                    jpMenuPres.setVisible(false);
                     jpMenuDev.setVisible(false);
                     jpMenuHistorial.setVisible(false);
-                    jpMenuSolic.setVisible(false);              
+                    jpMenuSolic.setVisible(false);
                 }
             } else {
                 /*Verificar si ya se realizó una transacción en Devoluciones*/
-                if(menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
-                    int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
-                    if (JOptionPane.OK_OPTION == resp){                            
+                if (menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
+                    int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                    if (JOptionPane.OK_OPTION == resp) {
                         menuDev.limpiarMenuDev();
                         labSubTitulo.setVisible(false);
                         labTitulo.setVisible(false);
-                        jpMenuCatalogos.setVisible(true);    
-                        
-                        jpMenuPres.setVisible(false);                
+                        jpMenuCatalogos.setVisible(true);
+
+                        jpMenuPres.setVisible(false);
                         jpMenuDev.setVisible(false);
                         jpMenuHistorial.setVisible(false);
-                        jpMenuSolic.setVisible(false);  
+                        jpMenuSolic.setVisible(false);
                     }
-                }                        
-            }       
+                } else {
+                    /*verifica transaccion en solic*/
+                    if (menuSolic.getJpRegD().isVisible() == true) {
+                        int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                        if (JOptionPane.OK_OPTION == respx) {
+
+                            System.out.println("solicitantes docentes");
+
+                            labSubTitulo.setVisible(false);
+                            labTitulo.setVisible(false);
+                            jpMenuCatalogos.setVisible(true);
+
+                            jpMenuSolic.setVisible(false);
+                            jpMenuPres.setVisible(false);
+                            jpMenuDev.setVisible(false);
+                            jpMenuHistorial.setVisible(false);
+
+                            jpMenuSolic.removeAll();
+                            jpMenuSolic = menuSolic.Solicitantes();
+                            add(jpMenuSolic);
+                        }
+                    } else {
+                        if (menuSolic.getJpRegA().isVisible() == true) {
+                            int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                            if (JOptionPane.OK_OPTION == respx) {
+
+                                System.out.println("solicitantes docentes");
+
+                                labSubTitulo.setVisible(false);
+                                labTitulo.setVisible(false);
+                                jpMenuCatalogos.setVisible(true);
+
+                                jpMenuSolic.setVisible(false);
+                                jpMenuPres.setVisible(false);
+                                jpMenuDev.setVisible(false);
+                                jpMenuHistorial.setVisible(false);
+
+                                jpMenuSolic.removeAll();
+                                jpMenuSolic = menuSolic.Solicitantes();
+                                add(jpMenuSolic);
+                            }
+                        }
+                    }
+                }
+
+            }
+
         }
         menuHist.limpiarMenuHist();
         jpMenuHistorial.setVisible(false);
     }
-    
+
     /*Evento Solicitantes*/
-    public void btMenuSolicActionPerformed(ActionEvent evt){
+    public void btMenuSolicActionPerformed(ActionEvent evt) {
 //        labSubTitulo.setVisible(false);
 //        labTitulo.setVisible(false);
 //        jpMenuCatalogos.setVisible(false);
@@ -222,14 +265,14 @@ public class menuPrinc extends JFrame{
 //        jpMenuDev.setVisible(false);
 //        jpMenuHistorial.setVisible(false);
 //        jpMenuCatalogos.setVisible(false);
-        
-        if(menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
+
+        if (menuLib.getJpRegL().isVisible() == false && menuLib.getJpRegMV().isVisible() == false && menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
             menuPres.limpiarMenuPres();
-            menuDev.limpiarMenuDev();   
+            menuDev.limpiarMenuDev();
             labSubTitulo.setVisible(false);
             labTitulo.setVisible(false);
             jpMenuCatalogos.setVisible(false);
-            
+
             jpMenuSolic.setVisible(true);
             jpMenuPres.setVisible(false);
             jpMenuDev.setVisible(false);
@@ -237,14 +280,14 @@ public class menuPrinc extends JFrame{
             jpMenuCatalogos.setVisible(false);
         } else {
             /*Verificar si ya se realizó alguna transacción en Préstamos*/
-            if(menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
-                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
-                if (JOptionPane.OK_OPTION == resp){                            
+            if (menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
+                int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                if (JOptionPane.OK_OPTION == resp) {
                     menuPres.limpiarMenuPres();
                     labSubTitulo.setVisible(false);
                     labTitulo.setVisible(false);
                     jpMenuCatalogos.setVisible(false);
-                    
+
                     jpMenuSolic.setVisible(true);
                     jpMenuPres.setVisible(false);
                     jpMenuDev.setVisible(false);
@@ -253,29 +296,76 @@ public class menuPrinc extends JFrame{
                 }
             } else {
                 /*Verificar si ya se realizó una transacción en Devoluciones*/
-                if(menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
-                    int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
-                    if (JOptionPane.OK_OPTION == resp){                            
+                if (menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
+                    int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                    if (JOptionPane.OK_OPTION == resp) {
                         menuDev.limpiarMenuDev();
                         labSubTitulo.setVisible(false);
                         labTitulo.setVisible(false);
                         jpMenuCatalogos.setVisible(false);
-                        
+
                         jpMenuSolic.setVisible(true);
                         jpMenuPres.setVisible(false);
                         jpMenuDev.setVisible(false);
                         jpMenuHistorial.setVisible(false);
                         jpMenuCatalogos.setVisible(false);
                     }
-                }         
-            }       
+                } else {
+                    /*verifica transaccion en MV*/
+                    if (menuLib.getJpRegMV().isVisible() == true) {
+                        int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                        if (JOptionPane.OK_OPTION == respu) {
+
+                            System.out.println("estoy en el if");
+
+                            labSubTitulo.setVisible(false);
+                            labTitulo.setVisible(false);
+                            jpMenuCatalogos.setVisible(false);
+
+                            jpMenuSolic.setVisible(true);
+                            jpMenuPres.setVisible(false);
+                            jpMenuDev.setVisible(false);
+                            jpMenuHistorial.setVisible(false);
+                            jpMenuCatalogos.setVisible(false);
+
+                            jpMenuCatalogos.removeAll();
+                            jpMenuCatalogos = menuLib.InterfazLibro();
+                            add(jpMenuCatalogos);
+
+                        }
+                    } else {
+                        if (menuLib.getJpRegL().isVisible() == true) {
+                            int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                            if (JOptionPane.OK_OPTION == respu) {
+
+                                System.out.println("estoy en el if");
+
+                                labSubTitulo.setVisible(false);
+                                labTitulo.setVisible(false);
+                                jpMenuCatalogos.setVisible(false);
+
+                                jpMenuSolic.setVisible(true);
+                                jpMenuPres.setVisible(false);
+                                jpMenuDev.setVisible(false);
+                                jpMenuHistorial.setVisible(false);
+                                jpMenuCatalogos.setVisible(false);
+
+                                jpMenuCatalogos.removeAll();
+                                jpMenuCatalogos = menuLib.InterfazLibro();
+                                add(jpMenuCatalogos);
+
+                            }
+                        }
+                    }
+                }
+            }
         }
         menuHist.limpiarMenuHist();
         jpMenuHistorial.setVisible(false);
     }
-    
+
     /*Evento Prestamos*/
-    public void btPrestamosActionPerformed(ActionEvent evt){     
+    public void btPrestamosActionPerformed(ActionEvent evt) {
 //        labSubTitulo.setVisible(false);
 //        labTitulo.setVisible(false); 
 //        
@@ -286,11 +376,11 @@ public class menuPrinc extends JFrame{
 //        
 //        jpMenuCatalogos.setVisible(false);
 //        jpMenuSolic.setVisible(false);    
-        
-        if(menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {           
-            menuDev.limpiarMenuDev();   
+
+        if (menuSolic.getJpRegA().isVisible() == false && menuSolic.getJpRegD().isVisible() == false && menuLib.getJpRegL().isVisible() == false && menuLib.getJpRegMV().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
+            menuDev.limpiarMenuDev();
             labSubTitulo.setVisible(false);
-            labTitulo.setVisible(false); 
+            labTitulo.setVisible(false);
 
             jpMenuPres.setVisible(true);
             jpMenuPres.repaint();
@@ -298,33 +388,123 @@ public class menuPrinc extends JFrame{
             jpMenuHistorial.setVisible(false);
 
             jpMenuCatalogos.setVisible(false);
-            jpMenuSolic.setVisible(false);   
-        }  else {
+            jpMenuSolic.setVisible(false);
+        } else {
             /*Verificar si ya se realizó una transacción en Devoluciones*/
-            if(menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
-                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
-                if (JOptionPane.OK_OPTION == resp){                            
+            if (menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
+                int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                if (JOptionPane.OK_OPTION == resp) {
                     menuDev.limpiarMenuDev();
                     labSubTitulo.setVisible(false);
-                    labTitulo.setVisible(false); 
-                    
+                    labTitulo.setVisible(false);
+
                     jpMenuPres.setVisible(true);
                     jpMenuPres.repaint();
                     jpMenuDev.setVisible(false);
                     jpMenuHistorial.setVisible(false);
-                    
+
                     jpMenuCatalogos.setVisible(false);
-                    jpMenuSolic.setVisible(false);   
-                }         
-            }       
+                    jpMenuSolic.setVisible(false);
+                }
+            } else {
+                /*verifica transaccion en MV*/
+                if (menuLib.getJpRegMV().isVisible() == true) {
+                    int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                    if (JOptionPane.OK_OPTION == respu) {
+
+                        System.out.println("estoy en el if");
+
+                        labSubTitulo.setVisible(false);
+                        labTitulo.setVisible(false);
+                        jpMenuCatalogos.setVisible(false);
+
+                        jpMenuSolic.setVisible(false);
+                        jpMenuPres.setVisible(true);
+                        jpMenuDev.setVisible(false);
+                        jpMenuHistorial.setVisible(false);
+                        jpMenuCatalogos.setVisible(false);
+
+                        jpMenuCatalogos.removeAll();
+                        jpMenuCatalogos = menuLib.InterfazLibro();
+                        add(jpMenuCatalogos);
+
+                    }
+                } else {
+                    if (menuLib.getJpRegL().isVisible() == true) {
+                        int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                        if (JOptionPane.OK_OPTION == respu) {
+
+                            System.out.println("estoy en el if");
+
+                            labSubTitulo.setVisible(false);
+                            labTitulo.setVisible(false);
+                            jpMenuCatalogos.setVisible(false);
+
+                            jpMenuSolic.setVisible(false);
+                            jpMenuPres.setVisible(true);
+                            jpMenuDev.setVisible(false);
+                            jpMenuHistorial.setVisible(false);
+                            jpMenuCatalogos.setVisible(false);
+
+                            jpMenuCatalogos.removeAll();
+                            jpMenuCatalogos = menuLib.InterfazLibro();
+                            add(jpMenuCatalogos);
+
+                        }
+                    } else {
+                        /*verifica transaccion en solic*/
+                        if (menuSolic.getJpRegD().isVisible() == true) {
+                            int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                            if (JOptionPane.OK_OPTION == respx) {
+
+                                System.out.println("solicitantes docentes");
+
+                                labSubTitulo.setVisible(false);
+                                labTitulo.setVisible(false);
+                                jpMenuCatalogos.setVisible(false);
+
+                                jpMenuSolic.setVisible(false);
+                                jpMenuPres.setVisible(true);
+                                jpMenuDev.setVisible(false);
+                                jpMenuHistorial.setVisible(false);
+
+                                jpMenuSolic.removeAll();
+                                jpMenuSolic = menuSolic.Solicitantes();
+                                add(jpMenuSolic);
+                            }
+                        } else {
+                            if (menuSolic.getJpRegA().isVisible() == true) {
+                                int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                                if (JOptionPane.OK_OPTION == respx) {
+
+                                    System.out.println("solicitantes docentes");
+
+                                    labSubTitulo.setVisible(false);
+                                    labTitulo.setVisible(false);
+                                    jpMenuCatalogos.setVisible(false);
+
+                                    jpMenuSolic.setVisible(false);
+                                    jpMenuPres.setVisible(true);
+                                    jpMenuDev.setVisible(false);
+                                    jpMenuHistorial.setVisible(false);
+
+                                    jpMenuSolic.removeAll();
+                                    jpMenuSolic = menuSolic.Solicitantes();
+                                    add(jpMenuSolic);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         menuHist.limpiarMenuHist();
         jpMenuHistorial.setVisible(false);
-        
+
     }
-    
+
     /*Evento Devoluciones*/
-    public void btDevolucionesActionPerformed(ActionEvent evt){    
+    public void btDevolucionesActionPerformed(ActionEvent evt) {
 //        labSubTitulo.setVisible(false);
 //        labTitulo.setVisible(false);        
 //        jpMenuPres.setVisible(false);
@@ -333,11 +513,11 @@ public class menuPrinc extends JFrame{
 //        
 //        jpMenuCatalogos.setVisible(false);
 //        jpMenuSolic.setVisible(false);
-        
-        if(menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false ) {
-            menuPres.limpiarMenuPres();            
+
+        if (menuSolic.getJpRegA().isVisible() == false && menuSolic.getJpRegD().isVisible() == false && menuLib.getJpRegL().isVisible() == false && menuLib.getJpRegMV().isVisible() == false && menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false) {
+            menuPres.limpiarMenuPres();
             labSubTitulo.setVisible(false);
-            labTitulo.setVisible(false);        
+            labTitulo.setVisible(false);
             jpMenuPres.setVisible(false);
             jpMenuDev.setVisible(true);
             jpMenuHistorial.setVisible(false);
@@ -346,12 +526,12 @@ public class menuPrinc extends JFrame{
             jpMenuSolic.setVisible(false);
         } else {
             /*Verificar si ya se realizó alguna transacción en Préstamos*/
-            if(menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
-                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
-                if (JOptionPane.OK_OPTION == resp){                            
+            if (menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
+                int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                if (JOptionPane.OK_OPTION == resp) {
                     menuPres.limpiarMenuPres();
                     labSubTitulo.setVisible(false);
-                    labTitulo.setVisible(false);        
+                    labTitulo.setVisible(false);
                     jpMenuPres.setVisible(false);
                     jpMenuDev.setVisible(true);
                     jpMenuHistorial.setVisible(false);
@@ -359,14 +539,104 @@ public class menuPrinc extends JFrame{
                     jpMenuCatalogos.setVisible(false);
                     jpMenuSolic.setVisible(false);
                 }
-            }       
+            } else {
+                /*verifica transaccion en MV*/
+                if (menuLib.getJpRegMV().isVisible() == true) {
+                    int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                    if (JOptionPane.OK_OPTION == respu) {
+
+                        System.out.println("estoy en el if");
+
+                        labSubTitulo.setVisible(false);
+                        labTitulo.setVisible(false);
+                        jpMenuCatalogos.setVisible(false);
+
+                        jpMenuSolic.setVisible(false);
+                        jpMenuPres.setVisible(false);
+                        jpMenuDev.setVisible(true);
+                        jpMenuHistorial.setVisible(false);
+                        jpMenuCatalogos.setVisible(false);
+
+                        jpMenuCatalogos.removeAll();
+                        jpMenuCatalogos = menuLib.InterfazLibro();
+                        add(jpMenuCatalogos);
+
+                    }
+                } else {
+                    if (menuLib.getJpRegL().isVisible() == true) {
+                        int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                        if (JOptionPane.OK_OPTION == respu) {
+
+                            System.out.println("estoy en el if");
+
+                            labSubTitulo.setVisible(false);
+                            labTitulo.setVisible(false);
+                            jpMenuCatalogos.setVisible(false);
+
+                            jpMenuSolic.setVisible(false);
+                            jpMenuPres.setVisible(false);
+                            jpMenuDev.setVisible(true);
+                            jpMenuHistorial.setVisible(false);
+                            jpMenuCatalogos.setVisible(false);
+
+                            jpMenuCatalogos.removeAll();
+                            jpMenuCatalogos = menuLib.InterfazLibro();
+                            add(jpMenuCatalogos);
+
+                        }
+                    } else {
+                        /*verifica transaccion en solic*/
+                        if (menuSolic.getJpRegD().isVisible() == true) {
+                            int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                            if (JOptionPane.OK_OPTION == respx) {
+
+                                System.out.println("solicitantes docentes");
+
+                                labSubTitulo.setVisible(false);
+                                labTitulo.setVisible(false);
+                                jpMenuCatalogos.setVisible(false);
+
+                                jpMenuSolic.setVisible(false);
+                                jpMenuPres.setVisible(false);
+                                jpMenuDev.setVisible(true);
+                                jpMenuHistorial.setVisible(false);
+
+                                jpMenuSolic.removeAll();
+                                jpMenuSolic = menuSolic.Solicitantes();
+                                add(jpMenuSolic);
+                            }
+                        } else {
+                            if (menuSolic.getJpRegA().isVisible() == true) {
+                                int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                                if (JOptionPane.OK_OPTION == respx) {
+
+                                    System.out.println("solicitantes docentes");
+
+                                    labSubTitulo.setVisible(false);
+                                    labTitulo.setVisible(false);
+                                    jpMenuCatalogos.setVisible(false);
+
+                                    jpMenuSolic.setVisible(false);
+                                    jpMenuPres.setVisible(false);
+                                    jpMenuDev.setVisible(true);
+                                    jpMenuHistorial.setVisible(false);
+
+                                    jpMenuSolic.removeAll();
+                                    jpMenuSolic = menuSolic.Solicitantes();
+                                    add(jpMenuSolic);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         menuHist.limpiarMenuHist();
         jpMenuHistorial.setVisible(false);
     }
-    
+
     /*Evento Historial*/
-    public void btHistorialActionPerformed(ActionEvent evt){     
+    public void btHistorialActionPerformed(ActionEvent evt) {
 //        labSubTitulo.setVisible(false);
 //        labTitulo.setVisible(false);
 //        jpMenuPres.setVisible(false);
@@ -375,10 +645,10 @@ public class menuPrinc extends JFrame{
 //        
 //        jpMenuCatalogos.setVisible(false);
 //        jpMenuSolic.setVisible(false);  
-        
-        if(menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
+
+        if (menuSolic.getJpRegD().isVisible() == false && menuSolic.getJpRegA().isVisible() == false && menuLib.getJpRegL().isVisible() == false && menuLib.getJpRegMV().isVisible() == false && menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
             menuPres.limpiarMenuPres();
-            menuDev.limpiarMenuDev();            
+            menuDev.limpiarMenuDev();
             labSubTitulo.setVisible(false);
             labTitulo.setVisible(false);
             jpMenuPres.setVisible(false);
@@ -389,9 +659,9 @@ public class menuPrinc extends JFrame{
             jpMenuSolic.setVisible(false);
         } else {
             /*Verificar si ya se realizó alguna transacción en Préstamos*/
-            if(menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
-                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
-                if (JOptionPane.OK_OPTION == resp){                            
+            if (menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
+                int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                if (JOptionPane.OK_OPTION == resp) {
                     menuPres.limpiarMenuPres();
                     labSubTitulo.setVisible(false);
                     labTitulo.setVisible(false);
@@ -404,9 +674,9 @@ public class menuPrinc extends JFrame{
                 }
             } else {
                 /*Verificar si ya se realizó una transacción en Devoluciones*/
-                if(menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
-                    int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
-                    if (JOptionPane.OK_OPTION == resp){                            
+                if (menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
+                    int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                    if (JOptionPane.OK_OPTION == resp) {
                         menuDev.limpiarMenuDev();
                         labSubTitulo.setVisible(false);
                         labTitulo.setVisible(false);
@@ -417,12 +687,103 @@ public class menuPrinc extends JFrame{
                         jpMenuCatalogos.setVisible(false);
                         jpMenuSolic.setVisible(false);
                     }
-                }                        
-            }       
+                } else {
+                    /*verifica transaccion en MV*/
+                    if (menuLib.getJpRegMV().isVisible() == true) {
+                        int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                        if (JOptionPane.OK_OPTION == respu) {
+
+                            System.out.println("estoy en el if");
+
+                            labSubTitulo.setVisible(false);
+                            labTitulo.setVisible(false);
+                            jpMenuCatalogos.setVisible(false);
+
+                            jpMenuSolic.setVisible(false);
+                            jpMenuPres.setVisible(false);
+                            jpMenuDev.setVisible(false);
+                            jpMenuHistorial.setVisible(true);
+                            jpMenuCatalogos.setVisible(false);
+
+                            jpMenuCatalogos.removeAll();
+                            jpMenuCatalogos = menuLib.InterfazLibro();
+                            add(jpMenuCatalogos);
+
+                        }
+                    } else {
+                        if (menuLib.getJpRegL().isVisible() == true) {
+                            int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                            if (JOptionPane.OK_OPTION == respu) {
+
+                                System.out.println("estoy en el if");
+
+                                labSubTitulo.setVisible(false);
+                                labTitulo.setVisible(false);
+                                jpMenuCatalogos.setVisible(false);
+
+                                jpMenuSolic.setVisible(false);
+                                jpMenuPres.setVisible(false);
+                                jpMenuDev.setVisible(false);
+                                jpMenuHistorial.setVisible(true);
+                                jpMenuCatalogos.setVisible(false);
+
+                                jpMenuCatalogos.removeAll();
+                                jpMenuCatalogos = menuLib.InterfazLibro();
+                                add(jpMenuCatalogos);
+
+                            }
+                        } else {
+                            /*verifica transaccion en solic*/
+                            if (menuSolic.getJpRegD().isVisible() == true) {
+                                int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                                if (JOptionPane.OK_OPTION == respx) {
+
+                                    System.out.println("solicitantes docentes");
+
+                                    labSubTitulo.setVisible(false);
+                                    labTitulo.setVisible(false);
+                                    jpMenuCatalogos.setVisible(false);
+
+                                    jpMenuSolic.setVisible(false);
+                                    jpMenuPres.setVisible(false);
+                                    jpMenuDev.setVisible(false);
+                                    jpMenuHistorial.setVisible(true);
+
+                                    jpMenuSolic.removeAll();
+                                    jpMenuSolic = menuSolic.Solicitantes();
+                                    add(jpMenuSolic);
+                                    jpMenuSolic.setVisible(false);
+                                }
+                            } else {
+                                if (menuSolic.getJpRegA().isVisible() == true) {
+                                    int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                                    if (JOptionPane.OK_OPTION == respx) {
+
+                                        System.out.println("solicitantes docentes");
+
+                                        labSubTitulo.setVisible(false);
+                                        labTitulo.setVisible(false);
+                                        jpMenuCatalogos.setVisible(false);
+
+                                        jpMenuSolic.setVisible(false);
+                                        jpMenuPres.setVisible(false);
+                                        jpMenuDev.setVisible(false);
+                                        jpMenuHistorial.setVisible(true);
+
+                                        jpMenuSolic.removeAll();
+                                        jpMenuSolic = menuSolic.Solicitantes();
+                                        add(jpMenuSolic);
+                                        jpMenuSolic.setVisible(false);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
         }
-        
-    }   
-        
+
+    }
+
 }
-
-

@@ -726,6 +726,18 @@ public class interfazSolicitante {
           return jpCatalogo;
       }
 
+    public JPanel getJpCatalogo() {
+        return jpCatalogo;
+    }
+
+    public JPanel getJpRegA() {
+        return jpRegA;
+    }
+
+    public JPanel getJpRegD() {
+        return jpRegD;
+    }
+
 
        public void btRegistrarA(ActionEvent evt){
            grupo = "";
