@@ -133,7 +133,6 @@ public class controlHistorial implements ActionListener{
         
         for(int x=0; x<listaHistorial.size(); x++) {
             columna[0] = listaHistorial.get(x).getNoControl();
-            System.out.println(columna[0] = listaHistorial.get(x).getNoControl());
             columna[1] = listaHistorial.get(x).getGrado();
             columna[2] = listaHistorial.get(x).getEjemplar();
             columna[3] = listaHistorial.get(x).getDetalle();
@@ -296,10 +295,6 @@ public class controlHistorial implements ActionListener{
     
     public void filtrarHistGral(String noControl,String grado,String ejemplar, String fechaPrestamo, String fechaLimite, String fechaDev, JTable tablaHistorial){                  
         listaHistorial = new ArrayList<historial>();             
-        if(noControl.equalsIgnoreCase("")==true&&grado.equalsIgnoreCase("")==true&&ejemplar.equalsIgnoreCase("")==true&&fechaPrestamo.equalsIgnoreCase("")==true&&fechaLimite.equalsIgnoreCase("")==true&&fechaDev.equalsIgnoreCase("")==true){             
-            limpiarTablas();            
-        }
-        
         String bu="";        
         int ban=0;
         
@@ -437,9 +432,6 @@ public class controlHistorial implements ActionListener{
     
     public void filtrarHistLib(String noControl,String grado,String ejemplar, String fechaPrestamo, String fechaLimite, String fechaDev, JTable tablaHistorial){                  
         listaHistorial = new ArrayList<historial>();             
-        if(noControl.equalsIgnoreCase("")==true&&grado.equalsIgnoreCase("")==true&&ejemplar.equalsIgnoreCase("")==true&&fechaPrestamo.equalsIgnoreCase("")==true&&fechaLimite.equalsIgnoreCase("")==true&&fechaDev.equalsIgnoreCase("")==true){             
-            limpiarTablas();            
-        }        
         
         String bu="";        
         int ban=0;
@@ -552,9 +544,6 @@ public class controlHistorial implements ActionListener{
     
     public void filtrarHistMaVi(String noControl,String grado,String ejemplar, String fechaPrestamo, String fechaLimite, String fechaDev, JTable tablaHistorial){                  
         listaHistorial = new ArrayList<historial>();             
-        if(noControl.equalsIgnoreCase("")==true&&grado.equalsIgnoreCase("")==true&&ejemplar.equalsIgnoreCase("")==true&&fechaPrestamo.equalsIgnoreCase("")==true&&fechaLimite.equalsIgnoreCase("")==true&&fechaDev.equalsIgnoreCase("")==true){             
-            limpiarTablas();            
-        }        
         
         String bu="";        
         int ban=0;
@@ -665,21 +654,34 @@ public class controlHistorial implements ActionListener{
         }
     }
     
-    public DefaultTableModel limpiarTablas(){               
+    public DefaultTableModel limpiarTablas(){  
         DefaultTableModel modelo = null;
-        /*Si el solicitante fue un alumno limpiar su tabla*/
-     
-            try {
-                modelo=(DefaultTableModel) vistaHist.tbHistGeneral.getModel();
-                int filas=vistaHist.tbHistGeneral.getRowCount();
-                for (int i = 0;filas>i; i++) {
-                    modelo.removeRow(0);
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+        try {
+            //Limpiar tabla historial General
+            modelo=(DefaultTableModel) vistaHist.tbHistGeneral.getModel();
+            int filasGral=vistaHist.tbHistGeneral.getRowCount();
+            for (int i = 0;filasGral>i; i++) {
+                modelo.removeRow(0);
             }
-            return modelo;
+            
+            //Limpiar tabla historial Libros
+            modelo=(DefaultTableModel) vistaHist.tbHistLibros.getModel();
+            int filasLib=vistaHist.tbHistLibros.getRowCount();
+            for (int i = 0;filasLib>i; i++) {
+                modelo.removeRow(0);
+            }
+            
+            //Limpiar tabla historial Material Visual
+            modelo=(DefaultTableModel) vistaHist.tbHistMatVis.getModel();
+            int filas=vistaHist.tbHistMatVis.getRowCount();
+            for (int i = 0;filas>i; i++) {
+                modelo.removeRow(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
         }
+        return modelo;
+    }
     
     
     public void mostrarHistMatVis(JTable tablaHistorial) {

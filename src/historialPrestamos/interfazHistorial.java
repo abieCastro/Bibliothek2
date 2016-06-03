@@ -511,4 +511,33 @@ public class interfazHistorial extends JFrame {
         return jpPrincHist;
     }
     
+    public JPanel getPrincHist() {
+        return jpPrincHist;
+    }
+    public void limpiarMenuHist() {
+        ch.limpiarTablas();
+        jpTablaHistGral.setVisible(false);
+        jpTablaHistLib.setVisible(false);
+        jpTablaHistMatVis.setVisible(false);
+        grupoRbTipoHist.clearSelection(); 
+        txtGralNoCont.setVisible(false);
+        txtGralGrado.setVisible(false);
+        txtGrlEjemp.setVisible(false);
+        txtGralFecPres.setVisible(false);
+        txtGralFecLim.setVisible(false);
+        txtGralFecDev.setVisible(false);
+        txtLibNoCont.setVisible(false);
+        txtLibGrado.setVisible(false);
+        txtLibEjemp.setVisible(false);
+        txtLibFecPres.setVisible(false);
+        txtLibFecLim.setVisible(false);
+        txtLibFecDev.setVisible(false);
+        txtMaViNoCont.setVisible(false);
+        txtMaViGrado.setVisible(false);
+        txtMaViEjemp.setVisible(false);
+        txtMaViFecPres.setVisible(false);
+        txtMaViFecLim.setVisible(false);
+        txtMaViFecDev.setVisible(false);
+    }
+    
 }

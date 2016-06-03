@@ -47,7 +47,7 @@ public class controlPrestamo {
     int selectLibro = -1;
     int selectMatVis = -1;    
        
-    ArrayList<alumno> listaAlumno;
+    public ArrayList<alumno> listaAlumno;
     ArrayList<docente> listaDocente;
     ArrayList<libro> listaLibro;
     ArrayList<ejemplarLibro> listaEjempLibro;
@@ -1145,7 +1145,7 @@ public class controlPrestamo {
         return modelo;
     }    
     
-    public void limpiarDatos() {
+    public void limpiarDatos() {        
         selectAlumno=-1;
         selectDocente=-1;
         selectLibro=-1;

@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import mantenimientoLibros.*;
@@ -162,84 +163,263 @@ public class menuPrinc extends JFrame{
     
     /*Evento Catalogos*/
     public void btMenuCatalogosActionPerformed(ActionEvent evt){       
-          if(menuPres.getDetallePres().isVisible() == true) { 
-              jpMenuPres.removeAll();
-              jpMenuPres = new JPanel();   
-              jpMenuPres = menuPres.jpPrincPrest();
-              add(jpMenuPres);                          
-              jpMenuPres.repaint();
-          } else {
-              System.out.println("noo");
-          }
-        labSubTitulo.setVisible(false);
-        labTitulo.setVisible(false);
-        jpMenuCatalogos.setVisible(true);    
-
-        jpMenuPres.setVisible(false);
-        jpMenuPres.repaint();
-        jpMenuDev.setVisible(false);
+        
+        if(menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
+            menuPres.limpiarMenuPres();
+            menuDev.limpiarMenuDev();            
+            labSubTitulo.setVisible(false);
+            labTitulo.setVisible(false);
+            jpMenuCatalogos.setVisible(true);    
+            
+            jpMenuPres.setVisible(false);            
+            jpMenuDev.setVisible(false);
+            jpMenuHistorial.setVisible(false);
+            jpMenuSolic.setVisible(false);                     
+        } else {
+            /*Verificar si ya se realizó alguna transacción en Préstamos*/
+            if(menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
+                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
+                if (JOptionPane.OK_OPTION == resp){                            
+                    menuPres.limpiarMenuPres();
+                    labSubTitulo.setVisible(false);
+                    labTitulo.setVisible(false);
+                    jpMenuCatalogos.setVisible(true);    
+                    jpMenuPres.setVisible(false);                
+                    jpMenuDev.setVisible(false);
+                    jpMenuHistorial.setVisible(false);
+                    jpMenuSolic.setVisible(false);              
+                }
+            } else {
+                /*Verificar si ya se realizó una transacción en Devoluciones*/
+                if(menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
+                    int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
+                    if (JOptionPane.OK_OPTION == resp){                            
+                        menuDev.limpiarMenuDev();
+                        labSubTitulo.setVisible(false);
+                        labTitulo.setVisible(false);
+                        jpMenuCatalogos.setVisible(true);    
+                        
+                        jpMenuPres.setVisible(false);                
+                        jpMenuDev.setVisible(false);
+                        jpMenuHistorial.setVisible(false);
+                        jpMenuSolic.setVisible(false);  
+                    }
+                }                        
+            }       
+        }
+        menuHist.limpiarMenuHist();
         jpMenuHistorial.setVisible(false);
-        
-        jpMenuSolic.setVisible(false);      
-        
-        
     }
     
     /*Evento Solicitantes*/
     public void btMenuSolicActionPerformed(ActionEvent evt){
-        labSubTitulo.setVisible(false);
-        labTitulo.setVisible(false);
-        jpMenuCatalogos.setVisible(false);
+//        labSubTitulo.setVisible(false);
+//        labTitulo.setVisible(false);
+//        jpMenuCatalogos.setVisible(false);
+//        
+//        jpMenuSolic.setVisible(true);
+//        jpMenuPres.setVisible(false);
+//        jpMenuDev.setVisible(false);
+//        jpMenuHistorial.setVisible(false);
+//        jpMenuCatalogos.setVisible(false);
         
-        jpMenuSolic.setVisible(true);
-        jpMenuPres.setVisible(false);
-        jpMenuDev.setVisible(false);
+        if(menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
+            menuPres.limpiarMenuPres();
+            menuDev.limpiarMenuDev();   
+            labSubTitulo.setVisible(false);
+            labTitulo.setVisible(false);
+            jpMenuCatalogos.setVisible(false);
+            
+            jpMenuSolic.setVisible(true);
+            jpMenuPres.setVisible(false);
+            jpMenuDev.setVisible(false);
+            jpMenuHistorial.setVisible(false);
+            jpMenuCatalogos.setVisible(false);
+        } else {
+            /*Verificar si ya se realizó alguna transacción en Préstamos*/
+            if(menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
+                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
+                if (JOptionPane.OK_OPTION == resp){                            
+                    menuPres.limpiarMenuPres();
+                    labSubTitulo.setVisible(false);
+                    labTitulo.setVisible(false);
+                    jpMenuCatalogos.setVisible(false);
+                    
+                    jpMenuSolic.setVisible(true);
+                    jpMenuPres.setVisible(false);
+                    jpMenuDev.setVisible(false);
+                    jpMenuHistorial.setVisible(false);
+                    jpMenuCatalogos.setVisible(false);
+                }
+            } else {
+                /*Verificar si ya se realizó una transacción en Devoluciones*/
+                if(menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
+                    int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
+                    if (JOptionPane.OK_OPTION == resp){                            
+                        menuDev.limpiarMenuDev();
+                        labSubTitulo.setVisible(false);
+                        labTitulo.setVisible(false);
+                        jpMenuCatalogos.setVisible(false);
+                        
+                        jpMenuSolic.setVisible(true);
+                        jpMenuPres.setVisible(false);
+                        jpMenuDev.setVisible(false);
+                        jpMenuHistorial.setVisible(false);
+                        jpMenuCatalogos.setVisible(false);
+                    }
+                }         
+            }       
+        }
+        menuHist.limpiarMenuHist();
         jpMenuHistorial.setVisible(false);
-        jpMenuCatalogos.setVisible(false);
     }
     
     /*Evento Prestamos*/
     public void btPrestamosActionPerformed(ActionEvent evt){     
-        labSubTitulo.setVisible(false);
-        labTitulo.setVisible(false); 
+//        labSubTitulo.setVisible(false);
+//        labTitulo.setVisible(false); 
+//        
+//        jpMenuPres.setVisible(true);
+//        jpMenuPres.repaint();
+//        jpMenuDev.setVisible(false);
+//        jpMenuHistorial.setVisible(false);
+//        
+//        jpMenuCatalogos.setVisible(false);
+//        jpMenuSolic.setVisible(false);    
         
-        jpMenuPres.setVisible(true);
-        jpMenuPres.repaint();
-        jpMenuDev.setVisible(false);
+        if(menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {           
+            menuDev.limpiarMenuDev();   
+            labSubTitulo.setVisible(false);
+            labTitulo.setVisible(false); 
+
+            jpMenuPres.setVisible(true);
+            jpMenuPres.repaint();
+            jpMenuDev.setVisible(false);
+            jpMenuHistorial.setVisible(false);
+
+            jpMenuCatalogos.setVisible(false);
+            jpMenuSolic.setVisible(false);   
+        }  else {
+            /*Verificar si ya se realizó una transacción en Devoluciones*/
+            if(menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
+                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
+                if (JOptionPane.OK_OPTION == resp){                            
+                    menuDev.limpiarMenuDev();
+                    labSubTitulo.setVisible(false);
+                    labTitulo.setVisible(false); 
+                    
+                    jpMenuPres.setVisible(true);
+                    jpMenuPres.repaint();
+                    jpMenuDev.setVisible(false);
+                    jpMenuHistorial.setVisible(false);
+                    
+                    jpMenuCatalogos.setVisible(false);
+                    jpMenuSolic.setVisible(false);   
+                }         
+            }       
+        }
+        menuHist.limpiarMenuHist();
         jpMenuHistorial.setVisible(false);
-        
-        jpMenuCatalogos.setVisible(false);
-        jpMenuSolic.setVisible(false);
-        //btMenuPres.setBackground(Color.BLUE);
-        //btMenuPres.setForeground(Color.red);
-        
         
     }
     
     /*Evento Devoluciones*/
     public void btDevolucionesActionPerformed(ActionEvent evt){    
-        labSubTitulo.setVisible(false);
-        labTitulo.setVisible(false);        
-        jpMenuPres.setVisible(false);
-        jpMenuDev.setVisible(true);
-        jpMenuHistorial.setVisible(false);
+//        labSubTitulo.setVisible(false);
+//        labTitulo.setVisible(false);        
+//        jpMenuPres.setVisible(false);
+//        jpMenuDev.setVisible(true);
+//        jpMenuHistorial.setVisible(false);
+//        
+//        jpMenuCatalogos.setVisible(false);
+//        jpMenuSolic.setVisible(false);
         
-        jpMenuCatalogos.setVisible(false);
-        jpMenuSolic.setVisible(false);
+        if(menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false ) {
+            menuPres.limpiarMenuPres();            
+            labSubTitulo.setVisible(false);
+            labTitulo.setVisible(false);        
+            jpMenuPres.setVisible(false);
+            jpMenuDev.setVisible(true);
+            jpMenuHistorial.setVisible(false);
+
+            jpMenuCatalogos.setVisible(false);
+            jpMenuSolic.setVisible(false);
+        } else {
+            /*Verificar si ya se realizó alguna transacción en Préstamos*/
+            if(menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
+                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
+                if (JOptionPane.OK_OPTION == resp){                            
+                    menuPres.limpiarMenuPres();
+                    labSubTitulo.setVisible(false);
+                    labTitulo.setVisible(false);        
+                    jpMenuPres.setVisible(false);
+                    jpMenuDev.setVisible(true);
+                    jpMenuHistorial.setVisible(false);
+
+                    jpMenuCatalogos.setVisible(false);
+                    jpMenuSolic.setVisible(false);
+                }
+            }       
+        }
+        menuHist.limpiarMenuHist();
+        jpMenuHistorial.setVisible(false);
     }
     
     /*Evento Historial*/
     public void btHistorialActionPerformed(ActionEvent evt){     
-        labSubTitulo.setVisible(false);
-        labTitulo.setVisible(false);
-        jpMenuPres.setVisible(false);
-        jpMenuDev.setVisible(false);
-        jpMenuHistorial.setVisible(true);
+//        labSubTitulo.setVisible(false);
+//        labTitulo.setVisible(false);
+//        jpMenuPres.setVisible(false);
+//        jpMenuDev.setVisible(false);
+//        jpMenuHistorial.setVisible(true);
+//        
+//        jpMenuCatalogos.setVisible(false);
+//        jpMenuSolic.setVisible(false);  
         
-        jpMenuCatalogos.setVisible(false);
-        jpMenuSolic.setVisible(false);  
-        
-        
+        if(menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
+            menuPres.limpiarMenuPres();
+            menuDev.limpiarMenuDev();            
+            labSubTitulo.setVisible(false);
+            labTitulo.setVisible(false);
+            jpMenuPres.setVisible(false);
+            jpMenuDev.setVisible(false);
+            jpMenuHistorial.setVisible(true);
+
+            jpMenuCatalogos.setVisible(false);
+            jpMenuSolic.setVisible(false);
+        } else {
+            /*Verificar si ya se realizó alguna transacción en Préstamos*/
+            if(menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
+                int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
+                if (JOptionPane.OK_OPTION == resp){                            
+                    menuPres.limpiarMenuPres();
+                    labSubTitulo.setVisible(false);
+                    labTitulo.setVisible(false);
+                    jpMenuPres.setVisible(false);
+                    jpMenuDev.setVisible(false);
+                    jpMenuHistorial.setVisible(true);
+
+                    jpMenuCatalogos.setVisible(false);
+                    jpMenuSolic.setVisible(false);
+                }
+            } else {
+                /*Verificar si ya se realizó una transacción en Devoluciones*/
+                if(menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
+                    int resp=JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);     
+                    if (JOptionPane.OK_OPTION == resp){                            
+                        menuDev.limpiarMenuDev();
+                        labSubTitulo.setVisible(false);
+                        labTitulo.setVisible(false);
+                        jpMenuPres.setVisible(false);
+                        jpMenuDev.setVisible(false);
+                        jpMenuHistorial.setVisible(true);
+
+                        jpMenuCatalogos.setVisible(false);
+                        jpMenuSolic.setVisible(false);
+                    }
+                }                        
+            }       
+        }
         
     }   
         

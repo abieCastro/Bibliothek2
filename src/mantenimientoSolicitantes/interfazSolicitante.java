@@ -963,6 +963,13 @@ public class interfazSolicitante {
 
           }
        }
-
-
+    
+    public JTextField getNoControlA() {
+        return txtFNoControlA;
+    }
+    
+    public JTextField getNoControlD() {
+        return txtFNoControlD;
+    }
+       
 }

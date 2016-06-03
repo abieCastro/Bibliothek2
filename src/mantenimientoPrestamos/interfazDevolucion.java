@@ -172,4 +172,16 @@ public class interfazDevolucion extends JFrame{
                 
         return jpPrincDev;
     } 
+    
+    public JPanel getTabLib() {
+        return jpTablaDevLib;
+    }
+    
+    public JPanel getTabMatVis() {
+        return jpTablaDevMaVi;
+    }
+    
+    public void limpiarMenuDev() {
+        cd.limpiarTabla();
+    }
 }

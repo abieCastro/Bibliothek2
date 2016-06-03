@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -32,6 +33,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+import mantenimientoLibros.ejemplarLibro;
+import mantenimientoLibros.libro;
+import mantenimientoMaterialVisual.ejempMatVisual;
+import mantenimientoMaterialVisual.materialVisual;
+import mantenimientoSolicitantes.alumno;
+import mantenimientoSolicitantes.docente;
 import principal.menuPrinc;
 
 /**
@@ -96,7 +104,7 @@ public class interfazPrestamo extends JFrame {
     Border borderPresDetalle;    
     
     //Tabla detalle
-    public JPanel jpTablaPresDet;
+    JPanel jpTablaPresDet;
     JTable tbPresDetalle;
     JScrollPane spPresDetalle;
     
@@ -343,10 +351,7 @@ public class interfazPrestamo extends JFrame {
         jpPrincPrest.add(btCancelarPrest);
         
         btPresBuscarSolic.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {       
-                
-               
-                
+            public void mouseClicked(MouseEvent e) {                 
                 String valoresDetPres=cp.recorrerDetPres();
                 if(valoresDetPres!="") {
                     
@@ -475,7 +480,7 @@ public class interfazPrestamo extends JFrame {
         });
         
         btCancelarPrest.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {                
                 cp.limpiarTablas();
                 cp.limpiarDatos();
             }
@@ -492,7 +497,16 @@ public class interfazPrestamo extends JFrame {
         return jpPrincPrest;
     }
     
-    public JPanel getDetallePres() {
-        return jpDetallePrest;        
+    public JPanel getTablaAlum() {
+        return jpTablaPresAlum;        
+    }
+    
+    public JPanel getTablaDoc() {
+        return jpTablaPresDoc;        
+    }
+    
+    public void limpiarMenuPres() {
+        cp.limpiarTablas();
+        cp.limpiarDatos();
     }
 }
