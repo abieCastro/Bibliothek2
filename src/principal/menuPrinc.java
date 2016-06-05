@@ -165,6 +165,7 @@ public class menuPrinc extends JFrame {
         if (menuSolic.getJpRegD().isVisible() == false && menuSolic.getJpRegA().isVisible() == false && menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
             menuPres.limpiarMenuPres();
             menuDev.limpiarMenuDev();
+            labImgPrinc.setVisible(false);
             labSubTitulo.setVisible(false);
             labTitulo.setVisible(false);
             jpMenuCatalogos.setVisible(true);
@@ -179,6 +180,7 @@ public class menuPrinc extends JFrame {
                 int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                 if (JOptionPane.OK_OPTION == resp) {
                     menuPres.limpiarMenuPres();
+                    labImgPrinc.setVisible(false);
                     labSubTitulo.setVisible(false);
                     labTitulo.setVisible(false);
                     jpMenuCatalogos.setVisible(true);
@@ -193,6 +195,7 @@ public class menuPrinc extends JFrame {
                     int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                     if (JOptionPane.OK_OPTION == resp) {
                         menuDev.limpiarMenuDev();
+                        labImgPrinc.setVisible(false);
                         labSubTitulo.setVisible(false);
                         labTitulo.setVisible(false);
                         jpMenuCatalogos.setVisible(true);
@@ -207,9 +210,7 @@ public class menuPrinc extends JFrame {
                     if (menuSolic.getJpRegD().isVisible() == true) {
                         int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                         if (JOptionPane.OK_OPTION == respx) {
-
-                            System.out.println("solicitantes docentes");
-
+                            labImgPrinc.setVisible(false);
                             labSubTitulo.setVisible(false);
                             labTitulo.setVisible(false);
                             jpMenuCatalogos.setVisible(true);
@@ -227,9 +228,7 @@ public class menuPrinc extends JFrame {
                         if (menuSolic.getJpRegA().isVisible() == true) {
                             int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                             if (JOptionPane.OK_OPTION == respx) {
-
-                                System.out.println("solicitantes docentes");
-
+                                labImgPrinc.setVisible(false);
                                 labSubTitulo.setVisible(false);
                                 labTitulo.setVisible(false);
                                 jpMenuCatalogos.setVisible(true);
@@ -256,19 +255,10 @@ public class menuPrinc extends JFrame {
 
     /*Evento Solicitantes*/
     public void btMenuSolicActionPerformed(ActionEvent evt) {
-//        labSubTitulo.setVisible(false);
-//        labTitulo.setVisible(false);
-//        jpMenuCatalogos.setVisible(false);
-//        
-//        jpMenuSolic.setVisible(true);
-//        jpMenuPres.setVisible(false);
-//        jpMenuDev.setVisible(false);
-//        jpMenuHistorial.setVisible(false);
-//        jpMenuCatalogos.setVisible(false);
-
         if (menuLib.getJpRegL().isVisible() == false && menuLib.getJpRegMV().isVisible() == false && menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
             menuPres.limpiarMenuPres();
             menuDev.limpiarMenuDev();
+            labImgPrinc.setVisible(false);
             labSubTitulo.setVisible(false);
             labTitulo.setVisible(false);
             jpMenuCatalogos.setVisible(false);
@@ -283,6 +273,7 @@ public class menuPrinc extends JFrame {
             if (menuPres.getTablaAlum().isVisible() == true || menuPres.getTablaDoc().isVisible() == true) {
                 int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                 if (JOptionPane.OK_OPTION == resp) {
+                    labImgPrinc.setVisible(false);
                     menuPres.limpiarMenuPres();
                     labSubTitulo.setVisible(false);
                     labTitulo.setVisible(false);
@@ -299,7 +290,8 @@ public class menuPrinc extends JFrame {
                 if (menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
                     int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                     if (JOptionPane.OK_OPTION == resp) {
-                        menuDev.limpiarMenuDev();
+                        menuDev.limpiarMenuDev();                        
+                        labImgPrinc.setVisible(false);
                         labSubTitulo.setVisible(false);
                         labTitulo.setVisible(false);
                         jpMenuCatalogos.setVisible(false);
@@ -315,9 +307,7 @@ public class menuPrinc extends JFrame {
                     if (menuLib.getJpRegMV().isVisible() == true) {
                         int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                         if (JOptionPane.OK_OPTION == respu) {
-
-                            System.out.println("estoy en el if");
-
+                            labImgPrinc.setVisible(false);
                             labSubTitulo.setVisible(false);
                             labTitulo.setVisible(false);
                             jpMenuCatalogos.setVisible(false);
@@ -337,9 +327,7 @@ public class menuPrinc extends JFrame {
                         if (menuLib.getJpRegL().isVisible() == true) {
                             int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                             if (JOptionPane.OK_OPTION == respu) {
-
-                                System.out.println("estoy en el if");
-
+                                labImgPrinc.setVisible(false);
                                 labSubTitulo.setVisible(false);
                                 labTitulo.setVisible(false);
                                 jpMenuCatalogos.setVisible(false);
@@ -366,19 +354,9 @@ public class menuPrinc extends JFrame {
 
     /*Evento Prestamos*/
     public void btPrestamosActionPerformed(ActionEvent evt) {
-//        labSubTitulo.setVisible(false);
-//        labTitulo.setVisible(false); 
-//        
-//        jpMenuPres.setVisible(true);
-//        jpMenuPres.repaint();
-//        jpMenuDev.setVisible(false);
-//        jpMenuHistorial.setVisible(false);
-//        
-//        jpMenuCatalogos.setVisible(false);
-//        jpMenuSolic.setVisible(false);    
-
         if (menuSolic.getJpRegA().isVisible() == false && menuSolic.getJpRegD().isVisible() == false && menuLib.getJpRegL().isVisible() == false && menuLib.getJpRegMV().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
             menuDev.limpiarMenuDev();
+            labImgPrinc.setVisible(false);
             labSubTitulo.setVisible(false);
             labTitulo.setVisible(false);
 
@@ -395,6 +373,7 @@ public class menuPrinc extends JFrame {
                 int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                 if (JOptionPane.OK_OPTION == resp) {
                     menuDev.limpiarMenuDev();
+                    labImgPrinc.setVisible(false);
                     labSubTitulo.setVisible(false);
                     labTitulo.setVisible(false);
 
@@ -411,9 +390,7 @@ public class menuPrinc extends JFrame {
                 if (menuLib.getJpRegMV().isVisible() == true) {
                     int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                     if (JOptionPane.OK_OPTION == respu) {
-
-                        System.out.println("estoy en el if");
-
+                        labImgPrinc.setVisible(false);
                         labSubTitulo.setVisible(false);
                         labTitulo.setVisible(false);
                         jpMenuCatalogos.setVisible(false);
@@ -433,9 +410,7 @@ public class menuPrinc extends JFrame {
                     if (menuLib.getJpRegL().isVisible() == true) {
                         int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                         if (JOptionPane.OK_OPTION == respu) {
-
-                            System.out.println("estoy en el if");
-
+                            labImgPrinc.setVisible(false);
                             labSubTitulo.setVisible(false);
                             labTitulo.setVisible(false);
                             jpMenuCatalogos.setVisible(false);
@@ -456,9 +431,7 @@ public class menuPrinc extends JFrame {
                         if (menuSolic.getJpRegD().isVisible() == true) {
                             int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                             if (JOptionPane.OK_OPTION == respx) {
-
-                                System.out.println("solicitantes docentes");
-
+                                labImgPrinc.setVisible(false);
                                 labSubTitulo.setVisible(false);
                                 labTitulo.setVisible(false);
                                 jpMenuCatalogos.setVisible(false);
@@ -476,9 +449,7 @@ public class menuPrinc extends JFrame {
                             if (menuSolic.getJpRegA().isVisible() == true) {
                                 int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                                 if (JOptionPane.OK_OPTION == respx) {
-
-                                    System.out.println("solicitantes docentes");
-
+                                    labImgPrinc.setVisible(false);
                                     labSubTitulo.setVisible(false);
                                     labTitulo.setVisible(false);
                                     jpMenuCatalogos.setVisible(false);
@@ -505,15 +476,6 @@ public class menuPrinc extends JFrame {
 
     /*Evento Devoluciones*/
     public void btDevolucionesActionPerformed(ActionEvent evt) {
-//        labSubTitulo.setVisible(false);
-//        labTitulo.setVisible(false);        
-//        jpMenuPres.setVisible(false);
-//        jpMenuDev.setVisible(true);
-//        jpMenuHistorial.setVisible(false);
-//        
-//        jpMenuCatalogos.setVisible(false);
-//        jpMenuSolic.setVisible(false);
-
         if (menuSolic.getJpRegA().isVisible() == false && menuSolic.getJpRegD().isVisible() == false && menuLib.getJpRegL().isVisible() == false && menuLib.getJpRegMV().isVisible() == false && menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false) {
             menuPres.limpiarMenuPres();
             labSubTitulo.setVisible(false);
@@ -530,6 +492,7 @@ public class menuPrinc extends JFrame {
                 int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                 if (JOptionPane.OK_OPTION == resp) {
                     menuPres.limpiarMenuPres();
+                    labImgPrinc.setVisible(false);
                     labSubTitulo.setVisible(false);
                     labTitulo.setVisible(false);
                     jpMenuPres.setVisible(false);
@@ -544,9 +507,7 @@ public class menuPrinc extends JFrame {
                 if (menuLib.getJpRegMV().isVisible() == true) {
                     int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                     if (JOptionPane.OK_OPTION == respu) {
-
-                        System.out.println("estoy en el if");
-
+                        labImgPrinc.setVisible(false);
                         labSubTitulo.setVisible(false);
                         labTitulo.setVisible(false);
                         jpMenuCatalogos.setVisible(false);
@@ -566,9 +527,7 @@ public class menuPrinc extends JFrame {
                     if (menuLib.getJpRegL().isVisible() == true) {
                         int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                         if (JOptionPane.OK_OPTION == respu) {
-
-                            System.out.println("estoy en el if");
-
+                            labImgPrinc.setVisible(false);
                             labSubTitulo.setVisible(false);
                             labTitulo.setVisible(false);
                             jpMenuCatalogos.setVisible(false);
@@ -589,9 +548,7 @@ public class menuPrinc extends JFrame {
                         if (menuSolic.getJpRegD().isVisible() == true) {
                             int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                             if (JOptionPane.OK_OPTION == respx) {
-
-                                System.out.println("solicitantes docentes");
-
+                                labImgPrinc.setVisible(false);
                                 labSubTitulo.setVisible(false);
                                 labTitulo.setVisible(false);
                                 jpMenuCatalogos.setVisible(false);
@@ -609,9 +566,7 @@ public class menuPrinc extends JFrame {
                             if (menuSolic.getJpRegA().isVisible() == true) {
                                 int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                                 if (JOptionPane.OK_OPTION == respx) {
-
-                                    System.out.println("solicitantes docentes");
-
+                                    labImgPrinc.setVisible(false);
                                     labSubTitulo.setVisible(false);
                                     labTitulo.setVisible(false);
                                     jpMenuCatalogos.setVisible(false);
@@ -637,18 +592,10 @@ public class menuPrinc extends JFrame {
 
     /*Evento Historial*/
     public void btHistorialActionPerformed(ActionEvent evt) {
-//        labSubTitulo.setVisible(false);
-//        labTitulo.setVisible(false);
-//        jpMenuPres.setVisible(false);
-//        jpMenuDev.setVisible(false);
-//        jpMenuHistorial.setVisible(true);
-//        
-//        jpMenuCatalogos.setVisible(false);
-//        jpMenuSolic.setVisible(false);  
-
         if (menuSolic.getJpRegD().isVisible() == false && menuSolic.getJpRegA().isVisible() == false && menuLib.getJpRegL().isVisible() == false && menuLib.getJpRegMV().isVisible() == false && menuPres.getTablaAlum().isVisible() == false && menuPres.getTablaDoc().isVisible() == false && menuDev.getTabLib().isVisible() == false && menuDev.getTabMatVis().isVisible() == false) {
             menuPres.limpiarMenuPres();
             menuDev.limpiarMenuDev();
+            labImgPrinc.setVisible(false);
             labSubTitulo.setVisible(false);
             labTitulo.setVisible(false);
             jpMenuPres.setVisible(false);
@@ -663,6 +610,7 @@ public class menuPrinc extends JFrame {
                 int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                 if (JOptionPane.OK_OPTION == resp) {
                     menuPres.limpiarMenuPres();
+                    labImgPrinc.setVisible(false);
                     labSubTitulo.setVisible(false);
                     labTitulo.setVisible(false);
                     jpMenuPres.setVisible(false);
@@ -678,6 +626,7 @@ public class menuPrinc extends JFrame {
                     int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                     if (JOptionPane.OK_OPTION == resp) {
                         menuDev.limpiarMenuDev();
+                        labImgPrinc.setVisible(false);
                         labSubTitulo.setVisible(false);
                         labTitulo.setVisible(false);
                         jpMenuPres.setVisible(false);
@@ -692,9 +641,7 @@ public class menuPrinc extends JFrame {
                     if (menuLib.getJpRegMV().isVisible() == true) {
                         int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                         if (JOptionPane.OK_OPTION == respu) {
-
-                            System.out.println("estoy en el if");
-
+                            labImgPrinc.setVisible(false);
                             labSubTitulo.setVisible(false);
                             labTitulo.setVisible(false);
                             jpMenuCatalogos.setVisible(false);
@@ -714,9 +661,7 @@ public class menuPrinc extends JFrame {
                         if (menuLib.getJpRegL().isVisible() == true) {
                             int respu = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                             if (JOptionPane.OK_OPTION == respu) {
-
-                                System.out.println("estoy en el if");
-
+                                labImgPrinc.setVisible(false);
                                 labSubTitulo.setVisible(false);
                                 labTitulo.setVisible(false);
                                 jpMenuCatalogos.setVisible(false);
@@ -737,9 +682,7 @@ public class menuPrinc extends JFrame {
                             if (menuSolic.getJpRegD().isVisible() == true) {
                                 int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                                 if (JOptionPane.OK_OPTION == respx) {
-
-                                    System.out.println("solicitantes docentes");
-
+                                    labImgPrinc.setVisible(false);
                                     labSubTitulo.setVisible(false);
                                     labTitulo.setVisible(false);
                                     jpMenuCatalogos.setVisible(false);
@@ -758,9 +701,7 @@ public class menuPrinc extends JFrame {
                                 if (menuSolic.getJpRegA().isVisible() == true) {
                                     int respx = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                                     if (JOptionPane.OK_OPTION == respx) {
-
-                                        System.out.println("solicitantes docentes");
-
+                                        labImgPrinc.setVisible(false);
                                         labSubTitulo.setVisible(false);
                                         labTitulo.setVisible(false);
                                         jpMenuCatalogos.setVisible(false);
@@ -780,10 +721,7 @@ public class menuPrinc extends JFrame {
                         }
                     }
                 }
-
             }
         }
-
     }
-
 }
