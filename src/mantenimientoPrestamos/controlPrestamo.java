@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -690,13 +691,22 @@ public class controlPrestamo {
         vistaPres.calendar.setCalendar(vistaPres.calendar.getCalendar());
     }
     
-    public String selecFechaLimite(){
+    public String selecFechaLimite() {
+        String fechaLimite = "";
         int año = vistaPres.calendar.getCalendar().get(Calendar.YEAR);
         int mes = vistaPres.calendar.getCalendar().get(Calendar.MONTH) + 1;
-        int dia = vistaPres.calendar.getCalendar().get(Calendar.DAY_OF_MONTH);  
-        
-        String fechaLimite= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año);                
-        
+        int dia = vistaPres.calendar.getCalendar().get(Calendar.DAY_OF_MONTH);    
+     
+        String fecha= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año); 
+               
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");         
+        try { 
+            Date date = formatter.parse(fecha); 
+            System.out.println(date); 
+            fechaLimite = formatter.format(date).toString();
+        } catch (ParseException e) { 
+            e.printStackTrace(); 
+        }        
         return fechaLimite;
     }
     

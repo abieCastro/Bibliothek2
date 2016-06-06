@@ -9,11 +9,15 @@ package historialPrestamos;
 import com.qt.datapicker.DatePicker;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.util.Locale;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -34,6 +38,8 @@ public class interfazHistorial extends JFrame {
     
     JLabel labFechaDesde;
     JCalendarCombo selecFechaDesde;    
+    JLabel labFechaHasta;
+    JCalendarCombo selecFechaHasta;    
     
     ButtonGroup grupoRbTipoHist;
     JRadioButton rbHistGeneral;
@@ -79,6 +85,8 @@ public class interfazHistorial extends JFrame {
     JTextField txtMaViFecLim;   
     JTextField txtMaViFecDev;   
     
+    JButton btHistBuscar;
+    
     public JPanel jpPrincHist() {  
         jpPrincHist = new JPanel();
         jpPrincHist.setLayout(null);
@@ -88,12 +96,22 @@ public class interfazHistorial extends JFrame {
         labFechaDesde = new JLabel("Fecha Desde: ");
         labFechaDesde.setVisible(true);
         labFechaDesde.setFont(new java.awt.Font("Tahoma", Font.BOLD, 16));
-        labFechaDesde.setBounds(950, 10, 150, 50);
+        labFechaDesde.setBounds(100, 10, 150, 50);
         jpPrincHist.add(labFechaDesde);
         
         selecFechaDesde=new  JCalendarCombo();
-        selecFechaDesde.setBounds(1100, 20, 200, 30);
+        selecFechaDesde.setBounds(250, 20, 200, 30);
         jpPrincHist.add(selecFechaDesde);
+        
+        labFechaHasta = new JLabel("Fecha Hasta: ");
+        labFechaHasta.setVisible(true);
+        labFechaHasta.setFont(new java.awt.Font("Tahoma", Font.BOLD, 16));
+        labFechaHasta.setBounds(450, 10, 150, 50);
+        jpPrincHist.add(labFechaHasta);
+        
+        selecFechaHasta=new  JCalendarCombo();
+        selecFechaHasta.setBounds(600, 20, 200, 30);
+        jpPrincHist.add(selecFechaHasta);
         
         //General
         jpTablaHistGral = new JPanel();
@@ -141,6 +159,7 @@ public class interfazHistorial extends JFrame {
         rbHistGeneral = new JRadioButton("General");
         rbHistGeneral.setBounds(300, 80, 100, 30);
         rbHistGeneral.setVisible(true);
+        rbHistGeneral.setSelected(true);
         jpPrincHist.add(rbHistGeneral);
         grupoRbTipoHist.add(rbHistGeneral);        
         
@@ -154,18 +173,19 @@ public class interfazHistorial extends JFrame {
         rbHistMatVis.setBounds(700, 80, 140, 30);        
         rbHistMatVis.setVisible(true);   
         jpPrincHist.add(rbHistMatVis);
-        grupoRbTipoHist.add(rbHistMatVis);                
-        
-        rbHistGeneral.addActionListener(ch);
-        rbHistLibros.addActionListener(ch);
-        rbHistMatVis.addActionListener(ch);
+        grupoRbTipoHist.add(rbHistMatVis);               
         
         /*Filtros General*/
         
-        txtGralNoCont = new JTextField();
+        txtGralNoCont = new JTextField();        
         txtGralNoCont.setBounds(20,140,185,20);
         txtGralNoCont.setVisible(false);
         jpPrincHist.add(txtGralNoCont);
+        
+        btHistBuscar = new JButton("Buscar");
+        btHistBuscar.setBounds(880, 80, 80, 25);
+        btHistBuscar.setVisible(true);
+        jpPrincHist.add(btHistBuscar);
         
         txtGralNoCont.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
@@ -507,6 +527,17 @@ public class interfazHistorial extends JFrame {
                         ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
                     }
         });
+                
+        btHistBuscar.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {         
+                boolean validar=ch.validarFechHasta();
+                if(validar==true) {
+                    ch.buscarHistorial();
+                } else {
+                    JOptionPane.showMessageDialog(null, "En fecha Hasta seleccione una fecha posteior a la fecha Desde", "ERROR", JOptionPane.ERROR_MESSAGE);                           
+                }
+            }
+        });        
         
         return jpPrincHist;
     }

@@ -14,10 +14,13 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -32,7 +35,7 @@ import sun.util.calendar.LocalGregorianCalendar;
  *
  * @author Mac
  */
-public class controlHistorial implements ActionListener{
+public class controlHistorial {
     conexion con = new conexion();
     interfazHistorial vistaHist;
     ArrayList<historial> listaHistorial;
@@ -42,12 +45,9 @@ public class controlHistorial implements ActionListener{
         this.vistaHist = vistaHist;
     }
     
-    public void buscarHistGral (String fechaDesde) {        
+    public void buscarHistGral (String fechaDesde, String fechaHasta) {        
         historial hist;
-        listaHistorial = new ArrayList<historial>();             
-        Date fecha = new Date();
-        SimpleDateFormat fechaAct = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaAc=(fechaAct.format(fecha));  
+        listaHistorial = new ArrayList<historial>();
         try {
             Connection acceDB = con.getConexion();           
             PreparedStatement ps = acceDB.prepareStatement("SELECT \n" +
@@ -60,7 +60,7 @@ public class controlHistorial implements ActionListener{
             "	case when a.noControlA is not null\n" +
             "			then a.gradoA	\n" +
             "		 when d.noControlD is not null\n" +
-            "			then 'N/A'\n" +
+            "			then ' '\n" +
             "		end\n" +
             "		as grado,		\n" +
             "	case when h.ejemplarlibro_idEjemplarL is not null\n" +
@@ -80,7 +80,7 @@ public class controlHistorial implements ActionListener{
             "	case when devolucion_claveDevolucion is not null\n" +
             "			then DATE_FORMAT(STR_TO_DATE(de.fechaDevolucion, '%d/%m/%Y'), '%d/%m/%Y')\n" +
             "			else\n" +
-            "				'N/A'		\n" +
+            "				' '		\n" +
             "		end\n" +
             "		as fechaDevolucion \n" +
             "\n" +
@@ -96,7 +96,7 @@ public class controlHistorial implements ActionListener{
             "\n" +
             "	where		\n" +
             "		STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') >= STR_TO_DATE('"+fechaDesde+"', '%d/%m/%Y')\n" +
-            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') <= STR_TO_DATE('"+fechaAc+"', '%d/%m/%Y')\n" +
+            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') <= STR_TO_DATE('"+fechaHasta+"', '%d/%m/%Y')\n" +
             ";");
             ResultSet rs = ps.executeQuery();
             
@@ -143,12 +143,12 @@ public class controlHistorial implements ActionListener{
         }
     }    
     
-    public void buscarHistLib(String fechaDesde) {        
+    public void buscarHistLib(String fechaDesde, String fechaHasta) {        
         historial hist;
         listaHistorial = new ArrayList<historial>();             
-        Date fecha = new Date();
-        SimpleDateFormat fechaAct = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaAc=(fechaAct.format(fecha));  
+//        Date fecha = new Date();
+//        SimpleDateFormat fechaAct = new SimpleDateFormat("dd/MM/yyyy");
+//        String fechaAc=(fechaAct.format(fecha));  
         try {
             Connection acceDB = con.getConexion();           
             PreparedStatement ps = acceDB.prepareStatement("SELECT \n" +
@@ -161,7 +161,7 @@ public class controlHistorial implements ActionListener{
             "	case when a.noControlA is not null\n" +
             "			then a.gradoA	\n" +
             "		 when d.noControlD is not null\n" +
-            "			then 'N/A'\n" +
+            "			then ' '\n" +
             "		end\n" +
             "		as grado,		\n" +
             "	h.ejemplarlibro_idEjemplarL as ejemplar,\n" +
@@ -171,7 +171,7 @@ public class controlHistorial implements ActionListener{
             "	case when devolucion_claveDevolucion is not null\n" +
             "			then DATE_FORMAT(STR_TO_DATE(de.fechaDevolucion, '%d/%m/%Y'),'%d/%m/%y')\n" +
             "			else\n" +
-            "				'N/A'		\n" +
+            "				' '		\n" +
             "		end\n" +
             "		as fechaDevolucion \n" +
             "\n" +
@@ -186,7 +186,7 @@ public class controlHistorial implements ActionListener{
             "	where		\n" +
             "		h.ejemplarlibro_idEjemplarL is not null\n" +
             "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') >= STR_TO_DATE('"+fechaDesde+"', '%d/%m/%Y')\n" +
-            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') <= STR_TO_DATE('"+fechaAc+"', '%d/%m/%Y')\n" +
+            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') <= STR_TO_DATE('"+fechaHasta+"', '%d/%m/%Y')\n" +
             ";");
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
@@ -232,12 +232,9 @@ public class controlHistorial implements ActionListener{
         }
     }    
     
-    public void buscarHistMatVis(String fechaDesde) {        
+    public void buscarHistMatVis(String fechaDesde, String fechaHasta) {        
         historial hist;
-        listaHistorial = new ArrayList<historial>();             
-        Date fecha = new Date();
-        SimpleDateFormat fechaAct = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaAc=(fechaAct.format(fecha));  
+        listaHistorial = new ArrayList<historial>();                   
         try {
             Connection acceDB = con.getConexion();           
             PreparedStatement ps = acceDB.prepareStatement("SELECT \n" +
@@ -260,7 +257,7 @@ public class controlHistorial implements ActionListener{
             "	case when devolucion_claveDevolucion is not null\n" +
             "			then DATE_FORMAT(STR_TO_DATE(de.fechaDevolucion, '%d/%m/%Y'),'%d/%m/%y')\n" +
             "			else\n" +
-            "				'N/A'		\n" +
+            "				' '		\n" +
             "		end\n" +
             "		as fechaDevolucion \n" +
             "\n" +
@@ -275,7 +272,7 @@ public class controlHistorial implements ActionListener{
             "	where		\n" +
             "		h.ejempmatvisual_idEjemplarM is not null\n" +
             "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') >= STR_TO_DATE('"+fechaDesde+"', '%d/%m/%Y')\n" +
-            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') <= STR_TO_DATE('"+fechaAc+"', '%d/%m/%Y')\n" +
+            "		and STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y') <= STR_TO_DATE('"+fechaHasta+"', '%d/%m/%Y')\n" +
             ";");
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
@@ -297,95 +294,89 @@ public class controlHistorial implements ActionListener{
         listaHistorial = new ArrayList<historial>();             
         String bu="";        
         int ban=0;
+        String fechaDesde = selecFechaDesde();
+        String fechaHasta = selecFechaHasta();
         
         try{         
             Connection acceDB = con.getConexion();  
-            if(noControl.equalsIgnoreCase("")==false||grado.equalsIgnoreCase("")==false||ejemplar.equalsIgnoreCase("")==false||fechaPrestamo.equalsIgnoreCase("")==false||fechaLimite.equalsIgnoreCase("")==false||fechaDev.equalsIgnoreCase("")==false){
-                bu=" where ";                 
-            }
-             
             if(noControl.equalsIgnoreCase("")==false){    
-                bu+= " (noControlA like '"+noControl+"%' or noControlD like '"+noControl+"%')";                                
-                ban=1;
+                bu+= "and ( noControlA like '"+noControl+"%' or noControlD like '"+noControl+"%')";                                                
             }            
-            if(grado.equalsIgnoreCase("")==false){    
-                if(ban!=0)
-                    bu+=" and ";
-                bu+= " gradoA like '"+grado+"%'";                 
-                ban=1; 
+            if(grado.equalsIgnoreCase("")==false){                    
+                bu+=" and ";
+                bu+= " gradoA like '"+grado+"%'";                                 
             }
             
-            if(ejemplar.equalsIgnoreCase("")==false){      
-                if(ban!=0)
-                    bu+=" and ";
-                bu+= " (idEjemplarL like '"+ejemplar+"%' or idEjemplarM like '"+ejemplar+"%')";                                 
-                ban=1; 
+            if(ejemplar.equalsIgnoreCase("")==false){                      
+                bu+=" and ";
+                bu+= " (idEjemplarL like '"+ejemplar+"%' or idEjemplarM like '"+ejemplar+"%')";                                                 
             }
             
-            if(fechaPrestamo.equalsIgnoreCase("")==false){                              
-                if(ban!=0)
-                    bu+=" and ";
-                bu+= " fechaPrestamo like '"+fechaPrestamo+"%'";                 
-                ban=1;                 
+            if(fechaPrestamo.equalsIgnoreCase("")==false){                                              
+                bu+=" and ";
+                bu+= " fechaPrestamo like '"+fechaPrestamo+"%'";                                 
             }
             
-            if(fechaLimite.equalsIgnoreCase("")==false){                              
-                if(ban!=0)
-                    bu+=" and ";
-                bu+= " fechaLimite like '"+fechaLimite+"%'";                 
-                ban=1; 
+            if(fechaLimite.equalsIgnoreCase("")==false){                                              
+                bu+=" and ";
+                bu+= " fechaLimite like '"+fechaLimite+"%'";                                 
             }
             
             if(fechaDev.equalsIgnoreCase("")==false){                              
-                if(ban!=0)
-                    bu+=" and ";
-                bu+= " fechaDevolucion like '"+fechaDev+"%'";                 
-                ban=1; 
+                bu+=" and ";
+                bu+= " fechaDevolucion like '"+fechaDev+"%'";                                 
             }
-                        
+                    
             PreparedStatement ps = acceDB.prepareStatement("SELECT \n" +
-                    "	case when a.noControlA is null \n" +
-                    "			then d.noControlD \n" +
-                    "		 when d.noControlD is null\n" +
-                    "			then a.noControlA\n" +
-                    "		end\n" +
-                    "		as noControl,\n" +
-                    "	case when a.noControlA is not null\n" +
-                    "			then a.gradoA	\n" +
-                    "		 when d.noControlD is not null\n" +
-                    "			then 'N/A'\n" +
-                    "		end\n" +
-                    "		as grado,		\n" +
-                    "	case when h.ejemplarlibro_idEjemplarL is not null\n" +
-                    "			then h.ejemplarlibro_idEjemplarL\n" +
-                    "		 when h.ejempmatvisual_idEjemplarM is not null\n" +
-                    "			then h.ejempmatvisual_idEjemplarM\n" +
-                    "		end\n" +
-                    "		as ejemplar,\n" +
-                    "	case when h.ejemplarlibro_idEjemplarL is not null\n" +
-                    "			then CONCAT(l.tituloL, '-' ,l.añoL)\n" +
-                    "		 when h.ejempmatvisual_idEjemplarM is not null\n" +
-                    "			then CONCAT(m.tituloM, '-' ,m.añoM)\n" +
-                    "		end\n" +
-                    "		as detalle,	\n" +
-                    "	DATE_FORMAT(STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y'),'%d/%m/%Y') as fechaPrestamo,\n" +
-                    "	DATE_FORMAT(STR_TO_DATE(p.fechaLimite, '%d/%m/%Y'),'%d/%m/%Y') as fechaLimite,\n" +
-                    "	case when devolucion_claveDevolucion is not null\n" +
-                    "			then DATE_FORMAT(STR_TO_DATE(de.fechaDevolucion, '%d/%m/%Y'),'%d/%m/%y')\n" +
-                    "			else\n" +
-                    "				'N/A'		\n" +
-                    "		end\n" +
-                    "		as fechaDevolucion \n" +
-                    "\n" +
-                    " FROM bibliothek.historial as h\n" +
-                    "	left join bibliothek.ejemplarlibro as el on h.ejemplarlibro_idEjemplarL = el.idEjemplarL\n" +
-                    "	left join bibliothek.libro as l on l.claveLibro = el.libro_claveLibro\n" +
-                    "	left join bibliothek.ejempmatvisual as em on h.ejempmatvisual_idEjemplarM = em.idEjemplarM\n" +
-                    "	left join bibliothek.materialvisual as m on m.claveMatVis = em.materialvisual_claveMatVis\n" +
-                    "	left join bibliothek.prestamo as p on h.prestamo_clavePrestamo = clavePrestamo\n" +
-                    "	left join bibliothek.alumno as a on p.alumno_claveAlumno = a.claveAlumno\n" +
-                    "	left join bibliothek.docente as d on p.docente_claveDocente = d.claveDocente\n" +
-                    "	left join bibliothek.devolucion as de on h.devolucion_claveDevolucion = de.claveDevolucion\n " +bu);
+            "	case when a.noControlA is null \n" +
+            "			then d.noControlD \n" +
+            "		 when d.noControlD is null\n" +
+            "			then a.noControlA\n" +
+            "	end\n" +
+            "	as noControl,\n" +
+            "	\n" +
+            "	case when a.noControlA is not null\n" +
+            "			then a.gradoA	\n" +
+            "		when d.noControlD is not null\n" +
+            "			then ' '\n" +
+            "	end\n" +
+            "	as grado,		\n" +
+            "	case when h.ejemplarlibro_idEjemplarL is not null\n" +
+            "			then h.ejemplarlibro_idEjemplarL\n" +
+            "		 when h.ejempmatvisual_idEjemplarM is not null\n" +
+            "			then h.ejempmatvisual_idEjemplarM\n" +
+            "	end\n" +
+            "	as ejemplar,\n" +
+            "	case when h.ejemplarlibro_idEjemplarL is not null\n" +
+            "			then CONCAT(l.tituloL, '-' ,l.añoL)\n" +
+            "     	 when h.ejempmatvisual_idEjemplarM is not null\n" +
+            "			then CONCAT(m.tituloM, '-' ,m.añoM)\n" +
+            "	end\n" +
+            "	as detalle,	\n" +
+            "\n" +
+            "	DATE_FORMAT(STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y'),'%d/%m/%Y') as fechaPrestamo,\n" +
+            "	DATE_FORMAT(STR_TO_DATE(p.fechaLimite, '%d/%m/%Y'),'%d/%m/%Y') as fechaLimite,\n" +
+            "	case when devolucion_claveDevolucion is not null\n" +
+            "    		then DATE_FORMAT(STR_TO_DATE(de.fechaDevolucion, '%d/%m/%Y'),'%d/%m/%y')\n" +
+            "		else\n" +
+            "				' '		\n" +
+            "		end\n" +
+            "		as fechaDevolucion \n" +
+            "\n" +
+            "	FROM bibliothek.historial as h\n" +
+            "	left join bibliothek.ejemplarlibro as el on h.ejemplarlibro_idEjemplarL = el.idEjemplarL\n" +
+            "	left join bibliothek.libro as l on l.claveLibro = el.libro_claveLibro\n" +
+            "    left join bibliothek.ejempmatvisual as em on h.ejempmatvisual_idEjemplarM = em.idEjemplarM\n" +
+            "	left join bibliothek.materialvisual as m on m.claveMatVis = em.materialvisual_claveMatVis\n" +
+            "	left join bibliothek.prestamo as p on h.prestamo_clavePrestamo = clavePrestamo\n" +
+            "	left join bibliothek.alumno as a on p.alumno_claveAlumno = a.claveAlumno\n" +
+            "	left join bibliothek.docente as d on p.docente_claveDocente = d.claveDocente\n" +
+            "	left join bibliothek.devolucion as de on h.devolucion_claveDevolucion = de.claveDevolucion\n" +
+            "\n" +
+            "	where		\n" +
+            "		DATE_FORMAT(STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y'),'%d/%m/%Y') >= DATE_FORMAT(STR_TO_DATE('"+fechaDesde+"', '%d/%m/%Y'),'%d/%m/%Y')\n" +
+            "		and DATE_FORMAT(STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y'),'%d/%m/%Y') <= DATE_FORMAT(STR_TO_DATE('"+fechaHasta+"', '%d/%m/%Y'),'%d/%m/%Y')"+bu+
+            ";");
             ResultSet rs = ps.executeQuery();        
             
             while(rs.next()){
@@ -432,13 +423,13 @@ public class controlHistorial implements ActionListener{
     
     public void filtrarHistLib(String noControl,String grado,String ejemplar, String fechaPrestamo, String fechaLimite, String fechaDev, JTable tablaHistorial){                  
         listaHistorial = new ArrayList<historial>();             
-        
+        String fechaDesde = selecFechaDesde();
+        String fechaHasta = selecFechaHasta();
         String bu="";        
         int ban=0;
         
         try{         
-            Connection acceDB = con.getConexion();  
-            
+            Connection acceDB = con.getConexion();              
             
             if(noControl.equalsIgnoreCase("")==false){    
                 bu+= " and (noControlA like '"+noControl+"%' or noControlD like '"+noControl+"%')";                                                
@@ -474,7 +465,7 @@ public class controlHistorial implements ActionListener{
             "	case when a.noControlA is not null\n" +
             "			then a.gradoA	\n" +
             "		 when d.noControlD is not null\n" +
-            "			then 'N/A'\n" +
+            "			then ' '\n" +
             "		end\n" +
             "		as grado,		\n" +
             "	h.ejemplarlibro_idEjemplarL as ejemplar,\n" +
@@ -484,7 +475,7 @@ public class controlHistorial implements ActionListener{
             "	case when devolucion_claveDevolucion is not null\n" +
             "			then DATE_FORMAT(STR_TO_DATE(de.fechaDevolucion, '%d/%m/%Y'),'%d/%m/%y')\n" +
             "			else\n" +
-            "				'N/A'		\n" +
+            "				' '		\n" +
             "		end\n" +
             "		as fechaDevolucion \n" +
             "\n" +
@@ -497,7 +488,9 @@ public class controlHistorial implements ActionListener{
             "	left join bibliothek.devolucion as de on h.devolucion_claveDevolucion = de.claveDevolucion\n" +
             "\n" +
             "	where		\n" +
-            "		h.ejemplarlibro_idEjemplarL is not null\n" +bu);
+            "		h.ejemplarlibro_idEjemplarL is not null and DATE_FORMAT(STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y'),'%d/%m/%Y') >= DATE_FORMAT(STR_TO_DATE('"+fechaDesde+"', '%d/%m/%Y'),'%d/%m/%Y')\n" +
+            "		and DATE_FORMAT(STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y'),'%d/%m/%Y') <= DATE_FORMAT(STR_TO_DATE('"+fechaHasta+"', '%d/%m/%Y'),'%d/%m/%Y')\n" +
+            bu+";" );
             ResultSet rs = ps.executeQuery();        
             
             while(rs.next()){
@@ -544,13 +537,13 @@ public class controlHistorial implements ActionListener{
     
     public void filtrarHistMaVi(String noControl,String grado,String ejemplar, String fechaPrestamo, String fechaLimite, String fechaDev, JTable tablaHistorial){                  
         listaHistorial = new ArrayList<historial>();             
-        
+        String fechaDesde = selecFechaDesde();
+        String fechaHasta = selecFechaHasta();
         String bu="";        
         int ban=0;
         
         try{         
-            Connection acceDB = con.getConexion();  
-            
+            Connection acceDB = con.getConexion();              
             
             if(noControl.equalsIgnoreCase("")==false){    
                 bu+= " and (noControlA like '"+noControl+"%' or noControlD like '"+noControl+"%')";                                                
@@ -609,7 +602,9 @@ public class controlHistorial implements ActionListener{
             "	left join bibliothek.devolucion as de on h.devolucion_claveDevolucion = de.claveDevolucion\n" +
             "\n" +
             "	where		\n" +
-            "		h.ejempmatvisual_idEjemplarM is not null\n" +bu);
+            "		h.ejempmatvisual_idEjemplarM is not null and DATE_FORMAT(STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y'),'%d/%m/%Y') >= DATE_FORMAT(STR_TO_DATE('"+fechaDesde+"', '%d/%m/%Y'),'%d/%m/%Y')\n" +
+            "		and DATE_FORMAT(STR_TO_DATE(p.fechaPrestamo, '%d/%m/%Y'),'%d/%m/%Y') <= DATE_FORMAT(STR_TO_DATE('"+fechaHasta+"', '%d/%m/%Y'),'%d/%m/%Y')"+bu+
+            ";");
             ResultSet rs = ps.executeQuery();        
             
             while(rs.next()){
@@ -712,8 +707,10 @@ public class controlHistorial implements ActionListener{
         }
     }  
     
-    public void actionPerformed(ActionEvent evento) {
-        if (evento.getSource()== vistaHist.rbHistGeneral){
+    public void buscarHistorial() {
+        String fechaDesde;
+        String fechaHasta;
+        if (vistaHist.rbHistGeneral.isSelected()){
             if (vistaHist.rbHistGeneral.isSelected()){
                 vistaHist.jpTablaHistGral.setVisible(true);
                 vistaHist.spHistGeneral.setVisible(true);  
@@ -746,17 +743,14 @@ public class controlHistorial implements ActionListener{
                 vistaHist.txtMaViFecLim.setVisible(false);
                 vistaHist.txtMaViFecDev.setVisible(false);
                 
-                int año = vistaHist.selecFechaDesde.getCalendar().get(Calendar.YEAR);
-                int mes = vistaHist.selecFechaDesde.getCalendar().get(Calendar.MONTH) + 1;
-                int dia = vistaHist.selecFechaDesde.getCalendar().get(Calendar.DAY_OF_MONTH);          
-                String fechaDesde= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año);  
-                
-                buscarHistGral (fechaDesde);
+                fechaDesde=selecFechaDesde();         
+                fechaHasta=selecFechaHasta();
+                buscarHistGral (fechaDesde, fechaHasta);
                 mostrarHistGral(vistaHist.tbHistGeneral);                
             }
         }
         
-        if (evento.getSource()== vistaHist.rbHistLibros){
+        if (vistaHist.rbHistLibros.isSelected()){
             if (vistaHist.rbHistLibros.isSelected()){
                 vistaHist.jpTablaHistGral.setVisible(false);
                 vistaHist.spHistGeneral.setVisible(false);  
@@ -789,17 +783,14 @@ public class controlHistorial implements ActionListener{
                 vistaHist.txtMaViFecLim.setVisible(false);
                 vistaHist.txtMaViFecDev.setVisible(false);
                 
-                int año = vistaHist.selecFechaDesde.getCalendar().get(Calendar.YEAR);
-                int mes = vistaHist.selecFechaDesde.getCalendar().get(Calendar.MONTH) + 1;
-                int dia = vistaHist.selecFechaDesde.getCalendar().get(Calendar.DAY_OF_MONTH);          
-                String fechaDesde= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año);  
-                
-                buscarHistLib(fechaDesde);
+                fechaDesde=selecFechaDesde();    
+                fechaHasta=selecFechaHasta();
+                buscarHistLib(fechaDesde, fechaHasta);
                 mostrarHistLib(vistaHist.tbHistLibros);
             }
         }
         
-        if (evento.getSource()== vistaHist.rbHistMatVis){
+        if (vistaHist.rbHistMatVis.isSelected()){
             if (vistaHist.rbHistMatVis.isSelected()){
                 vistaHist.jpTablaHistGral.setVisible(false);
                 vistaHist.spHistGeneral.setVisible(false);  
@@ -832,15 +823,54 @@ public class controlHistorial implements ActionListener{
                 vistaHist.txtMaViFecLim.setVisible(true);
                 vistaHist.txtMaViFecDev.setVisible(true);
                 
-                int año = vistaHist.selecFechaDesde.getCalendar().get(Calendar.YEAR);
-                int mes = vistaHist.selecFechaDesde.getCalendar().get(Calendar.MONTH) + 1;
-                int dia = vistaHist.selecFechaDesde.getCalendar().get(Calendar.DAY_OF_MONTH);          
-                String fechaDesde= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año);  
-                
-                buscarHistMatVis(fechaDesde);
+                fechaDesde=selecFechaDesde();       
+                fechaHasta=selecFechaHasta();
+                buscarHistMatVis(fechaDesde, fechaHasta);
                 mostrarHistMatVis(vistaHist.tbHistMatVis);
             }
-        }
-    }    
+        }        
+    }
     
+    public String selecFechaDesde() {
+            String fechaDesde = "";            
+            
+            int año = vistaHist.selecFechaDesde.getCalendar().get(Calendar.YEAR);
+            int mes = vistaHist.selecFechaDesde.getCalendar().get(Calendar.MONTH) + 1;
+            int dia = vistaHist.selecFechaDesde.getCalendar().get(Calendar.DAY_OF_MONTH);          
+            fechaDesde= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año);             
+            
+            return fechaDesde;
+    }
+    
+    public String selecFechaHasta() {
+            String fechaHasta = "";
+            
+            int año = vistaHist.selecFechaHasta.getCalendar().get(Calendar.YEAR);
+            int mes = vistaHist.selecFechaHasta.getCalendar().get(Calendar.MONTH) + 1;
+            int dia = vistaHist.selecFechaHasta.getCalendar().get(Calendar.DAY_OF_MONTH);          
+            fechaHasta= Integer.toString(dia)+"/"+Integer.toString(mes)+"/"+Integer.toString(año);             
+            
+            return fechaHasta;
+    }
+    
+    public boolean validarFechHasta()  {
+        String fechaDesde = selecFechaDesde();
+        String fechaHasta = selecFechaHasta();
+        boolean validar=true;
+        
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy"); 
+        Date DateDesde = null;
+        Date DateHasta = null;
+        try {
+            DateDesde = formateador.parse(fechaDesde);        
+            DateHasta = formateador.parse(fechaHasta);
+        } catch (ParseException ex) {
+            Logger.getLogger(controlHistorial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if ( DateHasta.before(DateDesde) ){
+            validar = false;
+        }
+        return validar;
+    }
 }
