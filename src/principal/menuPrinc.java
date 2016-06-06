@@ -290,7 +290,7 @@ public class menuPrinc extends JFrame {
                 if (menuDev.getTabLib().isVisible() == true || menuDev.getTabMatVis().isVisible() == true) {
                     int resp = JOptionPane.showConfirmDialog(null, "Al salir se perderá la información cargada hasta el momento. ¿Desea continuar?", "Alerta!", JOptionPane.YES_NO_OPTION);
                     if (JOptionPane.OK_OPTION == resp) {
-                        menuDev.limpiarMenuDev();                        
+                        menuDev.limpiarMenuDev();
                         labImgPrinc.setVisible(false);
                         labSubTitulo.setVisible(false);
                         labTitulo.setVisible(false);

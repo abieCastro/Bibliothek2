@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package historialPrestamos;
 
 /**
@@ -11,12 +10,13 @@ package historialPrestamos;
  * @author Mac
  */
 public class historial {
+
     int claveHistorial;
     int prestamo_clavePrestamo;
     String ejemplarlibro_idEjemplarL;
     String ejempmatvisual_idEjemplarM;
     String devolucion_claveDevolucion;
-    
+
     /*Atributos agregados*/
     String noControl;
     String grado;
@@ -25,9 +25,9 @@ public class historial {
     String fechaPrestamo;
     String fechaLimite;
     String fechaDevolucion;
-    
-    public historial () {
-        
+
+    public historial() {
+
     }
 
     public historial(int claveHistorial, int prestamo_clavePrestamo, String ejemplarlibro_idEjemplarL, String ejempmatvisual_idEjemplarM, String devolucion_claveDevolucion, String noControl, String grado, String ejemplar, String detalle, String fechaPrestamo, String fechaLimite, String fechaDevolucion) {
@@ -35,16 +35,16 @@ public class historial {
         this.prestamo_clavePrestamo = prestamo_clavePrestamo;
         this.ejemplarlibro_idEjemplarL = ejemplarlibro_idEjemplarL;
         this.ejempmatvisual_idEjemplarM = ejempmatvisual_idEjemplarM;
-        this.devolucion_claveDevolucion = devolucion_claveDevolucion;        
-        
-        this.noControl=noControl;
-        this.grado=grado;
-        this.ejemplar=ejemplar;
-        this.detalle=detalle;
-        this.fechaPrestamo=fechaPrestamo;
-        this.fechaLimite=fechaLimite;
-        this.fechaDevolucion=fechaDevolucion;
-    }    
+        this.devolucion_claveDevolucion = devolucion_claveDevolucion;
+
+        this.noControl = noControl;
+        this.grado = grado;
+        this.ejemplar = ejemplar;
+        this.detalle = detalle;
+        this.fechaPrestamo = fechaPrestamo;
+        this.fechaLimite = fechaLimite;
+        this.fechaDevolucion = fechaDevolucion;
+    }
 
     public int getclaveHistorial() {
         return claveHistorial;
@@ -84,63 +84,62 @@ public class historial {
 
     public void setEjempmatvisual_idEjemplarM(String ejempmatvisual_idEjemplarM) {
         this.ejempmatvisual_idEjemplarM = ejempmatvisual_idEjemplarM;
-    }    
-    
+    }
+
     /*Areibutos agregados*/
-    
     public String getNoControl() {
         return noControl;
     }
-    
+
     public void setNoControl(String noControl) {
-        this.noControl=noControl;
+        this.noControl = noControl;
     }
-    
+
     public String getGrado() {
         return grado;
     }
-    
+
     public void setGrado(String grado) {
-        this.grado=grado;
+        this.grado = grado;
     }
-    
+
     public String getEjemplar() {
         return ejemplar;
     }
-    
+
     public void setEjemplar(String ejemplar) {
-        this.ejemplar=ejemplar;
+        this.ejemplar = ejemplar;
     }
-    
+
     public String getDetalle() {
         return detalle;
     }
-    
+
     public void setDetalle(String detalle) {
-        this.detalle=detalle;
+        this.detalle = detalle;
     }
-    
+
     public String getFechaPrestamo() {
         return fechaPrestamo;
     }
-    
+
     public void setFechaPrestamo(String fechaPrestamo) {
-        this.fechaPrestamo=fechaPrestamo;
+        this.fechaPrestamo = fechaPrestamo;
     }
-    
+
     public String getFechaLimite() {
         return fechaLimite;
     }
-    
+
     public void setFechaLimite(String fechaLimite) {
-        this.fechaLimite=fechaLimite;
+        this.fechaLimite = fechaLimite;
     }
-    
+
     public String getFechaDevolucion() {
         return fechaDevolucion;
     }
-    
+
     public void setFechaDevolucion(String fechaDevolucionl) {
-        this.fechaDevolucion=fechaDevolucion;
+        this.fechaDevolucion = fechaDevolucion;
     }
 }

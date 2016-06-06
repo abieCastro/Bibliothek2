@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package mantenimientoLibros;
 
 /**
@@ -11,6 +10,7 @@ package mantenimientoLibros;
  * @author Mac
  */
 public class libro {
+
     String claveLibro;
     String tituloL;
     String autorL;
@@ -19,9 +19,9 @@ public class libro {
     String clasificacionL;
     int existenciaL;
     int disponibilidadL;
-    
-    public libro () {
-        
+
+    public libro() {
+
     }
 
     public libro(String claveLibro, String tituloL, String autorL, String añoL, String editorialL, String clasificacionL, int existenciaL, int disponibilidadL) {
@@ -98,5 +98,5 @@ public class libro {
     public void setDisponibilidadL(int disponibilidadL) {
         this.disponibilidadL = disponibilidadL;
     }
-    
+
 }

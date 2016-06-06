@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package mantenimientoMaterialVisual;
 
 /**
@@ -11,14 +10,15 @@ package mantenimientoMaterialVisual;
  * @author Mac
  */
 public class ejempMatVisual {
+
     String idEjemplarM;
     String estadoM;
-    String materialvisual_claveMatVis;    
+    String materialvisual_claveMatVis;
     int prestamo_clavePrestamo;
     int devolucion_idDevolucion;
-    
+
     public ejempMatVisual() {
-        
+
     }
 
     public ejempMatVisual(String idEjemplarM, String estadoM, String materialvisual_claveMatVis, int prestamo_clavePrestamo, int devolucion_idDevolucion) {
@@ -68,5 +68,5 @@ public class ejempMatVisual {
     public void setDevolucion_idDevolucion(int devolucion_idDevolucion) {
         this.devolucion_idDevolucion = devolucion_idDevolucion;
     }
-    
+
 }

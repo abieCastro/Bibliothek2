@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package mantenimientoPrestamos;
 
 /**
@@ -11,16 +10,17 @@ package mantenimientoPrestamos;
  * @author Mac
  */
 public class prestamo {
+
     int clavePrestamo;
     String fechaPrestamo;
     String fechalimite;
     int alumno_claveAlumno;
     int docente_claveDocente;
 
-    public prestamo () {
-        
+    public prestamo() {
+
     }
-    
+
     public prestamo(int clavePrestamo, String fechaPrestamo, String fechalimite, int alumno_claveAlumno, int docente_claveDocente) {
         this.clavePrestamo = clavePrestamo;
         this.fechaPrestamo = fechaPrestamo;

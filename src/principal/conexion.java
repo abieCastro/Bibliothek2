@@ -20,7 +20,7 @@ public class conexion {
         try {
            
             Class.forName("com.mysql.jdbc.Driver");
-            conect =DriverManager.getConnection("jdbc:mysql://localhost/bibliothek","root","root");
+            conect =DriverManager.getConnection("jdbc:mysql://localhost/bibliothek","root","vaqueton");
             
         }catch(SQLException e) {
                        

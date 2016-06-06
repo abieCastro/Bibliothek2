@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package historialPrestamos;
 
 import com.qt.datapicker.DatePicker;
@@ -33,524 +32,559 @@ import org.jdatepicker.impl.UtilDateModel;
  * @author Mac
  */
 public class interfazHistorial extends JFrame {
+
     controlHistorial ch = new controlHistorial(this);
     JPanel jpPrincHist;
-    
+
     JLabel labFechaDesde;
-    JCalendarCombo selecFechaDesde;    
+    JCalendarCombo selecFechaDesde;
     JLabel labFechaHasta;
-    JCalendarCombo selecFechaHasta;    
-    
+    JCalendarCombo selecFechaHasta;
+
     ButtonGroup grupoRbTipoHist;
     JRadioButton rbHistGeneral;
-    JRadioButton rbHistLibros; 
-    JRadioButton rbHistMatVis; 
-    
+    JRadioButton rbHistLibros;
+    JRadioButton rbHistMatVis;
+
     //General   
     JPanel jpTablaHistGral;
     JTable tbHistGeneral;
     JScrollPane spHistGeneral;
-    
+
     //Libros
     JPanel jpTablaHistLib;
     JTable tbHistLibros;
     JScrollPane spHistLibros;
-    
+
     //Materiales Visuales
     JPanel jpTablaHistMatVis;
     JTable tbHistMatVis;
     JScrollPane spHistMatVis;
-    
+
     /*Filtros General*/
     JTextField txtGralNoCont;
-    JTextField txtGralGrado;   
+    JTextField txtGralGrado;
     JTextField txtGrlEjemp;
-    JTextField txtGralFecPres;   
-    JTextField txtGralFecLim;   
-    JTextField txtGralFecDev;   
-    
+    JTextField txtGralFecPres;
+    JTextField txtGralFecLim;
+    JTextField txtGralFecDev;
+
     /*Filtros Libros*/
     JTextField txtLibNoCont;
-    JTextField txtLibGrado;   
+    JTextField txtLibGrado;
     JTextField txtLibEjemp;
-    JTextField txtLibFecPres;   
-    JTextField txtLibFecLim;   
-    JTextField txtLibFecDev;   
-    
+    JTextField txtLibFecPres;
+    JTextField txtLibFecLim;
+    JTextField txtLibFecDev;
+
     /*Filtros Materiales Visuales*/
     JTextField txtMaViNoCont;
-    JTextField txtMaViGrado;   
+    JTextField txtMaViGrado;
     JTextField txtMaViEjemp;
-    JTextField txtMaViFecPres;   
-    JTextField txtMaViFecLim;   
-    JTextField txtMaViFecDev;   
-    
+    JTextField txtMaViFecPres;
+    JTextField txtMaViFecLim;
+    JTextField txtMaViFecDev;
+
     JButton btHistBuscar;
-    
-    public JPanel jpPrincHist() {  
+
+    public JPanel jpPrincHist() {
         jpPrincHist = new JPanel();
         jpPrincHist.setLayout(null);
-        jpPrincHist.setBounds(10, 50, 1340, 650);        
+        jpPrincHist.setBounds(10, 50, 1340, 650);
         jpPrincHist.setVisible(true);
-        
+
         labFechaDesde = new JLabel("Fecha Desde: ");
         labFechaDesde.setVisible(true);
         labFechaDesde.setFont(new java.awt.Font("Tahoma", Font.BOLD, 16));
         labFechaDesde.setBounds(100, 10, 150, 50);
         jpPrincHist.add(labFechaDesde);
-        
-        selecFechaDesde=new  JCalendarCombo();
+
+        selecFechaDesde = new JCalendarCombo();
         selecFechaDesde.setBounds(250, 20, 200, 30);
         jpPrincHist.add(selecFechaDesde);
-        
+
         labFechaHasta = new JLabel("Fecha Hasta: ");
         labFechaHasta.setVisible(true);
         labFechaHasta.setFont(new java.awt.Font("Tahoma", Font.BOLD, 16));
         labFechaHasta.setBounds(450, 10, 150, 50);
         jpPrincHist.add(labFechaHasta);
-        
-        selecFechaHasta=new  JCalendarCombo();
+
+        selecFechaHasta = new JCalendarCombo();
         selecFechaHasta.setBounds(600, 20, 200, 30);
         jpPrincHist.add(selecFechaHasta);
-        
+
         //General
         jpTablaHistGral = new JPanel();
         jpTablaHistGral.setLayout(null);
         jpTablaHistGral.setBounds(20, 170, 1300, 450);
         jpPrincHist.add(jpTablaHistGral);
-        jpTablaHistGral.setVisible(false);        
-        
-        tbHistGeneral = new JTable() ;               
-        tbHistGeneral.setBounds(20, 170, 1400, 450);         
+        jpTablaHistGral.setVisible(false);
+
+        tbHistGeneral = new JTable();
+        tbHistGeneral.setBounds(20, 170, 1400, 450);
         spHistGeneral = new JScrollPane(tbHistGeneral);
         spHistGeneral.setBounds(0, 0, 1300, 450);
         jpTablaHistGral.add(spHistGeneral);
-        spHistGeneral.setVisible(true);        
-        
+        spHistGeneral.setVisible(true);
+
         //Libros
         jpTablaHistLib = new JPanel();
         jpTablaHistLib.setLayout(null);
         jpTablaHistLib.setBounds(20, 200, 1300, 450);
         jpPrincHist.add(jpTablaHistLib);
         jpTablaHistLib.setVisible(false);
-        
+
         tbHistLibros = new JTable();
         tbHistLibros.setBounds(20, 200, 1400, 450);
         spHistLibros = new JScrollPane(tbHistLibros);
         spHistLibros.setBounds(0, 0, 1300, 450);
         jpTablaHistLib.add(spHistLibros);
-        spHistLibros.setVisible(true);        
-        
+        spHistLibros.setVisible(true);
+
         //Materiales Visuales
         jpTablaHistMatVis = new JPanel();
         jpTablaHistMatVis.setLayout(null);
         jpTablaHistMatVis.setBounds(20, 200, 1300, 450);
         jpPrincHist.add(jpTablaHistMatVis);
         jpTablaHistMatVis.setVisible(false);
-        
+
         tbHistMatVis = new JTable();
         tbHistMatVis.setBounds(20, 200, 1300, 450);
         spHistMatVis = new JScrollPane(tbHistMatVis);
         spHistMatVis.setBounds(0, 0, 1300, 450);
         jpTablaHistMatVis.add(spHistMatVis);
-        spHistMatVis.setVisible(true);        
-        
+        spHistMatVis.setVisible(true);
+
         grupoRbTipoHist = new ButtonGroup();
         rbHistGeneral = new JRadioButton("General");
         rbHistGeneral.setBounds(300, 80, 100, 30);
         rbHistGeneral.setVisible(true);
         rbHistGeneral.setSelected(true);
         jpPrincHist.add(rbHistGeneral);
-        grupoRbTipoHist.add(rbHistGeneral);        
-        
+        grupoRbTipoHist.add(rbHistGeneral);
+
         rbHistLibros = new JRadioButton("Libros");
         rbHistLibros.setBounds(500, 80, 120, 30);
-        rbHistLibros.setVisible(true);   
+        rbHistLibros.setVisible(true);
         jpPrincHist.add(rbHistLibros);
         grupoRbTipoHist.add(rbHistLibros);
-        
+
         rbHistMatVis = new JRadioButton("Materiales Visuales");
-        rbHistMatVis.setBounds(700, 80, 140, 30);        
-        rbHistMatVis.setVisible(true);   
+        rbHistMatVis.setBounds(700, 80, 140, 30);
+        rbHistMatVis.setVisible(true);
         jpPrincHist.add(rbHistMatVis);
-        grupoRbTipoHist.add(rbHistMatVis);               
-        
+        grupoRbTipoHist.add(rbHistMatVis);
+
         /*Filtros General*/
-        
-        txtGralNoCont = new JTextField();        
-        txtGralNoCont.setBounds(20,140,185,20);
+        txtGralNoCont = new JTextField();
+        txtGralNoCont.setBounds(20, 140, 185, 20);
         txtGralNoCont.setVisible(false);
         jpPrincHist.add(txtGralNoCont);
-        
+
         btHistBuscar = new JButton("Buscar");
         btHistBuscar.setBounds(880, 80, 80, 25);
         btHistBuscar.setVisible(true);
         jpPrincHist.add(btHistBuscar);
-        
+
         txtGralNoCont.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
-        });
+                });
 
         txtGralGrado = new JTextField();
-        txtGralGrado.setBounds(210,140,180,20);
+        txtGralGrado.setBounds(210, 140, 180, 20);
         txtGralGrado.setVisible(false);
         jpPrincHist.add(txtGralGrado);
-        
+
         txtGralGrado.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
-                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
+
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
-        });
-        
+                });
+
         txtGrlEjemp = new JTextField();
-        txtGrlEjemp.setBounds(395,140,180,20);
+        txtGrlEjemp.setBounds(395, 140, 180, 20);
         txtGrlEjemp.setVisible(false);
         jpPrincHist.add(txtGrlEjemp);
-        
+
         txtGrlEjemp.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
-                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
+
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
-        });
-        
+                });
+
         txtGralFecPres = new JTextField();
-        txtGralFecPres.setBounds(765,140,180,20);
+        txtGralFecPres.setBounds(765, 140, 180, 20);
         txtGralFecPres.setVisible(false);
         jpPrincHist.add(txtGralFecPres);
-        
+
         txtGralFecPres.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
-                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
+
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
-        });
-        
+                });
+
         txtGralFecLim = new JTextField();
-        txtGralFecLim.setBounds(950,140,180,20);
+        txtGralFecLim.setBounds(950, 140, 180, 20);
         txtGralFecLim.setVisible(false);
         jpPrincHist.add(txtGralFecLim);
-        
+
         txtGralFecLim.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
-                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
+
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
-        });
-        
+                });
+
         txtGralFecDev = new JTextField();
-        txtGralFecDev.setBounds(1135,140,185,20);
+        txtGralFecDev.setBounds(1135, 140, 185, 20);
         txtGralFecDev.setVisible(false);
         jpPrincHist.add(txtGralFecDev);
-        
+
         txtGralFecDev.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
-                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
+
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);                                                
+                        ch.filtrarHistGral(txtGralNoCont.getText(), txtGralGrado.getText(), txtGrlEjemp.getText(), txtGralFecPres.getText(), txtGralFecLim.getText(), txtGralFecDev.getText(), tbHistGeneral);
 
                     }
-        });
-        
+                });
+
         /*Filtros Libros*/
-        
         txtLibNoCont = new JTextField();
-        txtLibNoCont.setBounds(20,140,185,20);
+        txtLibNoCont.setBounds(20, 140, 185, 20);
         txtLibNoCont.setVisible(false);
         jpPrincHist.add(txtLibNoCont);
-        
+
         txtLibNoCont.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
-        });
+                });
 
         txtLibGrado = new JTextField();
-        txtLibGrado.setBounds(210,140,180,20);
+        txtLibGrado.setBounds(210, 140, 180, 20);
         txtLibGrado.setVisible(false);
         jpPrincHist.add(txtLibGrado);
-        
+
         txtLibGrado.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
-        });
-        
+                });
+
         txtLibEjemp = new JTextField();
-        txtLibEjemp.setBounds(395,140,180,20);
+        txtLibEjemp.setBounds(395, 140, 180, 20);
         txtLibEjemp.setVisible(false);
         jpPrincHist.add(txtLibEjemp);
-        
+
         txtLibEjemp.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
-        });
-        
+                });
+
         txtLibFecPres = new JTextField();
-        txtLibFecPres.setBounds(765,140,180,20);
+        txtLibFecPres.setBounds(765, 140, 180, 20);
         txtLibFecPres.setVisible(false);
         jpPrincHist.add(txtLibFecPres);
-        
+
         txtLibFecPres.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
-        });
-        
+                });
+
         txtLibFecLim = new JTextField();
-        txtLibFecLim.setBounds(950,140,180,20);
+        txtLibFecLim.setBounds(950, 140, 180, 20);
         txtLibFecLim.setVisible(false);
         jpPrincHist.add(txtLibFecLim);
-        
+
         txtLibFecLim.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
-        });
-        
+                });
+
         txtLibFecDev = new JTextField();
-        txtLibFecDev.setBounds(1135,140,185,20);
+        txtLibFecDev.setBounds(1135, 140, 185, 20);
         txtLibFecDev.setVisible(false);
         jpPrincHist.add(txtLibFecDev);
-        
+
         txtLibFecDev.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);                                                
+                        ch.filtrarHistLib(txtLibNoCont.getText(), txtLibGrado.getText(), txtLibEjemp.getText(), txtLibFecPres.getText(), txtLibFecLim.getText(), txtLibFecDev.getText(), tbHistLibros);
                     }
-        });
-        
+                });
+
         /*Filtros Materiales Visuales*/
-        
         txtMaViNoCont = new JTextField();
-        txtMaViNoCont.setBounds(20,140,185,20);
+        txtMaViNoCont.setBounds(20, 140, 185, 20);
         txtMaViNoCont.setVisible(false);
         jpPrincHist.add(txtMaViNoCont);
-        
+
         txtMaViNoCont.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
-        });
+                });
 
         txtMaViGrado = new JTextField();
-        txtMaViGrado.setBounds(210,140,180,20);
+        txtMaViGrado.setBounds(210, 140, 180, 20);
         txtMaViGrado.setVisible(false);
         jpPrincHist.add(txtMaViGrado);
-        
+
         txtMaViGrado.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
-        });
-        
+                });
+
         txtMaViEjemp = new JTextField();
-        txtMaViEjemp.setBounds(395,140,180,20);
+        txtMaViEjemp.setBounds(395, 140, 180, 20);
         txtMaViEjemp.setVisible(false);
         jpPrincHist.add(txtMaViEjemp);
-        
+
         txtMaViEjemp.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {                          
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
-                    public void removeUpdate(javax.swing.event.DocumentEvent evt) {                        
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+
+                    public void removeUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
-                    public void changedUpdate(javax.swing.event.DocumentEvent evt) {                        
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+
+                    public void changedUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
-        });
-        
+                });
+
         txtMaViFecPres = new JTextField();
-        txtMaViFecPres.setBounds(765,140,180,20);
+        txtMaViFecPres.setBounds(765, 140, 180, 20);
         txtMaViFecPres.setVisible(false);
         jpPrincHist.add(txtMaViFecPres);
-        
+
         txtMaViFecPres.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                                                           
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
 
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
-        });
-        
+                });
+
         txtMaViFecLim = new JTextField();
-        txtMaViFecLim.setBounds(950,140,180,20);
+        txtMaViFecLim.setBounds(950, 140, 180, 20);
         txtMaViFecLim.setVisible(false);
         jpPrincHist.add(txtMaViFecLim);
-        
+
         txtMaViFecLim.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                                        
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
-        });
-        
+                });
+
         txtMaViFecDev = new JTextField();
-        txtMaViFecDev.setBounds(1135,140,185,20);
+        txtMaViFecDev.setBounds(1135, 140, 185, 20);
         txtMaViFecDev.setVisible(false);
         jpPrincHist.add(txtMaViFecDev);
-        
+
         txtMaViFecDev.getDocument().addDocumentListener(
                 new javax.swing.event.DocumentListener() {
-                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {  
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                    public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
+
                     public void removeUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
+
                     public void changedUpdate(javax.swing.event.DocumentEvent evt) {
-                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);                                                
+                        ch.filtrarHistMaVi(txtMaViNoCont.getText(), txtMaViGrado.getText(), txtMaViEjemp.getText(), txtMaViFecPres.getText(), txtMaViFecLim.getText(), txtMaViFecDev.getText(), tbHistMatVis);
                     }
-        });
-                
+                });
+
         btHistBuscar.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {         
-                boolean validar=ch.validarFechHasta();
-                if(validar==true) {
+            public void mouseClicked(MouseEvent e) {
+                boolean validar = ch.validarFechHasta();
+                if (validar == true) {
                     ch.buscarHistorial();
                 } else {
-                    JOptionPane.showMessageDialog(null, "En fecha Hasta seleccione una fecha posteior a la fecha Desde", "ERROR", JOptionPane.ERROR_MESSAGE);                           
+                    JOptionPane.showMessageDialog(null, "En fecha Hasta seleccione una fecha posteior a la fecha Desde", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        });        
-        
+        });
+
         return jpPrincHist;
     }
-    
+
     public JPanel getPrincHist() {
         return jpPrincHist;
     }
+
     public void limpiarMenuHist() {
         ch.limpiarTablas();
         jpTablaHistGral.setVisible(false);
         jpTablaHistLib.setVisible(false);
         jpTablaHistMatVis.setVisible(false);
-        grupoRbTipoHist.clearSelection(); 
+        grupoRbTipoHist.clearSelection();
         txtGralNoCont.setVisible(false);
         txtGralGrado.setVisible(false);
         txtGrlEjemp.setVisible(false);
@@ -570,5 +604,5 @@ public class interfazHistorial extends JFrame {
         txtMaViFecLim.setVisible(false);
         txtMaViFecDev.setVisible(false);
     }
-    
+
 }
